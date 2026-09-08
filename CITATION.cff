@@ -23,7 +23,7 @@ identifiers:
 version: 1.0.0
 license: CC-BY-4.0
 repository-code: "https://github.com/omagebright/mosaics-studio-preprint"
-url: "https://users.ox.ac.uk/~coml1155/mosaics-studio/"
+url: "https://www.cs.ox.ac.uk/mosaics/mosaics-studio/"
 keywords:
   - natural-move Monte Carlo
   - MOSAICS

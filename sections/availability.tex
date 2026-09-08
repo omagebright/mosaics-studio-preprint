@@ -2,11 +2,14 @@
 \label{sec:availability}
 
 \paragraph{\studio{}}
-The page is served as static files at
-\url{https://users.ox.ac.uk/~coml1155/mosaics-studio/} and needs a current
-Chrome, Edge, Firefox or Safari with WebAssembly and Web Workers, about 25~MB on
+The page is served as static files on the MOSAICS project site at
+\url{https://www.cs.ox.ac.uk/mosaics/mosaics-studio/}. It needs a browser with
+WebAssembly and Web Workers, and WebGL for the molecular viewer, about 25~MB on
 first visit and a few hundred megabytes of memory during a run; the version
-described here is 1.2.6. The source is at
+described here is 1.2.6. Chrome is the browser the work reported here was run
+in. On 8 September 2026 the viewer failed to initialise under Safari on one
+machine while the same page rendered under Chrome, so the browser matrix is
+stated as tested rather than as supported. The source is at
 \url{https://github.com/omagebright/mosaics-studio} under the MIT licence. The
 page carries the MOSAICS engine compiled to WebAssembly, redistributed with the
 permission of the engine's author; the force-field data are distributed as

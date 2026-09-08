@@ -8,10 +8,9 @@ generate its tables and figures, and the evidence trees behind every number in
 it. The compiled manuscript is `main.pdf`; the Supporting Information is
 `si.pdf`.
 
-MOSAICS Studio itself runs in the browser at
-<https://users.ox.ac.uk/~coml1155/mosaics-studio/> (a temporary address; the
-page moves to the MOSAICS project site, <https://www.cs.ox.ac.uk/mosaics/>, on
-release). Its source is at <https://github.com/omagebright/mosaics-studio>.
+MOSAICS Studio itself runs in the browser on the MOSAICS project site at
+<https://www.cs.ox.ac.uk/mosaics/mosaics-studio/>. Its source is at
+<https://github.com/omagebright/mosaics-studio>.
 
 ## What the paper reports
 

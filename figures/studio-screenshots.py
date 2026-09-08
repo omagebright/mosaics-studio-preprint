@@ -1,6 +1,6 @@
 import asyncio, time
 from playwright.async_api import async_playwright
-URL="https://users.ox.ac.uk/~coml1155/mosaics-studio/"
+URL="https://www.cs.ox.ac.uk/mosaics/mosaics-studio/"
 async def main():
     async with async_playwright() as p:
         b=await p.chromium.launch()
