@@ -1,0 +1,331 @@
+###################################################################################
+#   Copyright (c) 2007 Peter Minary.        ~---------------------------------~   #
+#   All Rights Reserved.                    |     |              /    /    / ~|   #
+#      __           ~-           __         |    \|/     _      /         / ~ |   #
+#     /^^\     M   -  ~   M     /^^\        |   \_|_/  ((|))   /  M /  _ / ~ ~|   #
+#    /^^^^\   O   -    ~   O   /^^^^\       |  \__|__/ ((|))  /      ((|))~ ~ |   #
+#     |  |     S   -  ~   S     |  |        |     |      |   /  O /  ((|)) ~ ~|   #
+#     |  |      A   ~-   A      |  |        |  _     _   |  /         /|~ ~ ~ |   #
+#     |  |     I   ~  -   I     |  |        | {|}  ((|)) | /  S /  _ /~| ~_~ ~|   #
+#    _|__|_   C   ~    -   C   _|__|_       |{{|}} ((|))  /      ((|)) |~{|}~ |   #
+#              S   ~  -   S                 |  |     |   /  A /  ((|))~ {{|}}~|   #
+#   --------------- -~ ----------------     |    _   |  /         /| ~ ~ ~| ~ |   #
+#    Methodologies for Optimization and     |  ((|)) | /  I /  _ / |~ ~ ~| ~ ~|   #
+#    SAmpling In Computational Studies      |  ((|))  /      ((|)) | ~  \|/ ~ |   #
+#   -----------------------------------     |    |   /  C /  ((|))~ ~  \_|_/ ~|   #
+#                                           |    |  /         /| ~ ~  \__|__/~|   #
+#          >>  version.3.9.1  <<            |    | /  S /    /~|~ ~ ~ ~ ~| ~ ~|   #
+#                                           |     /         /~ | ~ ~ ~ ~ ~ ~ ~|   #
+#                                           ~---------------------------------~   #
+###################################################################################
+
+
+===================================================================================
+Reading simulation input file sp_ubiquitin_ff14sb_vac.input
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file sp_ubiquitin_ff14sb_vac.input
+===================================================================================
+
+
+===================================================================================
+Reading potential database files 
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff14sb/mosaics_openmm-ff14sb.bond
+...
+Database reading done, total 90 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff14sb/mosaics_openmm-ff14sb.bend
+...
+Database reading done, total 258 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff14sb/mosaics_openmm-ff14sb.tors_and_impr
+...
+Database reading done, total 526 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff14sb/mosaics_openmm-ff14sb.onfo
+...
+Database reading done, total 595 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff14sb/mosaics_openmm-ff14sb.vdw
+...
+Database reading done, total 595 entries read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading potential database files 
+===================================================================================
+
+
+===================================================================================
+Creating atom maps
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Creating atom maps done
+===================================================================================
+
+
+===================================================================================
+Reading file ubiquitin_ff14sb_mosaics.pdb
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file ubiquitin_ff14sb_mosaics.pdb
+...
+File reading done, total 1231 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file ubiquitin_ff14sb_mosaics.pdb
+===================================================================================
+
+
+===================================================================================
+Reading residue topology file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff14sb_protein.rtf
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff14sb_protein.rtf
+...
+File reading done, total 2564 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff14sb_protein.rtf
+===================================================================================
+
+
+===================================================================================
+Setting up residue topology
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Sampling atom velocities
+...
+Atom velocities sampling done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Residue topology setup done
+===================================================================================
+
+
+===================================================================================
+Setting up connectivity
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Setting up bonds
+...
+Bonds setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up bends
+...
+Bends setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up tors
+...
+Tors setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up onefour
+...
+Onefour setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up inter-molecular interactions
+...
+Inter-mol setting up done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Connectivity setup done
+===================================================================================
+
+
+===================================================================================
+System setup 
+-----------------------------------------------------------------------------------
+Total number of molecules: 1
+
+Number of biopolymer molecules: 1
+Itemizing...
+
+1. molecule 
+molecule type ~~~>protein<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 1  NMET  natom 19, charge  1
+ 2. residue is 2  GLN  natom 17, charge  0
+ 3. residue is 3  ILE  natom 19, charge  0
+ 4. residue is 4  PHE  natom 20, charge  0
+ 5. residue is 5  VAL  natom 16, charge  0
+ 6. residue is 6  LYS  natom 22, charge  1
+ 7. residue is 7  THR  natom 14, charge  0
+ 8. residue is 8  LEU  natom 19, charge  0
+ 9. residue is 9  THR  natom 14, charge  0
+ 10. residue is 10  GLY  natom 7, charge  0
+ 11. residue is 11  LYS  natom 22, charge  1
+ 12. residue is 12  THR  natom 14, charge  0
+ 13. residue is 13  ILE  natom 19, charge  0
+ 14. residue is 14  THR  natom 14, charge  0
+ 15. residue is 15  LEU  natom 19, charge  0
+ 16. residue is 16  GLU  natom 15, charge -1
+ 17. residue is 17  VAL  natom 16, charge  0
+ 18. residue is 18  GLU  natom 15, charge -1
+ 19. residue is 19  PRO  natom 14, charge  0
+ 20. residue is 20  SER  natom 11, charge  0
+ 21. residue is 21  ASP  natom 12, charge -1
+ 22. residue is 22  THR  natom 14, charge  0
+ 23. residue is 23  ILE  natom 19, charge  0
+ 24. residue is 24  GLU  natom 15, charge -1
+ 25. residue is 25  ASN  natom 14, charge  0
+ 26. residue is 26  VAL  natom 16, charge  0
+ 27. residue is 27  LYS  natom 22, charge  1
+ 28. residue is 28  ALA  natom 10, charge  0
+ 29. residue is 29  LYS  natom 22, charge  1
+ 30. residue is 30  ILE  natom 19, charge  0
+ 31. residue is 31  GLN  natom 17, charge  0
+ 32. residue is 32  ASP  natom 12, charge -1
+ 33. residue is 33  LYS  natom 22, charge  1
+ 34. residue is 34  GLU  natom 15, charge -1
+ 35. residue is 35  GLY  natom 7, charge  0
+ 36. residue is 36  ILE  natom 19, charge  0
+ 37. residue is 37  PRO  natom 14, charge  0
+ 38. residue is 38  PRO  natom 14, charge  0
+ 39. residue is 39  ASP  natom 12, charge -1
+ 40. residue is 40  GLN  natom 17, charge  0
+ 41. residue is 41  GLN  natom 17, charge  0
+ 42. residue is 42  ARG  natom 24, charge  1
+ 43. residue is 43  LEU  natom 19, charge  0
+ 44. residue is 44  ILE  natom 19, charge  0
+ 45. residue is 45  PHE  natom 20, charge  0
+ 46. residue is 46  ALA  natom 10, charge  0
+ 47. residue is 47  GLY  natom 7, charge  0
+ 48. residue is 48  LYS  natom 22, charge  1
+ 49. residue is 49  GLN  natom 17, charge  0
+ 50. residue is 50  LEU  natom 19, charge  0
+ 51. residue is 51  GLU  natom 15, charge -1
+ 52. residue is 52  ASP  natom 12, charge -1
+ 53. residue is 53  GLY  natom 7, charge  0
+ 54. residue is 54  ARG  natom 24, charge  1
+ 55. residue is 55  THR  natom 14, charge  0
+ 56. residue is 56  LEU  natom 19, charge  0
+ 57. residue is 57  SER  natom 11, charge  0
+ 58. residue is 58  ASP  natom 12, charge -1
+ 59. residue is 59  TYR  natom 21, charge  0
+ 60. residue is 60  ASN  natom 14, charge  0
+ 61. residue is 61  ILE  natom 19, charge  0
+ 62. residue is 62  GLN  natom 17, charge  0
+ 63. residue is 63  LYS  natom 22, charge  1
+ 64. residue is 64  GLU  natom 15, charge -1
+ 65. residue is 65  SER  natom 11, charge  0
+ 66. residue is 66  THR  natom 14, charge  0
+ 67. residue is 67  LEU  natom 19, charge  0
+ 68. residue is 68  HIE  natom 17, charge  0
+ 69. residue is 69  LEU  natom 19, charge  0
+ 70. residue is 70  VAL  natom 16, charge  0
+ 71. residue is 71  LEU  natom 19, charge  0
+ 72. residue is 72  ARG  natom 24, charge  1
+ 73. residue is 73  LEU  natom 19, charge  0
+ 74. residue is 74  ARG  natom 24, charge  1
+ 75. residue is 75  GLY  natom 7, charge  0
+ 76. residue is 76  CGLY  natom 8, charge -1
+molecular charge 5.55112e-16
+
+Number of water molecules: 0
+Number of atoms/ions: 0 
+Number of dummy atoms: 0
+Number of other molecules: 0 
+Total system charge: 5.55112e-16
+-----------------------------------------------------------------------------------
+System setup done
+===================================================================================
+
+
+===================================================================================
+Initial energies in kcal/mol
+-----------------------------------------------------------------------------------
+Initial Bond energy 125.6118919954297
+Initial Bend energy 275.3642259073678
+Initial Torsion energy 917.5863306491411
+Initial Onefour energy 3494.94229497944
+Initial Inter energy -5360.463182219529
+Initial Constraint energy 0
+Initial Total energy -546.9584386881503
+-----------------------------------------------------------------------------------
+Initial energies
+===================================================================================
+
+
+===================================================================================
+Energy/Temparature Domain Partitioning
+-----------------------------------------------------------------------------------
+ Levels in energy partitioning 
+
+-1 0 
+
+ Temperature ladder
+
+300 
+
+ Temperature ladder in energy units
+
+0.00095 
+
+current c value 1.05e+03
+-----------------------------------------------------------------------------------
+Energy/Temparature Domain Partitioning Done
+===================================================================================
+
+
+===================================================================================
+>>Report energies at step 1<<
+-----------------------------------------------------------------------------------
+
+	Energies in kcal/mol
+
+	-Bond energy                 125.6118919954297
+	-Bend energy                 275.3642259073678
+	   Bond-Bend energy          0
+	   Bend-Bend energy          275.3642259073678
+	-Torsion energy              917.5863306491411
+	   Tors-Tors energy          909.2314709627545
+	   Tors-Improper energy      8.354859686386495
+	-Onefour energy              3494.94229497944
+	   Onfo-Coulomb energy       3106.428985053052
+	   Onfo-Lennard-Jones energy 388.5133099263894
+	-Inter energy                -5360.463182219529
+	   Lennard-Jones energy      145.6324673237529
+	   Coulomb energy            -5506.095649543377
+	   SCP energy                0
+	   Knowledge based energy    0
+	-Total Lennard-Jones energy  534.1457772501424
+	-Total Coulomb energy        -2399.666664490324
+	-Constraint energy           0
+	-Total energy                -546.9584386881503
+
+-----------------------------------------------------------------------------------
+===================================================================================
+
+===================================================================================
+ Acceptance ratio for MH Chains 
+-----------------------------------------------------------------------------------
+       # of accepted   ||  # of total   || acceptance ratio
+ Chain 0     1	     1	     1
+
+
+ Acceptance ratio for PT jumps 
+
+       # of accepted   ||  # of total   || acceptance ratio
+-----------------------------------------------------------------------------------
+ Acceptance ratio for MH Chains 
+===================================================================================
+
+
+###################################################################################
+##===============================================================================##
+##                M.O.S.A.I.C.S    Successfully Completed                        ##
+##===============================================================================##
+###################################################################################
+ Current Date Tue Aug 25 02:07:54 -03 2026
+ ===================================================================================
+
+

@@ -1,0 +1,18 @@
+tetraloop_mosaics.pdb, 5-prime patch 5TER
+  renamed 2 atom(s) to CHARMM spelling
+  bonds built 467 intra-residue, 13 backbone links, 0 deoxyribose
+  unbonded atoms in residue 1: none
+  5TER_0 removes an external bond: yes
+  BUILD OK   447 particles, 10 forces
+  term                               kcal/mol   openmm force          
+  torsion                      440.1552839637   PeriodicTorsionForce  
+  correction map                 0.0000000000   CMAPTorsionForce      
+  electrostatics               355.5807512504   NonbondedForce        
+  Lennard-Jones               -120.8488547469   CustomNonbondedForce  
+  -                              0.0000000000   CMMotionRemover       
+  angle                        551.8866392877   HarmonicAngleForce    
+  1-4 Lennard-Jones            692.0249784181   CustomBondForce       
+  improper (harmonic)            0.1132546012   CustomTorsionForce    
+  bond                          82.6094045415   HarmonicBondForce     
+  Urey-Bradley (1-3)           105.1030085698   HarmonicBondForce     
+  TOTAL                       2106.6244658855

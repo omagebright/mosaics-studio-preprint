@@ -1,0 +1,1 @@
+max interatomic distance 3.926783 nm; box 11.853566 nm; rlist 5.926783 nm

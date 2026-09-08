@@ -1,0 +1,12 @@
+# build products of the two documents (root only; the evidence trees keep their .log/.out files)
+/*.aux
+/*.log
+/*.fls
+/*.fdb_latexmk
+/*.synctex.gz
+/*.toc
+/*.bbl
+/*.blg
+/*.xdv
+__pycache__/
+.DS_Store

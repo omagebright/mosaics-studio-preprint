@@ -1,0 +1,87 @@
+============================================================================================
+OL21/OL3 on ddd (1BNA)
+============================================================================================
+term                            MOSAICS 3.9.1    MOSAICS current         sander             OpenMM            GROMACS
+bond                                      n/a        94.35242574    94.35240000        94.35242574        94.35242567
+angle                                     n/a       829.11679555   829.11710000       829.11713378       829.11713384
+torsion (proper+improper)                 n/a       651.66162827   651.66010000       651.66008445       651.66063456
+  proper only                             n/a       651.02934460              -                  -       651.02936353
+  improper only                           n/a         0.63228367              -                  -         0.63127103
+lennard-jones (total)                     n/a      -103.23432771  -103.23430000      -103.23432793      -103.23435540
+electrostatics (as printed)               n/a       669.59161828   669.56900000       669.59211450       669.59217878
+electrostatics (corrected)                n/a       669.59216736   669.59221607       669.59211510       669.59217938
+
+  MOSAICS CURRENT minus OpenMM, electrostatics after correction:
+    bond       +5.5422e-13
+    angle      -3.3824e-04
+    torsion    +1.5438e-03
+    lj         +2.1191e-07
+    coulomb    +5.2255e-05
+  MOSAICS CURRENT minus GROMACS, split torsion:
+    proper     -1.8926e-05
+    improper   +1.0126e-03
+
+  MOSAICS 3.9.1: did not run (see RESULTS.md)
+============================================================================================
+OL15/OL3 on ddd (1BNA)
+============================================================================================
+term                            MOSAICS 3.9.1    MOSAICS current         sander             OpenMM            GROMACS
+bond                                      n/a        94.35242574    94.35240000        94.35242574        94.35242567
+angle                                     n/a       829.11679555   829.11710000       829.11713378       829.11713384
+torsion (proper+improper)                 n/a       648.70607901   648.70450000       648.70453519       648.70508533
+  proper only                             n/a       648.07379534              -                  -       648.07381429
+  improper only                           n/a         0.63228367              -                  -         0.63127103
+lennard-jones (total)                     n/a      -103.23432771  -103.23430000      -103.23432793      -103.23435540
+electrostatics (as printed)               n/a       669.59161828   669.56900000       669.59211450       669.59217878
+electrostatics (corrected)                n/a       669.59216736   669.59221607       669.59211510       669.59217938
+
+  MOSAICS CURRENT minus OpenMM, electrostatics after correction:
+    bond       +5.5422e-13
+    angle      -3.3824e-04
+    torsion    +1.5438e-03
+    lj         +2.1191e-07
+    coulomb    +5.2255e-05
+  MOSAICS CURRENT minus GROMACS, split torsion:
+    proper     -1.8951e-05
+    improper   +1.0126e-03
+
+  MOSAICS 3.9.1: did not run (see RESULTS.md)
+============================================================================================
+parmbsc1 on ddd (1BNA)
+============================================================================================
+term                            MOSAICS 3.9.1    MOSAICS current         sander             OpenMM            GROMACS
+bond                                      n/a        94.35242366    94.35240000        94.35242369        94.35242376
+angle                                     n/a       907.21237243   907.21270000       907.21274174       907.21274187
+torsion (proper+improper)                 n/a       548.39218871   548.00690000       548.00695422       548.00750167
+  proper only                             n/a       547.76004711              -                  -       547.37623064
+  improper only                           n/a         0.63214160              -                  -         0.63127103
+lennard-jones (total)                     n/a       -99.66702859   -99.66700000       -99.66703064       -99.66705832
+electrostatics (as printed)               n/a       669.46836750   669.44560000       669.46886362       669.46892806
+electrostatics (corrected)                n/a       669.46891648   669.46881180       669.46886422       669.46892866
+
+  MOSAICS CURRENT minus OpenMM, electrostatics after correction:
+    bond       -2.3335e-08
+    angle      -3.6931e-04
+    torsion    +3.8523e-01
+    lj         +2.0502e-06
+    coulomb    +5.2257e-05
+  MOSAICS CURRENT minus GROMACS, split torsion:
+    proper     +3.8382e-01
+    improper   +8.7056e-04
+
+  MOSAICS 3.9.1: did not run (see RESULTS.md)
+============================================================================================
+parmbsc0 on ddd (1BNA)
+============================================================================================
+term                            MOSAICS 3.9.1    MOSAICS current         sander             OpenMM            GROMACS
+bond                                      n/a                n/a    94.35240000        94.35242574        94.35242567
+angle                                     n/a                n/a   829.11710000       829.11713378       829.11713384
+torsion (proper+improper)                 n/a                n/a   468.52210000       468.52209578       468.52209106
+  proper only                             n/a                n/a              -                  -       467.88980736
+  improper only                           n/a                n/a              -                  -         0.63228370
+lennard-jones (total)                     n/a                n/a  -103.23430000      -103.23432793      -103.23435540
+electrostatics (as printed)               n/a                n/a   669.56900000       669.59211450       669.59217878
+electrostatics (corrected)                n/a                n/a   669.59221607       669.59211510       669.59217938
+
+  MOSAICS CURRENT: did not run (see RESULTS.md)
+  MOSAICS 3.9.1: did not run (see RESULTS.md)

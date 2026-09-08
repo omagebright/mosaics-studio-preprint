@@ -1,0 +1,648 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{What was implemented and what was tested}
+\label{sec:coverage}
+
+Eight parameter families were converted into MOSAICS decks and evaluated at
+all-atom resolution: ff14SB \cite{maier2015ff14sb} and ff19SB
+\cite{tian2020ff19sb} for protein; parmbsc0 \cite{perez2007bsc0}, parmbsc1
+\cite{ivani2016bsc1}, OL15/OL3 \cite{zgarbova2015ol15,zgarbova2011ol3},
+OL21/OL3 \cite{zgarbova2021ol21,zgarbova2011ol3} and OL24/OL3
+\cite{zgarbova2025ol24,zgarbova2011ol3} for nucleic acid; and CHARMM36 for
+nucleic acid \cite{hart2012charmm36dna,denning2011charmm36rna}. Across the
+eleven systems they give the 26 system-and-force-field combinations of
+Table~\ref{tab:matrix}, 54 MOSAICS-to-reference comparisons in all, 20 of the
+26 cells carrying two or more references.
+
+The cells were not all checked to the same strength, and the table says which
+is which. The six original AMBER combinations on the heteroduplex and the
+tetrapeptide were compared term by term against all three references, and the
+ff14SB proteins and the OL21/OL3, OL15/OL3 and OL3 nucleic systems have a
+GROMACS total as well as sander and OpenMM. Every ff19SB row is against sander
+and OpenMM only, because the ParmEd route collapses its per-residue correction
+maps onto one (F-06, Section~\ref{sec:methods-references}); the GROMACS cell is
+blank, not failing. The CHARMM36 and OL24 rows are against OpenMM only.
+CHARMM36 has one reference because its deck and its reference are both read
+out of the same OpenMM build; on the Drew--Dickerson dodecamer the sander OL24
+run read the full-precision restart coordinates where MOSAICS and OpenMM read
+the three-decimal PDB, so it is a comparison of two geometries and is left out.
+The 1efs CHARMM36 cell is the 816-atom $5'$-OH rebuild of the heteroduplex
+(F-08) and is not comparable with the AMBER rows above it. The two 1F7Y rows
+run on decks that exist only on an unmerged engine branch. Every run is a
+single-point energy at one fixed geometry, in vacuum, with no cutoff and
+dielectric~1.
+
+\paragraph{Which chemistry the test systems reach}
+A deck is a table, and a single-point energy exercises only the rows the
+structure selects. The eleven systems reach all eight standard nucleic bases,
+DA, DC, DG and DT on the dodecamer and A, C, G and U on the tetraloop and the
+RNA 4-mer; $5'$-OH and $3'$-OH chain ends on five systems and $5'$-phosphate
+interior chemistry on the padded heteroduplex; twenty amino-acid types across
+ubiquitin, BPTI and the MHC heavy chain, including charged, aromatic,
+histidine and proline residues, three disulfides, charged termini and two
+capped fragments. What no system reaches is a $5'$-phosphate terminus under
+any deck, an alternative protonation state, or more than one conformation: each
+cell is one geometry, so a parameter that is wrong but inactive at that
+geometry, or a torsion whose phase is wrong but degenerate there, would not
+show. Finding F-21 is that failure mode caught in the act: an analytic force
+that was identically zero passed every energy comparison on the peptide.
+
+\subsection{Single-point agreement over 26 combinations}
+\label{sec:matrix}
+
+Table~\ref{tab:matrix} gives every total energy as each program returns it,
+with the electrostatic term of MOSAICS and sander rescaled to the single
+constant of Section~\ref{sec:constant}, and the difference of each reference
+from MOSAICS. Figure~\ref{fig:energy-agreement} plots the same 54 differences,
+and, where the engine output files resolve them, the differences term by term.
+
+\begin{table}[tbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Single-point total energies on the eleven systems, in \kcal{}, vacuum,
+no cutoff, every electrostatic term on the CODATA-derived constant
+$332.0637133$. A dash means that reference was not run for that cell, for the
+reason given in Section~\ref{sec:coverage}. The right-hand block is the
+reference minus MOSAICS. The 1efs CHARMM36 row is the 816-atom $5'$-OH
+rebuild of the heteroduplex, not the 818-atom structure of the rows above it;
+the 1F7Y decks are on an unmerged engine branch. Source:
+\texttt{work/preprint-I/energies/MATRIX.json}, and the engine output files it
+names; the table is written from that file by \texttt{make\_tables.py}.}
+\label{tab:matrix}
+\resizebox{\textwidth}{!}{\input{tables/matrix}}
+\end{table}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{energy-agreement.pdf}
+\caption{Energy agreement over the 26 combinations. (a) One marker per
+MOSAICS-to-reference comparison of the total energy, 54 in all, grouped by
+system class; the vertical axis is $|E_{\mathrm{MOSAICS}} -
+E_{\mathrm{reference}}|$ on a log scale. Marker shape and colour identify the
+reference engine. (b) The same comparisons resolved into the terms the engines
+share, for the cells whose output files carry the split; where an OpenMM file
+prints only a combined non-bonded energy the comparison appears in the last
+column. Hollow markers fall below the print resolution of the reference file
+they were read from and are print quantisation, not measured disagreement.
+Dashed line, $kT$ at 300~K, 0.596~\kcal{}; dotted line, 0.001~\kcal{}. Every
+value is re-derived from \texttt{MATRIX.json} and the engine outputs it names
+by \texttt{figures/energy-agreement.py}.}
+\label{fig:energy-agreement}
+\end{figure}
+
+Nineteen of the 26 cells agree with every reference available to them to
+within 0.001~\kcal{}, and thirteen to within 0.0004. Over the 26 cells the
+median of the largest gap to any reference is 0.00037~\kcal{}; the smallest is
+$3.2\times10^{-7}$, on the tetraloop under CHARMM36, and the largest is
+0.0426, on BPTI under ff19SB. For scale, $kT$ at 300~K is 0.596~\kcal{}, and the
+sander column can resolve nothing below about $2\times10^{-4}$. The seven cells
+outside 0.001~\kcal{} are, in order, BPTI ff19SB (0.0426), the two
+peptide--MHC cells (0.0048 and 0.0043), the two S15--rRNA cells (0.0012 and
+0.0016) and the dodecamer under OL21 and OL15 (0.0013 each). Each has a
+mechanism, and they are of three kinds.
+
+\paragraph{An improper read in two atom orders}
+The BPTI ff19SB cell is 0.0426~\kcal{} below the references on the dihedral
+term and nowhere else: bond, angle, Lennard-Jones and electrostatics carry the
+same residuals as the ff14SB cell on the same coordinates, and the correction
+map matches OpenMM to $5.8\times10^{-13}$. Splitting the dihedral term puts
+the whole gap in the impropers, 5.5085 against 5.5506~\kcal{}. It is one
+improper, at the backbone nitrogen of ASP~3. The AMBER topology writes that
+improper in the order C--CA--N--H and the MOSAICS residue template in the order
+$-$C--H--N--CA; the two orders define different dihedral angles, which coincide
+when the nitrogen is planar and part company when it is not, and at ASP~3 in
+the deposited coordinates they read $-156.8^{\circ}$ and $+158.4^{\circ}$,
+some $22^{\circ}$ from planar. Evaluating that one improper in the topology's
+order, with the two conventions for the phase and the deck's coefficient
+rounding accounted for, reproduces the whole gap to $8.5\times10^{-8}$~\kcal{},
+and the accounting is committed beside the run. The same mechanism produced a
+0.46~\kcal{} gap at LEU~2 of the Tax nonamer on an earlier build of that
+structure, which is why the peptide's first amide hydrogen is now placed in the
+peptide plane by the engine's builder and why the nonamer cells in
+Table~\ref{tab:matrix} agree to $9\times10^{-5}$. The ff14SB cell on the same
+BPTI coordinates is within $6\times10^{-4}$, so the parameters are not in
+question: the improper order is.
+
+\paragraph{Six adenine impropers on the dodecamer}
+Under OL21 and OL15 the dodecamer sits 0.0013~\kcal{} above sander and OpenMM
+and 0.0007 above GROMACS. Resolved into terms the excess is on the torsion
+term, $+1.5\times10^{-3}$, of which $+1.0\times10^{-3}$ is improper, and it
+was located rather than guessed. \texttt{tleap} under DNA.OL21 writes the
+adenine N9 improper as C8/C4/N9/C1$'$ and under ff99bsc0 as C4/C8/N9/C1$'$;
+swapping the first two atoms is not a symmetry of the term when the group is
+not exactly planar; MOSAICS agrees with the parmbsc0 order to eight figures,
+and the six instances that differ, on DA~5, 16 and 17, account for the whole
+$1.0\times10^{-3}$. The same term on the heteroduplex, whose entire improper
+energy is $5.3\times10^{-4}$~\kcal{}, is within $4.3\times10^{-5}$, so the
+difference between the two structures is the geometry the impropers are
+evaluated at, not the parameters.
+
+\paragraph{Two large systems not yet resolved into terms}
+The peptide--MHC complex, 6,139 atoms, is 0.0038~\kcal{} above sander and 0.0048
+above OpenMM under ff14SB, and 0.0037 and 0.0043 under ff19SB, out of a total of
+$-476$ and $-2937$; per atom that is below $10^{-6}$~\kcal{}, and the two
+force fields give the same offset within $5\times10^{-4}$, which points at the
+non-bonded or angle terms they share rather than at the backbone terms they do
+not. The S15--rRNA complex, 3,321 atoms, is 0.0012 and 0.0016~\kcal{} below the
+references, and its terms are resolved: bond agrees to $2\times10^{-11}$, the
+correction map to $2\times10^{-11}$, torsion and improper to $4\times10^{-4}$
+and $8\times10^{-5}$, while the angle term carries $-1.55\times10^{-3}$ and the
+non-bonded sum $-3.7\times10^{-3}$ in the two directions that nearly cancel.
+Those two systems are the only ones whose reference coordinates were written
+from the three-decimal PDB rather than from \texttt{tleap}'s restart, and the
+S15--rRNA decks are on a branch; both cells are reported as they stand and
+neither is claimed to be closed.
+
+\paragraph{The angle term, on every system}
+The one residual that appears on every system whose terms were resolved is on
+the angle term, and it always has the same sign. MOSAICS minus OpenMM on that
+term is $-1.76\times10^{-4}$~\kcal{} on the heteroduplex, $-9.6\times10^{-6}$
+on the tetrapeptide, $-1.0\times10^{-4}$ on the tetraloop, $-3.4\times10^{-4}$
+on the dodecamer, $-5.1\times10^{-4}$ on BPTI and $-6.5\times10^{-4}$ on
+ubiquitin, growing with the number of angles. It is not a MOSAICS error. The
+AMBER topology builder writes every equilibrium angle as the published value
+multiplied by a seven-digit approximation of $\pi/180$, while MOSAICS reads the
+value in degrees and converts it exactly, so the reference carries the rounding
+(F-12). It is reported and not corrected, and it is the largest residual on
+every AMBER cell that is inside 0.001~\kcal{}.
+
+\subsection{Term by term on the two reference systems}
+\label{sec:energies}
+
+Before the numbers, the resolution of the files they are read from, because
+several of the differences below are smaller than the output they come out of.
+sander prints four decimals, an absolute floor near $2\times10^{-4}$~\kcal{}.
+GROMACS energies are read from \texttt{sp.xvg}, which carries six decimals in
+kJ/mol, a floor of $2.4\times10^{-7}$~\kcal{}. OpenMM's single-point output
+carries twelve decimal places, a floor of about $5\times10^{-13}$~\kcal{}.
+MOSAICS prints sixteen significant digits. A difference smaller than the floor
+of the file it is taken from is the last printed digit of that file and not a
+measurement, and no such number is quoted here as a residual.
+
+On every one of the six original AMBER combinations, the largest difference
+between MOSAICS and OpenMM on any energy term is $1.8\times10^{-4}$~\kcal{} for
+the four heteroduplex decks and $9.6\times10^{-6}$~\kcal{} for the two peptide
+decks, in both cases on the angle term and for the reason just given. Every
+other term on every other row is smaller than this. The margin varies widely:
+the parmbsc1 dihedral residual, $+1.03\times10^{-4}$~\kcal{}, is within a factor
+of two of it, while the two peptide bond terms agree past the twelfth decimal
+place OpenMM writes, which is as far as the comparison can be taken and no
+further. Table~\ref{tab:ol21} gives the full four-engine breakdown for one force
+field, OL21/OL3 on 1efs, so that the raw numbers are on the page, and
+Table~\ref{tab:summary} gives MOSAICS minus each reference, per term, for all
+six combinations.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\caption{OL21/OL3 on 1efs (818 atoms, net charge $-26$, vacuum, no cutoff), in
+\kcal{}, as each engine prints them. The dihedral row includes impropers, and the
+Lennard-Jones and electrostatic rows include the 1--4 terms. sander gives four
+decimals (floor $2\times10^{-4}$~\kcal{}), the GROMACS column is converted from
+\texttt{sp.xvg} values carrying six decimals in kJ/mol (floor
+$2.4\times10^{-7}$), OpenMM writes twelve decimals (floor $5\times10^{-13}$)
+and MOSAICS writes sixteen significant digits. \emph{corrected} means the
+electrostatic term rescaled to the single constant of
+Section~\ref{sec:constant}; the MOSAICS column is divided by the unrounded
+product $0.529177\times627.50921$ and the sander column by
+$18.2223^{2}=332.05221729$, so either corrected entry can be reproduced digit
+for digit from the printed one above it. Sources:
+\texttt{evidence/1efs/ol21\_ol3/\{mosaics,sander,openmm,gromacs\}/}.}
+\label{tab:ol21}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Term & MOSAICS & sander & OpenMM & GROMACS \\
+\midrule
+bond                   &   70.99877741 &   70.9988    &   70.99877741 &   70.99877749 \\
+angle                  &  220.56489609 &  220.5651    &  220.56507252 &  220.56507290 \\
+dihedral               &  596.17955421 &  596.1796    &  596.17959679 &  596.17959369 \\
+Lennard-Jones          & $-$219.29643681 & $-$219.2964 & $-$219.29643710 & $-$219.29646343 \\
+electrostatic, printed & 1857.73806648 & 1857.6753    & 1857.73956494 & 1857.73959895 \\
+electrostatic, corrected & 1857.73958864 & 1857.73961475 & 1857.73956494 & 1857.73959895 \\
+\midrule
+total, corrected       & 2526.18637954 & 2526.18671475 & 2526.18657455 & 2526.18657959 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\caption{MOSAICS minus each reference engine, per term, in \kcal{}, on the six
+original combinations. Electrostatics are corrected on both sides to
+$332.0637133$~kcal\,\AA\,mol$^{-1}$\,$e^{-2}$ (Section~\ref{sec:constant})
+before the difference is taken, with the MOSAICS side divided by the unrounded
+$0.529177\times627.50921 = 332.06344122017$. \emph{n.r.} means the difference
+is smaller than the resolution of that reference's own output file, so the
+value in the committed evidence is a print artefact; the 27 censored sander
+entries run from $2.0\times10^{-6}$ to $5.1\times10^{-5}$ in the raw files.
+The GROMACS CMAP entry is the conversion-route limit F-06 and not a
+disagreement about physics. \emph{--} marks a term the force field does not
+have. Source: \texttt{evidence/results.txt} and the per-combination output
+files under \texttt{evidence/}.}
+\label{tab:summary}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Term & OL21/OL3 & OL15/OL3 & parmbsc1 & parmbsc0 & ff14SB & ff19SB \\
+\midrule
+\multicolumn{7}{@{}l}{\emph{Reference: OpenMM 8.5.2, output floor $5\times10^{-13}$~\kcal{}}}\\
+bond      & n.r. & $+3.78\times10^{-9}$ & $-8.30\times10^{-8}$ & $-8.30\times10^{-8}$ & n.r. & n.r. \\
+angle     & $-1.76\times10^{-4}$ & $-1.76\times10^{-4}$ & $-1.76\times10^{-4}$ & $-1.76\times10^{-4}$ & $-9.57\times10^{-6}$ & $-9.57\times10^{-6}$ \\
+dihedral  & $-4.26\times10^{-5}$ & $-4.45\times10^{-5}$ & $+1.03\times10^{-4}$ & $+3.59\times10^{-5}$ & $+1.27\times10^{-6}$ & $+1.28\times10^{-6}$ \\
+cmap      & --  & --  & --  & --  & --  & $-5.69\times10^{-8}$ \\
+Lennard-Jones & $+2.89\times10^{-7}$ & $+2.71\times10^{-7}$ & $+3.81\times10^{-6}$ & $+3.81\times10^{-6}$ & $+1.15\times10^{-8}$ & $+1.15\times10^{-8}$ \\
+electrostatic & $+2.37\times10^{-5}$ & $+2.37\times10^{-5}$ & $+2.37\times10^{-5}$ & $+2.37\times10^{-5}$ & $+4.18\times10^{-7}$ & $+4.18\times10^{-7}$ \\
+\addlinespace
+\multicolumn{7}{@{}l}{\emph{Reference: sander 24.0, output floor $2\times10^{-4}$~\kcal{}}}\\
+bond      & n.r. & n.r. & n.r. & n.r. & n.r. & n.r. \\
+angle     & $-2.04\times10^{-4}$ & $-2.04\times10^{-4}$ & $-2.04\times10^{-4}$ & $-2.04\times10^{-4}$ & n.r. & n.r. \\
+dihedral  & n.r. & n.r. & n.r. & n.r. & n.r. & n.r. \\
+cmap      & --  & --  & --  & --  & --  & n.r. \\
+Lennard-Jones & n.r. & n.r. & n.r. & n.r. & n.r. & n.r. \\
+electrostatic & n.r. & n.r. & n.r. & n.r. & n.r. & n.r. \\
+\addlinespace
+\multicolumn{7}{@{}l}{\emph{Reference: GROMACS 2025.4, output floor $2.4\times10^{-7}$~\kcal{}}}\\
+bond      & n.r. & n.r. & n.r. & n.r. & n.r. & n.r. \\
+angle     & $-1.77\times10^{-4}$ & $-1.77\times10^{-4}$ & $-1.77\times10^{-4}$ & $-1.77\times10^{-4}$ & $-9.60\times10^{-6}$ & $-9.60\times10^{-6}$ \\
+dihedral  & $-3.95\times10^{-5}$ & $-4.16\times10^{-5}$ & $+1.07\times10^{-4}$ & $+3.90\times10^{-5}$ & $+1.30\times10^{-6}$ & $+1.38\times10^{-6}$ \\
+cmap      & --  & --  & --  & --  & --  & $-3.02\times10^{-1}$ (F-06) \\
+Lennard-Jones & $+2.66\times10^{-5}$ & $+2.66\times10^{-5}$ & $+3.01\times10^{-5}$ & $+3.01\times10^{-5}$ & $+3.02\times10^{-6}$ & $+3.02\times10^{-6}$ \\
+electrostatic & $-1.03\times10^{-5}$ & $-1.03\times10^{-5}$ & $-1.03\times10^{-5}$ & $-1.03\times10^{-5}$ & $+6.49\times10^{-7}$ & $+6.49\times10^{-7}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{On the two non-bonded terms, the reference engines disagree with each
+other more than MOSAICS disagrees with either}
+OpenMM and GROMACS are independently written codes, and on 1efs they were given
+the same parameters and the same coordinates. They differ from one another by
+$+2.63\times10^{-5}$~\kcal{} on Lennard-Jones and $-3.40\times10^{-5}$ on
+electrostatics, on all four nucleic decks. MOSAICS minus OpenMM on the same two
+terms is $+2.89\times10^{-7}$ on Lennard-Jones under OL21/OL3
+($+3.81\times10^{-6}$ under the two bsc decks) and $+2.20\times10^{-5}$ on
+electrostatics, the latter with both sides corrected to OpenMM's own printed
+constant. That pattern, bonded terms with few parameters surviving and
+non-bonded terms with thousands not, is what a text-format topology conversion
+would produce, since a GROMACS \texttt{.top} stores fewer digits per parameter
+than the binary topology the other two engines read. We have not tested that
+attribution directly. What the numbers establish is a bound that has nothing to
+do with MOSAICS: two mature MD codes, handed the same force field through the
+ordinary conversion route, land $3\times10^{-5}$~\kcal{} apart on an 818-atom
+system, and on the two non-bonded terms MOSAICS sits below that bound against
+either reference.
+
+\paragraph{The peptide test is a targeted test of what ff19SB adds}
+Between ff14SB and ff19SB on the same capped peptide, the bond, angle,
+Lennard-Jones and electrostatic terms are bit-identical in all four engines.
+MOSAICS returns the same bond (0.14749181), bend (0.98732525), Lennard-Jones
+(134.50567845) and electrostatic ($-71.35989834$~\kcal{}) energies in both
+runs, agreeing to the last of the sixteen digits it prints. The whole ff14SB-to-ff19SB difference is
+$-27.01767928$~\kcal{}, of which $-25.09643922$ is the backbone torsion and
+$-1.92124006$ is the correction map; every other term contributes exactly zero.
+The ff19SB row is therefore the correction-map machinery applied on top of an
+already-verified ff14SB, tested with everything else held fixed, and four
+residues select four of the sixteen maps the deck loads. On ubiquitin, BPTI and
+the two complexes the same machinery is exercised on every amino-acid type the
+deck holds, and the correction-map term matches OpenMM to between
+$3\times10^{-13}$ and $2\times10^{-11}$~\kcal{} on all six ff19SB cells.
+
+\paragraph{The nucleic decks are different parameter sets, and each is
+reproduced as it stands}
+All three references return the same bond, angle, Lennard-Jones and
+electrostatic energies for all four AMBER nucleic decks on 1efs; only the
+dihedral term moves. That is the design of those decks showing through, and it
+makes the dihedral row of Table~\ref{tab:summary} the row that carries the
+result: MOSAICS follows each of the four dihedral values to between
+$3.6\times10^{-5}$ and $1.0\times10^{-4}$~\kcal{} against OpenMM and GROMACS,
+without being retuned for any of them. On the tetraloop the OL15/OL3 and OL21/OL3
+terminal decks return the same energy, 347.4514261182977~\kcal{} before the
+constant correction, to all sixteen printed digits on every term, because OL15
+and OL21 touch DNA torsions only and a pure RNA chain never reaches them;
+Table~\ref{tab:matrix} carries that one measurement once, as OL3. The
+size of the gap between two decks' absolute torsion energies is not reported
+here and is not a quantity this protocol can produce.
+
+\paragraph{CHARMM36 nucleic acid, one reference}
+An OpenMM reference for the CHARMM36 nucleic deck was built from
+\texttt{charmm36\_2024.xml} and evaluated on the two free-ended 4-mers, the
+dodecamer, the tetraloop and the $5'$-OH rebuild of the heteroduplex. The deck
+covers 24 residues (every base as a $5'$, internal and $3'$ unit, DNA and RNA)
+with 237 bonds, 562 bends, 1036 torsion entries and 15\,753 non-bonded pairs.
+Table~\ref{tab:charmm36} gives the two 4-mers term by term. Every bonded term
+matches to the digits OpenMM prints, and that includes the two CHARMM terms the
+AMBER force fields do not have, the Urey--Bradley 1--3 harmonics and the
+harmonic impropers. What the improper row shows needs care: its total is
+$1.0\times10^{-3}$~\kcal{} over 188 terms, so the structure sits at the improper
+minimum for practical purposes, and that is exactly where the engine's truncated
+sixth-order expansion and CHARMM's quadratic coincide by construction.
+Ten-digit agreement there confirms that the 188 entries were converted and
+selected correctly; it does not exercise the functional form away from
+equilibrium. The electrostatic term is the only one that does not match as
+printed, at $9.8\times10^{-5}$~\kcal{} on the RNA 4-mer and $2.9\times10^{-4}$
+on the DNA 4-mer, and the charge-to-energy constant accounts for that offset to
+four significant figures: corrected exactly as the AMBER rows are corrected, the
+two residuals fall to $-2.4\times10^{-10}$ and $-9.0\times10^{-10}$~\kcal{}. On
+the three larger structures the corrected totals differ from OpenMM by
+$-3.5\times10^{-7}$ (dodecamer), $+3.2\times10^{-7}$ (tetraloop) and
+$-2.1\times10^{-6}$~\kcal{} (816-atom heteroduplex). That is the closest
+agreement anywhere in this work, and Section~\ref{sec:constantgeneral} says
+why.
+
+\begin{table}[t]
+\centering
+\small
+\caption{CHARMM36 nucleic acid against OpenMM 8.5.2, in \kcal{}, on the two
+free-ended 4-mers with 5TER/3TER termini in vacuum, as printed. r(ACGU) is 127
+atoms and d(ACGT) is 126. Urey--Bradley is CHARMM's 1--3 harmonic term, which in
+OpenMM sits inside \texttt{HarmonicBondForce} and is separated here. The two
+d(ACGT) bonded columns are inflated by a defect in that committed structure, in
+which one H--C--H angle is $3.15^{\circ}$ instead of $109.5^{\circ}$ (F-17,
+Section~\ref{sec:limits}); the comparison between the two programs is
+unaffected, because both read the same coordinates. The electrostatic rows
+differ by the charge-to-energy constant and by little else. Sources:
+\texttt{evidence/charmm36\_rna\_acgu.tsv}, \texttt{evidence/charmm36\_dna\_acgt.tsv}.}
+\label{tab:charmm36}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{r(ACGU)} & \multicolumn{2}{c}{d(ACGT)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Term & MOSAICS & OpenMM & MOSAICS & OpenMM \\
+\midrule
+bond           &   28.51501806 &   28.51501806 &   18.92184909 &   18.92184909 \\
+Urey--Bradley  &   27.33939420 &   27.33939420 &  167.65137978 &  167.65137978 \\
+angle          &  166.36120948 &  166.36120948 &  412.78809431 &  412.78809431 \\
+torsion        &  114.02952401 &  114.02952401 &  122.94661546 &  122.94661546 \\
+improper       &    0.00102252 &    0.00102252 &    0.00102555 &    0.00102555 \\
+1--4 Lennard-Jones & 230.89575106 & 230.89575106 & 1412.27140098 & 1412.27140098 \\
+Lennard-Jones  & 2564.74970076 & 2564.74970076 &  176.68820406 &  176.68820406 \\
+electrostatic  & $-$119.98431509 & $-$119.98441340 & $-$356.57731681 & $-$356.57760898 \\
+\midrule
+total          & 3011.90730500 & 3011.90720669 & 1954.69125242 & 1954.69096025 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The charge-to-energy constant, and why every electrostatic number is corrected}
+\label{sec:constant}
+
+The four programs do not use the same constant to turn charges into an energy.
+This was measured and not assumed, by the two-charge topology of
+Section~\ref{sec:methods-coulomb}, and Table~\ref{tab:coulomb} gives the four
+values. Every electrostatic term in this work is put on one target constant
+before any difference is taken, and that target has to be a number with a
+derivation, or the correction becomes a preference. It is
+\begin{equation*}
+  \frac{e^2 N_{\mathrm A}}{4\pi\varepsilon_0 \times 1\,\text{\AA} \times
+  4.184\,\mathrm{J\,cal^{-1}}}
+  = 332.0637133\ \mathrm{kcal}\,\text{\AA}\,\mathrm{mol}^{-1}\,e^{-2},
+\end{equation*}
+evaluated with the CODATA 2018 recommended values\cite{codata2018}. The
+elementary charge, $e = 1.602176634\times10^{-19}$~C, and the Avogadro
+constant, $N_{\mathrm A} = 6.02214076\times10^{23}$~mol$^{-1}$, are both exact
+by the 2019 SI definitions; $\varepsilon_0 = 8.8541878128\times10^{-12}$
+F\,m$^{-1}$; and the thermochemical calorie is exactly 4.184~J. The 2022 revision of $\varepsilon_0$ gives $332.0637131$
+instead, lower by $6.8\times10^{-10}$ relative, which is worth
+$1.3\times10^{-6}$~\kcal{} on the 1efs electrostatic term.
+
+\begin{table}[t]
+\centering
+\small
+\caption{The charge-to-energy constant of each program, in
+kcal\,\AA\,mol$^{-1}$\,e$^{-2}$. sander, OpenMM and GROMACS were measured with
+two unit charges 1~\AA{} apart in vacuum, everything else switched off; the
+MOSAICS entry is evaluated from the constants compiled into the engine,
+$0.529177 \times 627.50921$. sander's measured value is limited by its
+four-decimal print precision; its exact value is $18.2223^2 = 332.05221729$,
+and that full value is what corrects the sander column. The OpenMM and GROMACS
+measurements were recorded to six decimals, which bounds their relative
+difference from the target at $1.5\times10^{-9}$ and says nothing finer.
+Source: \texttt{evidence/coulomb-constants/}.}
+\label{tab:coulomb}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Engine & Constant & Relative to sander & Relative to $332.0637133$ \\
+\midrule
+sander  & 332.052200 & $0$                   & $-3.5\times10^{-5}$ \\
+OpenMM  & 332.063713 & $+3.467316\times10^{-5}$ & $<1.5\times10^{-9}$, print-limited \\
+GROMACS & 332.063713 & $+3.467284\times10^{-5}$ & $<1.5\times10^{-9}$, print-limited \\
+MOSAICS & 332.063441 & $+3.385377\times10^{-5}$ & $-8.2\times10^{-7}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+sander is the outlier, not MOSAICS. It stores topology charges pre-multiplied
+by 18.2223 and its constant is that number squared, which is an older value;
+OpenMM and GROMACS, written independently of each other, agree with each other
+and with the derived target to every decimal their measurement was recorded to.
+MOSAICS sits $8.2\times10^{-7}$ below the target because three constants
+compiled into the engine are rounded (F-13). The size of this effect exceeds
+every difference the comparison is trying to resolve. On 1efs the sander
+electrostatic term moves by $+0.0643147$~\kcal{} when rescaled, and the MOSAICS
+term by $+1.522158\times10^{-3}$; the sander shift is roughly 360 times the
+largest residual left after correction and about a tenth of $kT$ at 300~K. An
+uncorrected cross-engine comparison of an 818-atom charged system would
+therefore report a disagreement between sander and OpenMM bigger than
+everything else on the page, and it would be reporting a unit convention.
+
+Which constant is the target has to be stated, because the choice is worth
+something. Corrected to OpenMM's own printed constant instead of the derived
+one, MOSAICS minus OpenMM on electrostatics is $+2.202\times10^{-5}$~\kcal{} on
+all four 1efs rows against the $+2.370\times10^{-5}$ of
+Table~\ref{tab:summary}; the $1.68\times10^{-6}$ between the two frames is what
+a six-decimal printed constant costs, and neither choice changes any
+conclusion. After correction, $+2.37\times10^{-5}$~\kcal{} remains on the 1efs
+electrostatic term, $1.3\times10^{-8}$ of the term, and we cannot account for
+it. One hypothesis fits what is on the page. The AMBER decks reach MOSAICS
+through a text route, and a prmtop writes charges in \texttt{\%FORMAT(5E16.8)},
+about $10^{-8}$ relative per charge, the same order as the residual; the
+CHARMM36 deck does not take that route, its charges are read out of a built
+OpenMM \texttt{System} at full double precision, and its corrected residuals
+are three orders of magnitude smaller on the same engine with the same
+correction. Testing this needs a diff of the deck charges against the prmtop
+charges at full precision, which is one command and is not in the evidence.
+
+\subsection{Forces}
+\label{sec:forces}
+
+Analytic forces were checked against a central difference of the same energy,
+term by term, over a ten-point step sweep from $10^{-2}$ to $3\times10^{-7}$
+Bohr, on six Cartesian systems and, against a staging coordinate, on four
+staged systems: 61 sweeps in all, covering five terms and their sum on every
+system, plus the correction map on the ff19SB peptide. The residual is the
+largest $|$numerical $-$ analytic$|$ over every atom and every component at a
+given step. Figure~\ref{fig:force-convergence} plots the total-energy sweep on
+six of the systems.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{force-convergence.pdf}
+\caption{Convergence of the central-difference check on the total-energy
+gradient for six of the 61 sweeps, one per Cartesian system and force field.
+Each point is the largest $|$numerical $-$ analytic$|$ force component over all
+atoms at that step. The grey line has slope exactly 2 through the coarsest
+point; the printed exponent is the least-squares fit over the fixed window
+$10^{-2}$ to $3\times10^{-4}$~Bohr. Below the window each sweep leaves the
+falling branch where round-off in the energy overtakes the discretisation
+error, which is a floor and not a disagreement. Source:
+\texttt{evidence/forces/*.all.tsv}.}
+\label{fig:force-convergence}
+\end{figure}
+
+A residual at a given step is not an error in the force. It is dominated by the
+discretisation error of the difference at coarse steps and by round-off in the
+energy evaluation at fine ones, and it is smallest where the two cross. At the
+coarsest step, $10^{-2}$~Bohr, residuals across the set run up to
+$3.6\times10^{-3}$~Ha/Bohr, which is what a central difference of that width
+is expected to give. The number worth quoting is the minimum over each sweep.
+The largest of the 61 minima is $3.8\times10^{-9}$~Ha/Bohr, on the non-bonded
+staging gradient of the RNA 4-mer; the smallest is $4.5\times10^{-13}$, on the
+peptide torsion under ff19SB. For scale, 0.002~\kcal{} per Bohr is
+$3.2\times10^{-6}$~Ha/Bohr, and every one of the 61 minima is smaller than that
+by a factor of at least 800.
+
+The exponent is the measurement, and it was fitted over a step window fixed in
+advance instead of chosen per sweep: $10^{-2}$ to $3\times10^{-4}$~Bohr, the
+four coarsest steps, which every one of the 61 sweeps spans. Over that window
+the fitted exponents run from 1.994 to 2.009, with a mean of 2.000 and a
+standard deviation of 0.002. The fits are tight: the largest root-mean-square
+residual of any of the 61 is 0.003 in $\log_{10}$ of the force residual, and no
+single point departs from its own fit by more than 0.005. That is the
+second-order convergence a central difference gives when the analytic force
+really is the derivative of the energy. Below the window every sweep leaves the
+falling branch at its own step and flattens, which is round-off and not
+disagreement; the correction map leaves it earliest and climbs again, reaching
+$1.6\times10^{-5}$~Ha/Bohr at $3\times10^{-7}$~Bohr, because the map is
+interpolated on a grid and is not smooth to machine precision.
+
+The sweep found one defect that no energy comparison in this paper could have
+found. The correction-map analytic force was identically zero at a dihedral of
+exactly $\pi$, which is where a peptide built extended sits; it is fixed and
+pinned by a test (F-21). The energy was never affected, and every sweep
+reported here is post-repair.
+
+\subsection{What one Monte Carlo step costs}
+\label{sec:cost}
+
+One Monte Carlo step on the 818-atom heteroduplex under OL21/OL3 costs
+3.46~ms on one core of an Apple M5 laptop, with 449~ms of setup that happens
+once per run; the linear fit over $N = 0$ to $100$ steps has $R^2 = 0.99968$
+(Figure~\ref{fig:cost-fit}). A step is one torsional proposal plus one full
+energy evaluation over every non-excluded pair, so the figure is an upper bound
+on the energy evaluation alone; the proposal is inside it and is not separated
+here. It is a cost, not a benchmark: nothing here compares MOSAICS with another
+program on the same hardware, the engine has never been tuned for the speed of
+a single evaluation, and the number says nothing about scaling or about other
+sizes. What it settles is the question a reader of the 26-cell matrix is
+entitled to ask next, which is what one of those evaluations costs when the
+engine is actually sampling. The strength the method claims lies elsewhere, in
+the number of evaluations a guided proposal needs to cross a barrier that
+molecular dynamics must climb in femtosecond steps, and that ratio is not
+measured in this paper.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.5\linewidth]{cost-fit.pdf}
+\caption{Wall clock against number of Monte Carlo steps for the committed
+1efs OL21/OL3 input, 818 atoms, serial, one core of an Apple M5. Small hollow
+markers are the five repeats at each $N$, filled markers their medians, the
+line the least-squares fit to the medians. The one 866~ms outlier at $N=0$ is
+why medians are used. Source:
+\texttt{work/preprint-I/runs/2026-08-31-cost-818/result.json}, re-fitted by
+\texttt{figures/cost-fit.py}, which exits if its fit disagrees with the
+committed one.}
+\label{fig:cost-fit}
+\end{figure}
+
+\subsection{\studio{}: the same engine, verified in the browser}
+\label{sec:studio-results}
+
+The Studio is only as good as the engine it carries, so its verification is of
+the same kind as the rest of this paper: the same input, run under the native
+engine and under the WebAssembly one, compared number by number.
+Figure~\ref{fig:studio} shows the page at two of its four steps on the run used
+for that check.
+
+\begin{figure}[p]
+\centering
+\begin{subfigure}[t]{0.84\linewidth}
+\includegraphics[width=\linewidth]{studio-prepare.png}
+\caption{}
+\label{fig:studio-prepare}
+\end{subfigure}
+\par\smallskip
+\begin{subfigure}[t]{0.84\linewidth}
+\includegraphics[width=\linewidth]{studio-understand.png}
+\caption{}
+\label{fig:studio-understand}
+\end{subfigure}
+\caption{\studio{} in the browser, version 1.2.6, on the CGCGCG duplex used
+for the cross-check of Table~\ref{tab:studio}. (a) The Prepare step: the built
+structure, 376 atoms in 12 residues across two chains with real $5'$ and $3'$
+ends; the force field chosen with its reason, here the OL21/OL3 terminal deck
+because the chains carry real ends; the validation gate reporting that the
+ordinary bonded and non-bonded energies for every residue type present
+reproduce a committed reference; and the 3Dmol.js viewer. The left rail names
+the engine as WebAssembly running inside the tab, with the Studio version,
+engine commit, engine digest and build date. (b) The Understand step after the
+BFGS minimisation: initial and final energies, the number of energies
+reported, the wall time in this tab and the exit code; energy along the run;
+RMSD to the first frame along the trajectory; and the final structure. The
+energy-against-RMSD plot, the residue-by-residue comparison, the graph export
+and the record follow further down the page. The Start and Run steps are in
+Supporting Information Figure~S1.}
+\label{fig:studio}
+\end{figure}
+
+\paragraph{Native against WebAssembly}
+The Studio's documented case study builds CGCGCG as a B-DNA duplex, minimises
+it with the \texttt{local-minimum} preset (BFGS to a gradient tolerance of
+$10^{-7}$) on the OL21/OL3 terminal deck, exports a residue graph and writes
+the report. Replaying the deck the Studio writes under the native Apple-silicon
+engine and under the WebAssembly engine gives Table~\ref{tab:studio}: the same
+exit code, the same 2,040 BFGS iterations, the same first and last energies to
+the two decimals the engine's energy file carries, a largest difference along
+the series of 0.25~\kcal{}, and a final-structure RMSD of 0.0045~\AA{} between
+the two. A headless test drives the whole pipeline, the same Python archive and
+the same bridge the page uses, and fails unless those numbers reproduce. The
+run in Figure~\ref{fig:studio} is that case study executed on the live page in
+a headless Chromium session on 8 September 2026: 2,040 energies reported,
+1347.94 to $-1102.39$~\kcal{}, 25.1~s of wall time in the tab against 20.8~s
+under Node and 11.5~s for the native engine.
+
+\begin{table}[t]
+\centering
+\small
+\caption{The CGCGCG case study replayed under the native engine and under the
+WebAssembly engine, from the Studio's build record. The native binary is the
+Apple-silicon 3.9.1 build at engine commit \texttt{ea00b02}; the WebAssembly
+build is from commit \texttt{73f598a} (7 September 2026). Source:
+\texttt{web/engine/BUILD.md} in the Studio repository.}
+\label{tab:studio}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & native, arm64 & WebAssembly \\
+\midrule
+exit code & 0 & 0 \\
+BFGS iterations reported & 2040 & 2040 \\
+first energy (\kcal{}) & 1347.94 & 1347.94 \\
+last energy (\kcal{}) & $-$1102.39 & $-$1102.39 \\
+largest difference along the series (\kcal{}) & \multicolumn{2}{c}{0.25} \\
+final-structure RMSD (\AA{}) & \multicolumn{2}{c}{0.0045} \\
+wall time, Node 26 (s) & 11.5 & 20.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{The record}
+The run in Figure~\ref{fig:studio}(b) wrote a record naming Studio 1.2.6, the
+engine commit \texttt{73f598a} and the SHA-256 of the WebAssembly build, the
+six staged files of the OL21/OL3 terminal deck by digest, the preset and every
+parameter it resolved, and the start and end times, with the final structure,
+the engine deck, the engine log, the energy series and the trajectory beside
+it, each one click away. That record is what a reader who repeats the run
+compares against, and it is the same document on every machine that loads the
+page, because no part of the computation happens anywhere else.

@@ -1,0 +1,62 @@
+{
+  "expected_trimmed_atoms": 818,
+  "expected_trimmed_residues": 26,
+  "forcefield_source_dir": "",
+  "leaprc_lines": [
+    "source leaprc.DNA.OL21",
+    "source leaprc.RNA.OL3"
+  ],
+  "matched_atoms": 818,
+  "mosaics_pdb": "examples/1efs_heteroduplex/1efs.pdb",
+  "output_dir": "/private/tmp/mosaics-ffc/force-field-comparison/1efs/ol21_ol3/topology",
+  "outputs": {
+    "pdb": "1efs_matched_ol21_ol3.pdb",
+    "prmtop": "1efs_matched_ol21_ol3.prmtop",
+    "residue_mapping": "residue_mapping.tsv",
+    "rst7": "1efs_matched_ol21_ol3.rst7"
+  },
+  "padded_counts": {
+    "atoms": 942,
+    "residues": 30
+  },
+  "preset": "ol21_ol3",
+  "renamed_atoms": 0,
+  "sander_energies_kcal_per_mol": {
+    "angle": 220.5651,
+    "bond": 70.9988,
+    "dihedral": 596.1796,
+    "eamber": 2526.1224,
+    "eel": 4451.4029,
+    "hbond": 0.0,
+    "one_four_eel": -2593.7276,
+    "one_four_vdw": 245.7727,
+    "restraint": 0.0,
+    "vdwaals": -465.0691
+  },
+  "stripped_caps": [
+    {
+      "atom_count": 32,
+      "name": "C3",
+      "one_indexed_residue": 30
+    },
+    {
+      "atom_count": 28,
+      "name": "U5",
+      "one_indexed_residue": 16
+    },
+    {
+      "atom_count": 33,
+      "name": "DA3",
+      "one_indexed_residue": 15
+    },
+    {
+      "atom_count": 31,
+      "name": "DG5",
+      "one_indexed_residue": 1
+    }
+  ],
+  "trimmed_counts": {
+    "atoms": 818,
+    "residues": 26
+  }
+}

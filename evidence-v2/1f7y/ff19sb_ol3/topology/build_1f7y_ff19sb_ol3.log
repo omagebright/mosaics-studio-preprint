@@ -1,0 +1,156 @@
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/prep to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd to search path.
+-f: Source build_1f7y_ff19sb_ol3.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./build_1f7y_ff19sb_ol3.in
+----- Source: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.RNA.OL3
+----- Source of /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.RNA.OL3 done
+Log file: ./leap.log
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/parm10.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/RNA.lib
+----- Source: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.protein.ff19SB
+----- Source of /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.protein.ff19SB done
+Log file: ./leap.log
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/parm19.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA + ff19SB
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/frcmod.ff19SB
+Reading force field modification type file (frcmod)
+Reading title:
+ff19SB AA-specific backbone CMAPs for protein 07/25/2019
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/amino19.lib
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/aminoct12.lib
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/aminont12.lib
+Loading PDB file: ./chain_B.pdb
+  total atoms in file: 1221
+  Leap added 619 missing atoms according to residue templates:
+       619 H / lone pairs
+Loading PDB file: ./chain_A.pdb
+  Added missing heavy atom: .R<CILE 86>.A<OXT 20>
+  total atoms in file: 721
+  Leap added 760 missing atoms according to residue templates:
+       1 Heavy
+       759 H / lone pairs
+Checking 'mol'....
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+The unperturbed charge of the unit (-49.000000) is not zero.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.468 angstroms between nonbonded atoms N1 and H3
+-------  .R<A 45>.A<N1 22> and .R<U 23>.A<H3 21>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.309 angstroms between nonbonded atoms H5' and H6
+-------  .R<C 44>.A<H5' 6> and .R<C 44>.A<H6 15>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.177 angstroms between nonbonded atoms H5'' and H2'
+-------  .R<C 44>.A<H5'' 7> and .R<C 43>.A<H2' 28>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.336 angstroms between nonbonded atoms HO2' and HG
+-------  .R<U 39>.A<HO2' 29> and .R<SER 108>.A<HG 9>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.439 angstroms between nonbonded atoms H41 and O6
+-------  .R<C 38>.A<H41 20> and .R<G 31>.A<O6 19>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.488 angstroms between nonbonded atoms H21 and O2
+-------  .R<G 37>.A<H21 24> and .R<C 32>.A<O2 24>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.458 angstroms between nonbonded atoms H5'' and H3'
+-------  .R<A 29>.A<H5'' 7> and .R<G 28>.A<H3' 29>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.024 angstroms between nonbonded atoms H5'' and H8
+-------  .R<G 28>.A<H5'' 7> and .R<G 28>.A<H8 15>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.310 angstroms between nonbonded atoms H5'' and H2'
+-------  .R<G 28>.A<H5'' 7> and .R<A 27>.A<H2' 30>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.316 angstroms between nonbonded atoms H8 and H2'
+-------  .R<G 28>.A<H8 15> and .R<A 27>.A<H2' 30>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.239 angstroms between nonbonded atoms H61 and H1'
+-------  .R<A 17>.A<H61 20> and .R<C 7>.A<H1' 12>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.488 angstroms between nonbonded atoms H21 and O2
+-------  .R<G 14>.A<H21 24> and .R<C 7>.A<O2 24>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.382 angstroms between nonbonded atoms HG3 and HZ1
+-------  .R<GLU 62>.A<HG3 10> and .R<LYS 66>.A<HZ1 18>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.197 angstroms between nonbonded atoms HG21 and HH12
+-------  .R<THR 89>.A<HG21 8> and .R<ARG 119>.A<HH12 19>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.064 angstroms between nonbonded atoms HH21 and HH11
+-------  .R<ARG 124>.A<HH21 21> and .R<ARG 128>.A<HH11 18>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.328 angstroms between nonbonded atoms HG3 and H
+-------  .R<GLU 132>.A<HG3 10> and .R<ARG 133>.A<H 2>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.462 angstroms between nonbonded atoms HG2 and H
+-------  .R<GLU 139>.A<HG2 9> and .R<LYS 140>.A<H 2>
+Checking parameters for unit 'mol'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 18
+Unit is OK.
+Total unperturbed charge: -49.000000
+Total perturbed charge:   -49.000000
+Checking Unit.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+The unperturbed charge of the unit (-49.000000) is not zero.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Note.
+Ignoring the warning from Unit Checking.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 678 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CILE	1
+	NPRO	1
+  )
+ (no restraints)
+Writing pdb file: 1f7y_ff19sb_ol3_leap.pdb
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+ Converting N-terminal residue name to PDB format: NPRO -> PRO
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+ Converting C-terminal residue name to PDB format: CILE -> ILE
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 21; Notes = 1.

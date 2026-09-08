@@ -1,0 +1,362 @@
+{
+  "1efs": {
+    "label": "1efs",
+    "class": "Heteroduplex",
+    "role": "DNA:RNA hybrid duplex",
+    "biology": "DNA:RNA hybrid duplex: the CRISPR Cas9 R-loop and the reverse-transcription intermediate",
+    "force_field": "OL21/OL3",
+    "source": "engine/examples/1efs_heteroduplex/1efs.pdb",
+    "sha256": "3e106f5166fd7ee30f46912341a8bdfe731e129b75466cd0ae4d7ada91aa5a17",
+    "atoms": 818,
+    "hydrogens": 279,
+    "heavy": 539,
+    "chains": [
+      "A",
+      "B"
+    ],
+    "chain_residues": {
+      "A": 13,
+      "B": 13
+    },
+    "residues": 26,
+    "resnames": [
+      "DA",
+      "DG",
+      "RC",
+      "RU"
+    ]
+  },
+  "1BNA": {
+    "label": "1BNA",
+    "class": "DNA duplex",
+    "role": "Drew-Dickerson dodecamer",
+    "biology": "d(CGCGAATTCGCG): the reference B-DNA duplex, with a narrowed A-tract minor groove",
+    "force_field": "OL21",
+    "source": "paper/evidence-v2/ddd/ol21_ol3/topology/ddd_ol21_ol3_mosaics.pdb",
+    "sha256": "282200e024917f722dbe070e8292bc500e3d973a27b49b1de63e6343f1f6421b",
+    "atoms": 758,
+    "hydrogens": 272,
+    "heavy": 486,
+    "chains": [
+      "A",
+      "B"
+    ],
+    "chain_residues": {
+      "A": 12,
+      "B": 12
+    },
+    "residues": 24,
+    "resnames": [
+      "DA",
+      "DC",
+      "DC5",
+      "DG",
+      "DG3",
+      "DT"
+    ]
+  },
+  "2KOC": {
+    "label": "2KOC",
+    "class": "RNA hairpin",
+    "role": "UUCG tetraloop",
+    "biology": "UUCG tetraloop: the most thermostable RNA hairpin cap, closing helices throughout rRNA",
+    "force_field": "OL3",
+    "source": "paper/evidence-v2/tetraloop/ol21_ol3/topology/tetraloop_mosaics.pdb",
+    "sha256": "5ab54110e8bc986f8b1cf8f067b6ab8d6c6853c70dabc554a97e5c57df592fd9",
+    "atoms": 447,
+    "hydrogens": 153,
+    "heavy": 294,
+    "chains": [
+      "A"
+    ],
+    "chain_residues": {
+      "A": 14
+    },
+    "residues": 14,
+    "resnames": [
+      "RA",
+      "RC",
+      "RC3",
+      "RG",
+      "RG5",
+      "RU"
+    ]
+  },
+  "1UBQ": {
+    "label": "1UBQ",
+    "class": "Protein, globular",
+    "role": "Ubiquitin",
+    "biology": "Covalent tag for proteasomal degradation; the beta-grasp fold",
+    "force_field": "ff14SB",
+    "source": "paper/evidence-v2/ubiquitin/ff14sb/topology/ubiquitin_ff14sb_mosaics.pdb",
+    "sha256": "35edfa2a9bdef5fb361aed585b20eda91f4ac38c31ce090c9f0c03a64fdc2839",
+    "atoms": 1231,
+    "hydrogens": 629,
+    "heavy": 602,
+    "chains": [
+      "A"
+    ],
+    "chain_residues": {
+      "A": 76
+    },
+    "residues": 76,
+    "resnames": [
+      "ALA",
+      "ARG",
+      "ASN",
+      "ASP",
+      "GLN",
+      "GLU",
+      "GLY",
+      "HIE",
+      "ILE",
+      "LEU",
+      "LYS",
+      "MET",
+      "PHE",
+      "PRO",
+      "SER",
+      "THR",
+      "TYR",
+      "VAL"
+    ]
+  },
+  "5PTI": {
+    "label": "5PTI",
+    "class": "Protein, globular",
+    "role": "BPTI",
+    "biology": "Serine-protease inhibitor cross-linked by three disulfide bonds",
+    "force_field": "ff14SB",
+    "source": "paper/evidence-v2/bpti/ff14sb/topology/bpti_ff14sb_mosaics.pdb",
+    "sha256": "4f3090a408bb45a642335ce0bea99466f8c4bc6e7ce8c7e2d96567822038a26b",
+    "atoms": 892,
+    "hydrogens": 438,
+    "heavy": 454,
+    "chains": [
+      "A"
+    ],
+    "chain_residues": {
+      "A": 58
+    },
+    "residues": 58,
+    "resnames": [
+      "ALA",
+      "ARG",
+      "ASN",
+      "ASP",
+      "CYX",
+      "GLN",
+      "GLU",
+      "GLY",
+      "ILE",
+      "LEU",
+      "LYS",
+      "MET",
+      "PHE",
+      "PRO",
+      "SER",
+      "THR",
+      "TYR",
+      "VAL"
+    ]
+  },
+  "peptide": {
+    "label": "peptide",
+    "class": "Protein, peptide",
+    "role": "ACE-AGSV-NME",
+    "biology": "ACE and NME capped tetrapeptide: exercises backbone CMAP at both termini",
+    "force_field": "ff14SB",
+    "source": "engine/examples/peptide_ff14sb/peptide_ff14sb_mosaics.pdb",
+    "sha256": "da18129f0926ea8c00330b88b2d36b75ee2f5d9f4e934ec8c4a7aeb427963a52",
+    "atoms": 56,
+    "hydrogens": 29,
+    "heavy": 27,
+    "chains": [
+      "A"
+    ],
+    "chain_residues": {
+      "A": 6
+    },
+    "residues": 6,
+    "resnames": [
+      "ACE",
+      "ALA",
+      "GLY",
+      "NME",
+      "SER",
+      "VAL"
+    ]
+  },
+  "tax9": {
+    "label": "tax9",
+    "class": "Protein, peptide",
+    "role": "HTLV-1 Tax 11-19, LLFGYPVYV",
+    "biology": "HTLV-1 Tax nonamer LLFGYPVYV, the canonical HLA-A*02:01 epitope, free in solution",
+    "force_field": "ff14SB",
+    "source": "engine/examples/mhc_peptide_ff14sb/tax_peptide_capped.pdb",
+    "sha256": "5ef36048e28900c6789835e414e07152cf52ae57117abc696ba33af7827ef5c2",
+    "atoms": 165,
+    "hydrogens": 84,
+    "heavy": 81,
+    "chains": [
+      "A"
+    ],
+    "chain_residues": {
+      "A": 11
+    },
+    "residues": 11,
+    "resnames": [
+      "ACE",
+      "GLY",
+      "LEU",
+      "NME",
+      "PHE",
+      "PRO",
+      "TYR",
+      "VAL"
+    ]
+  },
+  "1HHK": {
+    "label": "1HHK",
+    "class": "Protein-peptide complex",
+    "role": "HLA-A*02:01 with Tax nonamer bound",
+    "biology": "Class I MHC with beta-2 microglobulin and the Tax nonamer bound in the groove",
+    "force_field": "ff14SB",
+    "source": "work/preprint-I/systems/builds/1hhk/ff14sb/1hhk_ff14sb_mosaics.pdb",
+    "sha256": "905ca2f6baf0fa545a8cd33f9f3bbb7c0a53b51fd5cf0d838303b96ab606824d",
+    "atoms": 6139,
+    "hydrogens": 2978,
+    "heavy": 3161,
+    "chains": [
+      "A",
+      "B",
+      "C"
+    ],
+    "chain_residues": {
+      "A": 275,
+      "B": 100,
+      "C": 9
+    },
+    "residues": 384,
+    "resnames": [
+      "ALA",
+      "ARG",
+      "ASN",
+      "ASP",
+      "CYX",
+      "GLN",
+      "GLU",
+      "GLY",
+      "HID",
+      "HIE",
+      "ILE",
+      "LEU",
+      "LYS",
+      "MET",
+      "PHE",
+      "PRO",
+      "SER",
+      "THR",
+      "TRP",
+      "TYR",
+      "VAL"
+    ]
+  },
+  "1F7Y": {
+    "label": "1F7Y",
+    "class": "Protein-nucleic complex",
+    "role": "Ribosomal protein S15 bound to 16S rRNA",
+    "biology": "Protein recognising folded RNA: the step that nucleates 30S assembly",
+    "force_field": "ff14SB/OL3",
+    "source": "work/preprint-I/systems/builds/1f7y/ff14sb_ol3/1f7y_ff14sb_ol3_mosaics.pdb",
+    "sha256": "da3d5449fc0ad82d3b67cabe8bbc01d4cece7a323feca77dfe49d7ec1032e6de",
+    "atoms": 3321,
+    "hydrogens": 1378,
+    "heavy": 1943,
+    "chains": [
+      "A",
+      "B"
+    ],
+    "chain_residues": {
+      "A": 86,
+      "B": 57
+    },
+    "residues": 143,
+    "resnames": [
+      "A",
+      "ALA",
+      "ARG",
+      "ASN",
+      "ASP",
+      "C",
+      "C3",
+      "G",
+      "G5",
+      "GLN",
+      "GLU",
+      "GLY",
+      "HIE",
+      "ILE",
+      "LEU",
+      "LYS",
+      "MET",
+      "PHE",
+      "PRO",
+      "SER",
+      "THR",
+      "TYR",
+      "U",
+      "VAL"
+    ]
+  },
+  "dna_acgt": {
+    "label": "dna_acgt",
+    "class": "Terminal control",
+    "role": "d(ACGT), 5'-OH and 3'-OH",
+    "biology": "Four DNA residues, one of each base, free ends: isolates the 5'- and 3'-terminal parameters",
+    "force_field": "OL21",
+    "source": "engine/examples/pure_terminal_controls/dna_acgt.pdb",
+    "sha256": "52c0319ecb6436a7b9abe1d97db85d474fb476abe567523918e60eaa93c9bdb8",
+    "atoms": 126,
+    "hydrogens": 47,
+    "heavy": 79,
+    "chains": [
+      "A"
+    ],
+    "chain_residues": {
+      "A": 4
+    },
+    "residues": 4,
+    "resnames": [
+      "DA5",
+      "DC",
+      "DG",
+      "DT3"
+    ]
+  },
+  "rna_acgu": {
+    "label": "rna_acgu",
+    "class": "Terminal control",
+    "role": "r(ACGU), 5'-OH and 3'-OH",
+    "biology": "RNA counterpart of d(ACGT): adds the 2'-OH to the same terminal test",
+    "force_field": "OL3",
+    "source": "engine/examples/pure_terminal_controls/rna_acgu.pdb",
+    "sha256": "2e031a4dffe6e35df55bb35d451131033534ee6f6db01a53719e6928ee8793b1",
+    "atoms": 127,
+    "hydrogens": 45,
+    "heavy": 82,
+    "chains": [
+      "B"
+    ],
+    "chain_residues": {
+      "B": 4
+    },
+    "residues": 4,
+    "resnames": [
+      "RA5",
+      "RC",
+      "RG",
+      "RU3"
+    ]
+  }
+}

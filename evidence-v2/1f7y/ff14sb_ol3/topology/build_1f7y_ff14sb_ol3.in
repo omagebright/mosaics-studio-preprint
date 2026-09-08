@@ -1,0 +1,10 @@
+source leaprc.protein.ff14SB
+source leaprc.RNA.OL3
+chB = loadpdb chain_B.pdb
+chA = loadpdb chain_A.pdb
+mol = combine { chB chA }
+check mol
+charge mol
+saveamberparm mol 1f7y_ff14sb_ol3.prmtop 1f7y_ff14sb_ol3.rst7
+savepdb mol 1f7y_ff14sb_ol3_leap.pdb
+quit

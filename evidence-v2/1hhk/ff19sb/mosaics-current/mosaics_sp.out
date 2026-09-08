@@ -1,0 +1,661 @@
+###################################################################################
+#   Copyright (c) 2007 Peter Minary.        ~---------------------------------~   #
+#   All Rights Reserved.                    |     |              /    /    / ~|   #
+#      __           ~-           __         |    \|/     _      /         / ~ |   #
+#     /^^\     M   -  ~   M     /^^\        |   \_|_/  ((|))   /  M /  _ / ~ ~|   #
+#    /^^^^\   O   -    ~   O   /^^^^\       |  \__|__/ ((|))  /      ((|))~ ~ |   #
+#     |  |     S   -  ~   S     |  |        |     |      |   /  O /  ((|)) ~ ~|   #
+#     |  |      A   ~-   A      |  |        |  _     _   |  /         /|~ ~ ~ |   #
+#     |  |     I   ~  -   I     |  |        | {|}  ((|)) | /  S /  _ /~| ~_~ ~|   #
+#    _|__|_   C   ~    -   C   _|__|_       |{{|}} ((|))  /      ((|)) |~{|}~ |   #
+#              S   ~  -   S                 |  |     |   /  A /  ((|))~ {{|}}~|   #
+#   --------------- -~ ----------------     |    _   |  /         /| ~ ~ ~| ~ |   #
+#    Methodologies for Optimization and     |  ((|)) | /  I /  _ / |~ ~ ~| ~ ~|   #
+#    SAmpling In Computational Studies      |  ((|))  /      ((|)) | ~  \|/ ~ |   #
+#   -----------------------------------     |    |   /  C /  ((|))~ ~  \_|_/ ~|   #
+#                                           |    |  /         /| ~ ~  \__|__/~|   #
+#          >>  version.3.9.1  <<            |    | /  S /    /~|~ ~ ~ ~ ~| ~ ~|   #
+#                                           |     /         /~ | ~ ~ ~ ~ ~ ~ ~|   #
+#                                           ~---------------------------------~   #
+###################################################################################
+
+
+===================================================================================
+Reading simulation input file sp_1hhk_ff19sb_vac.input
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file sp_1hhk_ff19sb_vac.input
+===================================================================================
+
+
+===================================================================================
+Reading potential database files 
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.bond
+...
+Database reading done, total 102 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.bend
+...
+Database reading done, total 329 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.tors_and_impr
+...
+Database reading done, total 690 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.onfo
+...
+Database reading done, total 666 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.vdw
+...
+Database reading done, total 666 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.cmap
+...
+Database reading done, total 44 entries read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading potential database files 
+===================================================================================
+
+
+===================================================================================
+Creating atom maps
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Creating atom maps done
+===================================================================================
+
+
+===================================================================================
+Reading file 1hhk_ff19sb_mosaics.pdb
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file 1hhk_ff19sb_mosaics.pdb
+...
+File reading done, total 6139 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file 1hhk_ff19sb_mosaics.pdb
+===================================================================================
+
+
+===================================================================================
+Reading residue topology file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff19sb_protein.rtf
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff19sb_protein.rtf
+...
+File reading done, total 2566 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff19sb_protein.rtf
+===================================================================================
+
+
+===================================================================================
+Setting up residue topology
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Sampling atom velocities
+...
+Atom velocities sampling done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Residue topology setup done
+===================================================================================
+
+
+===================================================================================
+Setting up connectivity
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Setting up bonds
+...
+Bonds setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up bends
+...
+Bends setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up tors
+...
+Tors setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up onefour
+...
+Onefour setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up inter-molecular interactions
+...
+Inter-mol setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up cmap
+...
+cmap: 16 map(s) loaded (N=24), 378 backbone term(s)
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Connectivity setup done
+===================================================================================
+
+
+===================================================================================
+System setup 
+-----------------------------------------------------------------------------------
+Total number of molecules: 3
+
+Number of biopolymer molecules: 3
+Itemizing...
+
+1. molecule 
+molecule type ~~~>protein<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 1  NGLY  natom 9, charge  1
+ 2. residue is 2  SER  natom 11, charge  0
+ 3. residue is 3  HID  natom 17, charge  0
+ 4. residue is 4  SER  natom 11, charge  0
+ 5. residue is 5  MET  natom 17, charge  0
+ 6. residue is 6  ARG  natom 24, charge  1
+ 7. residue is 7  TYR  natom 21, charge  0
+ 8. residue is 8  PHE  natom 20, charge  0
+ 9. residue is 9  PHE  natom 20, charge  0
+ 10. residue is 10  THR  natom 14, charge  0
+ 11. residue is 11  SER  natom 11, charge  0
+ 12. residue is 12  VAL  natom 16, charge  0
+ 13. residue is 13  SER  natom 11, charge  0
+ 14. residue is 14  ARG  natom 24, charge  1
+ 15. residue is 15  PRO  natom 14, charge  0
+ 16. residue is 16  GLY  natom 7, charge  0
+ 17. residue is 17  ARG  natom 24, charge  1
+ 18. residue is 18  GLY  natom 7, charge  0
+ 19. residue is 19  GLU  natom 15, charge -1
+ 20. residue is 20  PRO  natom 14, charge  0
+ 21. residue is 21  ARG  natom 24, charge  1
+ 22. residue is 22  PHE  natom 20, charge  0
+ 23. residue is 23  ILE  natom 19, charge  0
+ 24. residue is 24  ALA  natom 10, charge  0
+ 25. residue is 25  VAL  natom 16, charge  0
+ 26. residue is 26  GLY  natom 7, charge  0
+ 27. residue is 27  TYR  natom 21, charge  0
+ 28. residue is 28  VAL  natom 16, charge  0
+ 29. residue is 29  ASP  natom 12, charge -1
+ 30. residue is 30  ASP  natom 12, charge -1
+ 31. residue is 31  THR  natom 14, charge  0
+ 32. residue is 32  GLN  natom 17, charge  0
+ 33. residue is 33  PHE  natom 20, charge  0
+ 34. residue is 34  VAL  natom 16, charge  0
+ 35. residue is 35  ARG  natom 24, charge  1
+ 36. residue is 36  PHE  natom 20, charge  0
+ 37. residue is 37  ASP  natom 12, charge -1
+ 38. residue is 38  SER  natom 11, charge  0
+ 39. residue is 39  ASP  natom 12, charge -1
+ 40. residue is 40  ALA  natom 10, charge  0
+ 41. residue is 41  ALA  natom 10, charge  0
+ 42. residue is 42  SER  natom 11, charge  0
+ 43. residue is 43  GLN  natom 17, charge  0
+ 44. residue is 44  ARG  natom 24, charge  1
+ 45. residue is 45  MET  natom 17, charge  0
+ 46. residue is 46  GLU  natom 15, charge -1
+ 47. residue is 47  PRO  natom 14, charge  0
+ 48. residue is 48  ARG  natom 24, charge  1
+ 49. residue is 49  ALA  natom 10, charge  0
+ 50. residue is 50  PRO  natom 14, charge  0
+ 51. residue is 51  TRP  natom 24, charge  0
+ 52. residue is 52  ILE  natom 19, charge  0
+ 53. residue is 53  GLU  natom 15, charge -1
+ 54. residue is 54  GLN  natom 17, charge  0
+ 55. residue is 55  GLU  natom 15, charge -1
+ 56. residue is 56  GLY  natom 7, charge  0
+ 57. residue is 57  PRO  natom 14, charge  0
+ 58. residue is 58  GLU  natom 15, charge -1
+ 59. residue is 59  TYR  natom 21, charge  0
+ 60. residue is 60  TRP  natom 24, charge  0
+ 61. residue is 61  ASP  natom 12, charge -1
+ 62. residue is 62  GLY  natom 7, charge  0
+ 63. residue is 63  GLU  natom 15, charge -1
+ 64. residue is 64  THR  natom 14, charge  0
+ 65. residue is 65  ARG  natom 24, charge  1
+ 66. residue is 66  LYS  natom 22, charge  1
+ 67. residue is 67  VAL  natom 16, charge  0
+ 68. residue is 68  LYS  natom 22, charge  1
+ 69. residue is 69  ALA  natom 10, charge  0
+ 70. residue is 70  HID  natom 17, charge  0
+ 71. residue is 71  SER  natom 11, charge  0
+ 72. residue is 72  GLN  natom 17, charge  0
+ 73. residue is 73  THR  natom 14, charge  0
+ 74. residue is 74  HID  natom 17, charge  0
+ 75. residue is 75  ARG  natom 24, charge  1
+ 76. residue is 76  VAL  natom 16, charge  0
+ 77. residue is 77  ASP  natom 12, charge -1
+ 78. residue is 78  LEU  natom 19, charge  0
+ 79. residue is 79  GLY  natom 7, charge  0
+ 80. residue is 80  THR  natom 14, charge  0
+ 81. residue is 81  LEU  natom 19, charge  0
+ 82. residue is 82  ARG  natom 24, charge  1
+ 83. residue is 83  GLY  natom 7, charge  0
+ 84. residue is 84  TYR  natom 21, charge  0
+ 85. residue is 85  TYR  natom 21, charge  0
+ 86. residue is 86  ASN  natom 14, charge  0
+ 87. residue is 87  GLN  natom 17, charge  0
+ 88. residue is 88  SER  natom 11, charge  0
+ 89. residue is 89  GLU  natom 15, charge -1
+ 90. residue is 90  ALA  natom 10, charge  0
+ 91. residue is 91  GLY  natom 7, charge  0
+ 92. residue is 92  SER  natom 11, charge  0
+ 93. residue is 93  HID  natom 17, charge  0
+ 94. residue is 94  THR  natom 14, charge  0
+ 95. residue is 95  VAL  natom 16, charge  0
+ 96. residue is 96  GLN  natom 17, charge  0
+ 97. residue is 97  ARG  natom 24, charge  1
+ 98. residue is 98  MET  natom 17, charge  0
+ 99. residue is 99  TYR  natom 21, charge  0
+ 100. residue is 100  GLY  natom 7, charge  0
+ 101. residue is 101  CYX  natom 10, charge  0
+ 102. residue is 102  ASP  natom 12, charge -1
+ 103. residue is 103  VAL  natom 16, charge  0
+ 104. residue is 104  GLY  natom 7, charge  0
+ 105. residue is 105  SER  natom 11, charge  0
+ 106. residue is 106  ASP  natom 12, charge -1
+ 107. residue is 107  TRP  natom 24, charge  0
+ 108. residue is 108  ARG  natom 24, charge  1
+ 109. residue is 109  PHE  natom 20, charge  0
+ 110. residue is 110  LEU  natom 19, charge  0
+ 111. residue is 111  ARG  natom 24, charge  1
+ 112. residue is 112  GLY  natom 7, charge  0
+ 113. residue is 113  TYR  natom 21, charge  0
+ 114. residue is 114  HIE  natom 17, charge  0
+ 115. residue is 115  GLN  natom 17, charge  0
+ 116. residue is 116  TYR  natom 21, charge  0
+ 117. residue is 117  ALA  natom 10, charge  0
+ 118. residue is 118  TYR  natom 21, charge  0
+ 119. residue is 119  ASP  natom 12, charge -1
+ 120. residue is 120  GLY  natom 7, charge  0
+ 121. residue is 121  LYS  natom 22, charge  1
+ 122. residue is 122  ASP  natom 12, charge -1
+ 123. residue is 123  TYR  natom 21, charge  0
+ 124. residue is 124  ILE  natom 19, charge  0
+ 125. residue is 125  ALA  natom 10, charge  0
+ 126. residue is 126  LEU  natom 19, charge  0
+ 127. residue is 127  LYS  natom 22, charge  1
+ 128. residue is 128  GLU  natom 15, charge -1
+ 129. residue is 129  ASP  natom 12, charge -1
+ 130. residue is 130  LEU  natom 19, charge  0
+ 131. residue is 131  ARG  natom 24, charge  1
+ 132. residue is 132  SER  natom 11, charge  0
+ 133. residue is 133  TRP  natom 24, charge  0
+ 134. residue is 134  THR  natom 14, charge  0
+ 135. residue is 135  ALA  natom 10, charge  0
+ 136. residue is 136  ALA  natom 10, charge  0
+ 137. residue is 137  ASP  natom 12, charge -1
+ 138. residue is 138  MET  natom 17, charge  0
+ 139. residue is 139  ALA  natom 10, charge  0
+ 140. residue is 140  ALA  natom 10, charge  0
+ 141. residue is 141  GLN  natom 17, charge  0
+ 142. residue is 142  THR  natom 14, charge  0
+ 143. residue is 143  THR  natom 14, charge  0
+ 144. residue is 144  LYS  natom 22, charge  1
+ 145. residue is 145  HID  natom 17, charge  0
+ 146. residue is 146  LYS  natom 22, charge  1
+ 147. residue is 147  TRP  natom 24, charge  0
+ 148. residue is 148  GLU  natom 15, charge -1
+ 149. residue is 149  ALA  natom 10, charge  0
+ 150. residue is 150  ALA  natom 10, charge  0
+ 151. residue is 151  HID  natom 17, charge  0
+ 152. residue is 152  VAL  natom 16, charge  0
+ 153. residue is 153  ALA  natom 10, charge  0
+ 154. residue is 154  GLU  natom 15, charge -1
+ 155. residue is 155  GLN  natom 17, charge  0
+ 156. residue is 156  LEU  natom 19, charge  0
+ 157. residue is 157  ARG  natom 24, charge  1
+ 158. residue is 158  ALA  natom 10, charge  0
+ 159. residue is 159  TYR  natom 21, charge  0
+ 160. residue is 160  LEU  natom 19, charge  0
+ 161. residue is 161  GLU  natom 15, charge -1
+ 162. residue is 162  GLY  natom 7, charge  0
+ 163. residue is 163  THR  natom 14, charge  0
+ 164. residue is 164  CYX  natom 10, charge  0
+ 165. residue is 165  VAL  natom 16, charge  0
+ 166. residue is 166  GLU  natom 15, charge -1
+ 167. residue is 167  TRP  natom 24, charge  0
+ 168. residue is 168  LEU  natom 19, charge  0
+ 169. residue is 169  ARG  natom 24, charge  1
+ 170. residue is 170  ARG  natom 24, charge  1
+ 171. residue is 171  TYR  natom 21, charge  0
+ 172. residue is 172  LEU  natom 19, charge  0
+ 173. residue is 173  GLU  natom 15, charge -1
+ 174. residue is 174  ASN  natom 14, charge  0
+ 175. residue is 175  GLY  natom 7, charge  0
+ 176. residue is 176  LYS  natom 22, charge  1
+ 177. residue is 177  GLU  natom 15, charge -1
+ 178. residue is 178  THR  natom 14, charge  0
+ 179. residue is 179  LEU  natom 19, charge  0
+ 180. residue is 180  GLN  natom 17, charge  0
+ 181. residue is 181  ARG  natom 24, charge  1
+ 182. residue is 182  THR  natom 14, charge  0
+ 183. residue is 183  ASP  natom 12, charge -1
+ 184. residue is 184  ALA  natom 10, charge  0
+ 185. residue is 185  PRO  natom 14, charge  0
+ 186. residue is 186  LYS  natom 22, charge  1
+ 187. residue is 187  THR  natom 14, charge  0
+ 188. residue is 188  HID  natom 17, charge  0
+ 189. residue is 189  MET  natom 17, charge  0
+ 190. residue is 190  THR  natom 14, charge  0
+ 191. residue is 191  HIE  natom 17, charge  0
+ 192. residue is 192  HID  natom 17, charge  0
+ 193. residue is 193  ALA  natom 10, charge  0
+ 194. residue is 194  VAL  natom 16, charge  0
+ 195. residue is 195  SER  natom 11, charge  0
+ 196. residue is 196  ASP  natom 12, charge -1
+ 197. residue is 197  HID  natom 17, charge  0
+ 198. residue is 198  GLU  natom 15, charge -1
+ 199. residue is 199  ALA  natom 10, charge  0
+ 200. residue is 200  THR  natom 14, charge  0
+ 201. residue is 201  LEU  natom 19, charge  0
+ 202. residue is 202  ARG  natom 24, charge  1
+ 203. residue is 203  CYX  natom 10, charge  0
+ 204. residue is 204  TRP  natom 24, charge  0
+ 205. residue is 205  ALA  natom 10, charge  0
+ 206. residue is 206  LEU  natom 19, charge  0
+ 207. residue is 207  SER  natom 11, charge  0
+ 208. residue is 208  PHE  natom 20, charge  0
+ 209. residue is 209  TYR  natom 21, charge  0
+ 210. residue is 210  PRO  natom 14, charge  0
+ 211. residue is 211  ALA  natom 10, charge  0
+ 212. residue is 212  GLU  natom 15, charge -1
+ 213. residue is 213  ILE  natom 19, charge  0
+ 214. residue is 214  THR  natom 14, charge  0
+ 215. residue is 215  LEU  natom 19, charge  0
+ 216. residue is 216  THR  natom 14, charge  0
+ 217. residue is 217  TRP  natom 24, charge  0
+ 218. residue is 218  GLN  natom 17, charge  0
+ 219. residue is 219  ARG  natom 24, charge  1
+ 220. residue is 220  ASP  natom 12, charge -1
+ 221. residue is 221  GLY  natom 7, charge  0
+ 222. residue is 222  GLU  natom 15, charge -1
+ 223. residue is 223  ASP  natom 12, charge -1
+ 224. residue is 224  GLN  natom 17, charge  0
+ 225. residue is 225  THR  natom 14, charge  0
+ 226. residue is 226  GLN  natom 17, charge  0
+ 227. residue is 227  ASP  natom 12, charge -1
+ 228. residue is 228  THR  natom 14, charge  0
+ 229. residue is 229  GLU  natom 15, charge -1
+ 230. residue is 230  LEU  natom 19, charge  0
+ 231. residue is 231  VAL  natom 16, charge  0
+ 232. residue is 232  GLU  natom 15, charge -1
+ 233. residue is 233  THR  natom 14, charge  0
+ 234. residue is 234  ARG  natom 24, charge  1
+ 235. residue is 235  PRO  natom 14, charge  0
+ 236. residue is 236  ALA  natom 10, charge  0
+ 237. residue is 237  GLY  natom 7, charge  0
+ 238. residue is 238  ASP  natom 12, charge -1
+ 239. residue is 239  GLY  natom 7, charge  0
+ 240. residue is 240  THR  natom 14, charge  0
+ 241. residue is 241  PHE  natom 20, charge  0
+ 242. residue is 242  GLN  natom 17, charge  0
+ 243. residue is 243  LYS  natom 22, charge  1
+ 244. residue is 244  TRP  natom 24, charge  0
+ 245. residue is 245  ALA  natom 10, charge  0
+ 246. residue is 246  ALA  natom 10, charge  0
+ 247. residue is 247  VAL  natom 16, charge  0
+ 248. residue is 248  VAL  natom 16, charge  0
+ 249. residue is 249  VAL  natom 16, charge  0
+ 250. residue is 250  PRO  natom 14, charge  0
+ 251. residue is 251  SER  natom 11, charge  0
+ 252. residue is 252  GLY  natom 7, charge  0
+ 253. residue is 253  GLN  natom 17, charge  0
+ 254. residue is 254  GLU  natom 15, charge -1
+ 255. residue is 255  GLN  natom 17, charge  0
+ 256. residue is 256  ARG  natom 24, charge  1
+ 257. residue is 257  TYR  natom 21, charge  0
+ 258. residue is 258  THR  natom 14, charge  0
+ 259. residue is 259  CYX  natom 10, charge  0
+ 260. residue is 260  HID  natom 17, charge  0
+ 261. residue is 261  VAL  natom 16, charge  0
+ 262. residue is 262  GLN  natom 17, charge  0
+ 263. residue is 263  HIE  natom 17, charge  0
+ 264. residue is 264  GLU  natom 15, charge -1
+ 265. residue is 265  GLY  natom 7, charge  0
+ 266. residue is 266  LEU  natom 19, charge  0
+ 267. residue is 267  PRO  natom 14, charge  0
+ 268. residue is 268  LYS  natom 22, charge  1
+ 269. residue is 269  PRO  natom 14, charge  0
+ 270. residue is 270  LEU  natom 19, charge  0
+ 271. residue is 271  THR  natom 14, charge  0
+ 272. residue is 272  LEU  natom 19, charge  0
+ 273. residue is 273  ARG  natom 24, charge  1
+ 274. residue is 274  TRP  natom 24, charge  0
+ 275. residue is 275  CGLU  natom 16, charge -2
+molecular charge -7
+
+2. molecule 
+molecule type ~~~>protein<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 276  NMET  natom 19, charge  1
+ 2. residue is 277  ILE  natom 19, charge  0
+ 3. residue is 278  GLN  natom 17, charge  0
+ 4. residue is 279  ARG  natom 24, charge  1
+ 5. residue is 280  THR  natom 14, charge  0
+ 6. residue is 281  PRO  natom 14, charge  0
+ 7. residue is 282  LYS  natom 22, charge  1
+ 8. residue is 283  ILE  natom 19, charge  0
+ 9. residue is 284  GLN  natom 17, charge  0
+ 10. residue is 285  VAL  natom 16, charge  0
+ 11. residue is 286  TYR  natom 21, charge  0
+ 12. residue is 287  SER  natom 11, charge  0
+ 13. residue is 288  ARG  natom 24, charge  1
+ 14. residue is 289  HID  natom 17, charge  0
+ 15. residue is 290  PRO  natom 14, charge  0
+ 16. residue is 291  ALA  natom 10, charge  0
+ 17. residue is 292  GLU  natom 15, charge -1
+ 18. residue is 293  ASN  natom 14, charge  0
+ 19. residue is 294  GLY  natom 7, charge  0
+ 20. residue is 295  LYS  natom 22, charge  1
+ 21. residue is 296  SER  natom 11, charge  0
+ 22. residue is 297  ASN  natom 14, charge  0
+ 23. residue is 298  PHE  natom 20, charge  0
+ 24. residue is 299  LEU  natom 19, charge  0
+ 25. residue is 300  ASN  natom 14, charge  0
+ 26. residue is 301  CYX  natom 10, charge  0
+ 27. residue is 302  TYR  natom 21, charge  0
+ 28. residue is 303  VAL  natom 16, charge  0
+ 29. residue is 304  SER  natom 11, charge  0
+ 30. residue is 305  GLY  natom 7, charge  0
+ 31. residue is 306  PHE  natom 20, charge  0
+ 32. residue is 307  HIE  natom 17, charge  0
+ 33. residue is 308  PRO  natom 14, charge  0
+ 34. residue is 309  SER  natom 11, charge  0
+ 35. residue is 310  ASP  natom 12, charge -1
+ 36. residue is 311  ILE  natom 19, charge  0
+ 37. residue is 312  GLU  natom 15, charge -1
+ 38. residue is 313  VAL  natom 16, charge  0
+ 39. residue is 314  ASP  natom 12, charge -1
+ 40. residue is 315  LEU  natom 19, charge  0
+ 41. residue is 316  LEU  natom 19, charge  0
+ 42. residue is 317  LYS  natom 22, charge  1
+ 43. residue is 318  ASN  natom 14, charge  0
+ 44. residue is 319  GLY  natom 7, charge  0
+ 45. residue is 320  GLU  natom 15, charge -1
+ 46. residue is 321  ARG  natom 24, charge  1
+ 47. residue is 322  ILE  natom 19, charge  0
+ 48. residue is 323  GLU  natom 15, charge -1
+ 49. residue is 324  LYS  natom 22, charge  1
+ 50. residue is 325  VAL  natom 16, charge  0
+ 51. residue is 326  GLU  natom 15, charge -1
+ 52. residue is 327  HID  natom 17, charge  0
+ 53. residue is 328  SER  natom 11, charge  0
+ 54. residue is 329  ASP  natom 12, charge -1
+ 55. residue is 330  LEU  natom 19, charge  0
+ 56. residue is 331  SER  natom 11, charge  0
+ 57. residue is 332  PHE  natom 20, charge  0
+ 58. residue is 333  SER  natom 11, charge  0
+ 59. residue is 334  LYS  natom 22, charge  1
+ 60. residue is 335  ASP  natom 12, charge -1
+ 61. residue is 336  TRP  natom 24, charge  0
+ 62. residue is 337  SER  natom 11, charge  0
+ 63. residue is 338  PHE  natom 20, charge  0
+ 64. residue is 339  TYR  natom 21, charge  0
+ 65. residue is 340  LEU  natom 19, charge  0
+ 66. residue is 341  LEU  natom 19, charge  0
+ 67. residue is 342  TYR  natom 21, charge  0
+ 68. residue is 343  TYR  natom 21, charge  0
+ 69. residue is 344  THR  natom 14, charge  0
+ 70. residue is 345  GLU  natom 15, charge -1
+ 71. residue is 346  PHE  natom 20, charge  0
+ 72. residue is 347  THR  natom 14, charge  0
+ 73. residue is 348  PRO  natom 14, charge  0
+ 74. residue is 349  THR  natom 14, charge  0
+ 75. residue is 350  GLU  natom 15, charge -1
+ 76. residue is 351  LYS  natom 22, charge  1
+ 77. residue is 352  ASP  natom 12, charge -1
+ 78. residue is 353  GLU  natom 15, charge -1
+ 79. residue is 354  TYR  natom 21, charge  0
+ 80. residue is 355  ALA  natom 10, charge  0
+ 81. residue is 356  CYX  natom 10, charge  0
+ 82. residue is 357  ARG  natom 24, charge  1
+ 83. residue is 358  VAL  natom 16, charge  0
+ 84. residue is 359  ASN  natom 14, charge  0
+ 85. residue is 360  HIE  natom 17, charge  0
+ 86. residue is 361  VAL  natom 16, charge  0
+ 87. residue is 362  THR  natom 14, charge  0
+ 88. residue is 363  LEU  natom 19, charge  0
+ 89. residue is 364  SER  natom 11, charge  0
+ 90. residue is 365  GLN  natom 17, charge  0
+ 91. residue is 366  PRO  natom 14, charge  0
+ 92. residue is 367  LYS  natom 22, charge  1
+ 93. residue is 368  ILE  natom 19, charge  0
+ 94. residue is 369  VAL  natom 16, charge  0
+ 95. residue is 370  LYS  natom 22, charge  1
+ 96. residue is 371  TRP  natom 24, charge  0
+ 97. residue is 372  ASP  natom 12, charge -1
+ 98. residue is 373  ARG  natom 24, charge  1
+ 99. residue is 374  ASP  natom 12, charge -1
+ 100. residue is 375  CMET  natom 18, charge -1
+molecular charge -2
+
+3. molecule 
+molecule type ~~~>protein<~~~
+molecule chain id ~~~>C<~~~
+ 1. residue is 376  NLEU  natom 21, charge  1
+ 2. residue is 377  LEU  natom 19, charge  0
+ 3. residue is 378  PHE  natom 20, charge  0
+ 4. residue is 379  GLY  natom 7, charge  0
+ 5. residue is 380  TYR  natom 21, charge  0
+ 6. residue is 381  PRO  natom 14, charge  0
+ 7. residue is 382  VAL  natom 16, charge  0
+ 8. residue is 383  TYR  natom 21, charge  0
+ 9. residue is 384  CVAL  natom 17, charge -1
+molecular charge -1.11022e-16
+
+Number of water molecules: 0
+Number of atoms/ions: 0 
+Number of dummy atoms: 0
+Number of other molecules: 0 
+Total system charge: -9
+-----------------------------------------------------------------------------------
+System setup done
+===================================================================================
+
+
+===================================================================================
+Initial energies in kcal/mol
+-----------------------------------------------------------------------------------
+Initial Bond energy 6944.280133144224
+Initial Bend energy 1673.06784803797
+Initial Torsion energy 1808.528688294529
+Initial Onefour energy 16289.26400562719
+Initial Inter energy -29971.46321833111
+Initial Cmap energy 319.1101466874582
+Initial Constraint energy 0
+Initial Total energy -2937.212396539735
+-----------------------------------------------------------------------------------
+Initial energies
+===================================================================================
+
+
+===================================================================================
+Energy/Temparature Domain Partitioning
+-----------------------------------------------------------------------------------
+ Levels in energy partitioning 
+
+-1 0 
+
+ Temperature ladder
+
+300 
+
+ Temperature ladder in energy units
+
+0.00095 
+
+current c value 1.05e+03
+-----------------------------------------------------------------------------------
+Energy/Temparature Domain Partitioning Done
+===================================================================================
+
+
+===================================================================================
+>>Report energies at step 1<<
+-----------------------------------------------------------------------------------
+
+	Energies in kcal/mol
+
+	-Bond energy                 6944.280133144224
+	-Bend energy                 1673.06784803797
+	   Bond-Bend energy          0
+	   Bend-Bend energy          1673.06784803797
+	-Torsion energy              1808.528688294529
+	   Tors-Tors energy          1779.220520107677
+	   Tors-Improper energy      29.30816818685233
+	-Onefour energy              16289.26400562719
+	   Onfo-Coulomb energy       14327.53187957623
+	   Onfo-Lennard-Jones energy 1961.732126050928
+	-Inter energy                -29971.46321833111
+	   Lennard-Jones energy      -2689.898921533444
+	   Coulomb energy            -27281.56429680458
+	   SCP energy                0
+	   Knowledge based energy    0
+	-Total Lennard-Jones energy  -728.1667954825164
+	-Total Coulomb energy        -12954.03241722835
+	-Cmap energy                 319.1101466874582
+	-Constraint energy           0
+	-Total energy                -2937.212396539733
+
+-----------------------------------------------------------------------------------
+===================================================================================
+
+===================================================================================
+ Acceptance ratio for MH Chains 
+-----------------------------------------------------------------------------------
+       # of accepted   ||  # of total   || acceptance ratio
+ Chain 0     1	     1	     1
+
+
+ Acceptance ratio for PT jumps 
+
+       # of accepted   ||  # of total   || acceptance ratio
+-----------------------------------------------------------------------------------
+ Acceptance ratio for MH Chains 
+===================================================================================
+
+
+###################################################################################
+##===============================================================================##
+##                M.O.S.A.I.C.S    Successfully Completed                        ##
+##===============================================================================##
+###################################################################################
+ Current Date Fri Sep  4 09:26:37 -03 2026
+ ===================================================================================
+
+

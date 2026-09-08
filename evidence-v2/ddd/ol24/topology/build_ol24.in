@@ -1,0 +1,24 @@
+source leap-ff-nucleic-OL24.in
+#
+# leap-ff-nucleic-OL24.in sources oldff/leaprc.ff14SB, whose addPdbResMap does
+# not map PDB-v3 DNA residue names (DG/DA/DC/DT) onto their 5' and 3' terminal
+# variants. Loading a PDB-v3 file under it therefore builds INTERNAL residues
+# at both chain ends, and tleap silently adds a 5'-phosphate: 1BNA comes out at
+# net charge -24 instead of -22, with 494 atoms instead of 486.
+#
+# This is the same failure documented for parmbsc0/bsc1 in
+# paper/evidence-v2/ddd/bsc1/topology/build_bsc1.in, and the four lines below
+# are exactly the map oldff/leaprc.ff99bsc0 already ships. Nothing else is
+# changed and no atom type is touched.
+#
+addPdbResMap {
+  { 0 "DG" "DG5" } { 1 "DG" "DG3" }
+  { 0 "DA" "DA5" } { 1 "DA" "DA3" }
+  { 0 "DC" "DC5" } { 1 "DC" "DC3" }
+  { 0 "DT" "DT5" } { 1 "DT" "DT3" }
+}
+mol = loadpdb 1BNA_AB_ter.pdb
+check mol
+saveamberparm mol ddd_ol24.prmtop ddd_ol24.rst7
+savepdb mol ddd_ol24.pdb
+quit

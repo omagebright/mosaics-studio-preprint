@@ -1,0 +1,25 @@
+source oldff/leaprc.ff99
+addAtomTypes { { "CI" "C" "sp3" } { "CE" "C" "sp3" } { "C1" "C" "sp2" } { "C2" "C" "sp2" } }
+loadAmberParams frcmod.parmbsc0
+loadOff parmBSC1.lib
+loadAmberParams frcmod.parmbsc1
+#
+# oldff/leaprc.ff99 ships no PDB-v3 DNA terminal residue map: its addPdbResMap
+# knows GUA/ADE/CYT/THY and the single letters G/A/C/T, but not DG/DA/DC/DT.
+# A PDB-v3 file therefore builds INTERNAL residues at both chain ends and tleap
+# silently adds a 5'-phosphate (net charge -24 instead of -22).  The four lines
+# below are exactly the map that oldff/leaprc.ff99bsc0 already ships; nothing
+# else is changed and no atom type is touched.  The stock-recipe build that
+# fails this way is kept under stock_resmap_failure/.
+#
+addPdbResMap {
+  { 0 "DG" "DG5" } { 1 "DG" "DG3" }
+  { 0 "DA" "DA5" } { 1 "DA" "DA3" }
+  { 0 "DC" "DC5" } { 1 "DC" "DC3" }
+  { 0 "DT" "DT5" } { 1 "DT" "DT3" }
+}
+mol = loadpdb 1BNA_AB_ter.pdb
+check mol
+saveamberparm mol ddd_bsc1.prmtop ddd_bsc1.rst7
+savepdb mol ddd_bsc1.pdb
+quit

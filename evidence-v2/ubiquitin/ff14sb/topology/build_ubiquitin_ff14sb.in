@@ -1,0 +1,7 @@
+source leaprc.protein.ff14SB
+mol = loadpdb ubiquitin_ff14sb_leap_input.pdb
+check mol
+charge mol
+saveamberparm mol ubiquitin_ff14sb.prmtop ubiquitin_ff14sb.rst7
+savepdb mol ubiquitin_ff14sb_leap.pdb
+quit

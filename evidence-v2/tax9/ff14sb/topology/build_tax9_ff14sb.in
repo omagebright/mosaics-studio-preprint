@@ -1,0 +1,5 @@
+source leaprc.protein.ff14SB
+mol = loadpdb tax_peptide_capped_main_norm.pdb
+saveamberparm mol tax9_ff14sb.prmtop tax9_ff14sb.rst7
+savepdb mol tax9_ff14sb_leap.pdb
+quit

@@ -1,0 +1,302 @@
+Findings
+========
+
+Every entry has an identifier that does not change, what was wrong, how it was
+found, and whether it is closed. Fixed entries stay here so the next reader
+knows the ground has been checked.
+
+F-01 to F-14 are energy findings. F-15 onwards cover forces, the converter,
+and the structures the checks are run on. Nothing is removed when it is fixed:
+a closed entry is how the next reader knows the ground has been checked.
+
+An identifier is never reused. If an entry turns out to be two findings, the
+second one takes the next free number rather than a letter on the first.
+
+F-01  fixed   The engines use different electrostatic constants
+--------------------------------------------------------------
+sander was 0.064 kcal/mol away from OpenMM on 1efs while reading exactly the
+same file. It is not a disagreement about the force field. sander uses an
+older value of the constant that turns charge into energy; OpenMM and GROMACS
+use the current one and agree with each other to ten digits. The constants
+were measured rather than assumed, by putting two charges a known distance
+apart. All electrostatic numbers are now corrected to one constant before
+comparison. See engines.txt.
+
+F-02  fixed   The two sides were reading different coordinates
+-------------------------------------------------------------
+MOSAICS read the structure file, the reference engines read the topology file,
+and the two store positions to different numbers of decimals. The largest
+difference was 0.0005 Angstrom. On the peptide that moved the short-range
+energy by 0.573 kcal/mol, because that term rises as the twelfth power of
+distance. It looked exactly like a broken force field. Both builders now write
+the reference positions from the structure MOSAICS reads, and refuse to
+continue if the two disagree.
+
+F-03  fixed   DNA parameters were being applied to RNA
+----------------------------------------------------
+On 1efs, MOSAICS was 0.47 kcal/mol high on the torsion energy for both
+parmbsc1 and parmbsc0. parmbsc1 is a DNA force field. Its files are stacked on
+top of an older general set, and where both define the same four atom types
+the later one wins, which is correct for DNA. 1efs also contains RNA, and four
+of those entries need different values for RNA. The file had nowhere to keep
+both, so the RNA strand was given the DNA values. Every force field that
+passed carried a per-molecule label on each entry; neither failing one carried
+any. The two files now carry the labels, and the error falls to 1.0e-04 and
+3.6e-05.
+
+F-04  fixed   Three files rounded a constant that did not need rounding
+----------------------------------------------------------------------
+The factor that reduces the electrostatic energy between atoms three bonds
+apart is exactly 5/6. Three files stored it to seven or ten digits instead.
+That shifted the 1efs energy by 1.0e-04 kcal/mol and made the two families of
+files disagree on a quantity that does not depend on which of them is loaded.
+Predicted and measured agree to seven digits. All files now carry the full
+value and all four now return the same number.
+
+F-05  fixed   An RNA atom was labelled with a DNA-only type
+---------------------------------------------------------
+Both files gave the RNA 5' carbon a type that parmbsc1 defines for DNA only.
+The type is identical to the ordinary one in every respect except torsions, so
+no energy changed when it was corrected, but the label was wrong and it is the
+last piece of an over-application that was already half undone.
+
+F-06  closed  The ParmEd conversion route collapses ff19SB's correction maps
+---------------------------------------------------------------------------
+GROMACS first appeared to disagree with the other three programs on this term
+by 0.30 kcal/mol. It is not a disagreement about physics and not a fault in
+the conversion tool.
+
+ff19SB gives every kind of residue its own correction map. On this peptide the
+four residues carry four different maps, differing by as much as 4.8 kcal/mol.
+The GROMACS topology used here is produced from the AMBER topology by the
+ParmEd command in engines.txt, and that route writes [ cmaptypes ] keyed on the
+five backbone atom types spanning phi and psi. All four residues share those
+five types, so the four per-residue maps collapse onto one: the conversion
+keeps the first and applies alanine's map to the other three.
+
+This is a property of the conversion route as it was used, not a statement
+about what the GROMACS file format can hold. Published GROMACS ports of
+amino-acid-specific CMAP force fields introduce residue-specific backbone atom
+types so that each map gets its own type quintuple. That workaround was not
+attempted here, so nothing in this work establishes that GROMACS cannot hold
+these maps; what is recorded is what this route did.
+
+F-09 is the related limit in the current MOSAICS deck format, and it is a
+different claim: there the map depends on the residue that FOLLOWS the one
+being corrected, which the deck format has no way to express at all.
+
+The cell is left blank in results.txt rather than filled with a number. The
+ff19SB result is measured against sander and OpenMM, which agree with MOSAICS
+to 5.7e-08, and every other GROMACS value on that structure agrees with the
+rest to about 1e-06.
+
+F-07  open    OL24/OL3 cannot be built here
+------------------------------------------
+Three parameter files are needed and are not redistributable.
+
+F-08  open    CHARMM36 for DNA and RNA has nothing to be checked against
+--------------------------------------------------------------------
+The terms convert. The converter emits the Lennard-Jones from the element
+that holds it, 807 Urey-Bradley entries into the bend record's own bond slot,
+and 188 harmonic impropers as \pot_type{harm}, none of which needs an engine
+change. Counts are pinned in tests/test_openmm_xml_to_mosaics.py.
+
+A reference energy now exists. charmm36.xml itself still cannot produce one --
+its five nucleic templates each declare one external bond, on O3' and not on
+P, and none of its 107 patches is a 5-prime patch, so it describes
+mononucleotides and cannot build a strand. charmm36_2024.xml can, and does:
+3011.9072066874 kcal/mol on the committed RNA control, term by term, in
+charmm36.txt C-08.
+
+The reference is built on a 5-prime-OH terminus, because that is the only kind
+this file can express. Every patch that ends a chain removes the phosphate and
+every patch that keeps the phosphate leaves an external bond unsatisfied.
+
+What is still missing is the deck. charmm36_2024.xml declares no impropers in
+the file -- they are generated when it is loaded -- so a deck for this release
+has to be read out of the built System rather than out of the XML.
+
+F-09  open    CHARMM36 for protein cannot be expressed
+-----------------------------------------------------
+Its correction maps depend partly on the residue that follows the one being
+corrected. The file format selects a map by the residue itself. Supporting
+this changes the format and the engine, so it is a decision to be taken, not
+a conversion to be run.
+
+F-10  open    Two structures have no AMBER cross-engine energy comparison
+-----------------------------------------------------------------------
+dna_acgt and rna_acgu carry no cross-engine energy comparison under any of the
+six AMBER combinations. They are not outside the comparison altogether: both
+are checked at the energy level against OpenMM under CHARMM36 nucleic
+(charmm36_dna_acgt.tsv, charmm36_rna_acgu.tsv) and both are swept at the force
+level under OL21/OL3 (forces/). What is missing is the AMBER energy row.
+
+F-11  open    One term is untested
+--------------------------------
+The peptide is built in an idealised shape that sits exactly at the minimum of
+its out-of-plane terms, so both GROMACS and MOSAICS report zero for them. A
+deliberately distorted copy is needed.
+
+F-12  note    The reference topologies carry a small known bias
+------------------------------------------------------------
+Every equilibrium angle written by the AMBER topology builder is the published
+value multiplied by a seven-digit approximation of pi/180. MOSAICS reads the
+exact value, so here the references carry the error, not MOSAICS. It is worth
+1.8e-04 kcal/mol on 1efs and is the largest remaining difference on every row
+that passes. It is reported, not corrected: rewriting a file that AMBER
+produced would make the comparison less faithful to AMBER.
+
+F-13  note    MOSAICS rounds three physical constants
+----------------------------------------------------
+Three constants compiled into the engine are rounded versions of the standard
+values. This is the whole of MOSAICS's remaining electrostatic difference from
+OpenMM, 1.5e-03 kcal/mol on 1efs. Reported, not changed.
+
+
+F-14  fixed   The reference had been adjusted toward the deck it tests
+---------------------------------------------------------------------
+A reference adjusted toward the deck it is meant to test cannot measure that
+deck.
+
+The topologies committed under examples/1efs_heteroduplex/topology/ were built
+by tleap and then edited: RNA C5' renamed CT -> CI on both parmbsc1 and
+parmbsc0, and RNA C3' CT -> CE on parmbsc1, so that the reference would agree
+with the MOSAICS RTF.
+
+Every 1efs comparison made against those files was therefore partly circular.
+
+The bsc1 and bs0 presets in tools/build_1efs_amber_reference.py build stock and
+rename nothing. Where the resulting atom types differ from the RTF, that
+difference is the measurement. F-05 is what that change exposed.
+
+The edited topologies are still in the repository. They are inputs to the
+example, not references, and must not be used as references.
+
+F-15  fixed   The CHARMM36 deck had no van der Waals at all
+--------------------------------------------------------------
+A CHARMM XML puts the charge in NonbondedForce and the Lennard-Jones in a
+LennardJonesForce of its own. The converter read both from NonbondedForce,
+where charmm36.xml writes epsilon="0.0" sigma="1.0" for all 412 types. Every
+one of the 85,078 ~inter_parm lines it produced said \eps{0}\sig{10}.
+
+Not CHARMM-specific: it would have broken any XML with that layout. No AMBER
+output changes, checked by regenerating ff14SB, OL15/OL3 and OL21/OL3 with both
+converters and diffing all fifteen files.
+
+F-16  open    Four Urey-Bradley constants are negative and cannot be carried
+-----------------------------------------------------------------------------
+charmm36.xml gives P-ON2-P and its P3 variants a negative Urey-Bradley force
+constant. CHARMM allows that. database.cpp:706 rejects fk_bond < 0 and stops
+the whole deck, not one angle.
+
+They are pyrophosphate linkages, not phosphodiesters, so they are off the
+nucleic path. The converter drops them and counts them into the manifest as
+urey_bradley_dropped_negative rather than losing them silently.
+
+Whether MOSAICS should accept a negative 1-3 constant is a question about the
+engine, not about the conversion.
+
+F-17  open    A committed control has two hydrogens 0.060 Angstrom apart
+-------------------------------------------------------------------------
+examples/pure_terminal_controls/dna_acgt.pdb, residue DG 3. H5' and H5'' are
+each 1.089 and 1.090 Angstrom from C5', which is correct, and 0.060 Angstrom
+from each other, which makes the H-C-H angle 3.15 degrees instead of 109.5.
+
+Invisible to every energy check: the pair is 1-3, which the non-bonded sum
+excludes, so only the bend term sees it and the bend term had no independent
+reference. The symptom is visible once measured -- this 126-atom 4-mer has a
+bend energy of 508.62 kcal/mol and the 818-atom 1EFS heteroduplex has 220.56.
+
+rna_acgu.pdb and 1efs.pdb are clean; checked, not assumed.
+
+NOT corrected. Three committed reference tables and half a smoke test were
+computed from this file, so changing it changes what those tables mean. Pinned
+in tests/test_structure_metrics.py so it cannot change quietly.
+
+F-18  open    The NME cap of the MHC peptide is not a physical amide
+---------------------------------------------------------------------
+examples/mhc_peptide_ff14sb/tax_peptide_capped.pdb, residue NME 11. Planar and
+with both bond lengths correct, but H and CH3 sit on the same side of the
+nitrogen:
+
+    C(VAL 10)-N-CH3   153.48 degrees      an sp2 amide nitrogen wants ~121
+    C(VAL 10)-N-H     153.39 degrees      ~119
+    H-N-CH3            53.12 degrees      ~119
+
+NOT corrected. Rebuilding the cap means choosing coordinates that have not been
+minimised against the force field. The fixture exists to exercise the staging
+transform, which does not depend on the geometry being physical, and its README
+says its energy is recorded rather than validated.
+
+F-19  fixed   Forty arrays were allocated one way and grown another
+--------------------------------------------------------------------
+An array from new[] grown with realloc is undefined, and where it was also
+released in a destructor it was three allocators for one block. NMEM_MIN is
+100 and every shipped topology, structure and deck is longer, so the realloc
+path ran on every job.
+
+Ten files, not the five that were first counted: inter_setup.cpp alone held
+more of it than all the readers together.
+
+Invisible because alloc_dealloc_mismatch is off by default on macOS. With it
+on, 14 of 14 committed inputs failed before the repair and 14 of 14 are clean
+after. tests/sanitizer_panel.sh sets it explicitly and says why.
+
+F-20  open    Two shipped decks cannot be regenerated from their sources
+--------------------------------------------------------------------------
+db_ol15_ol3 cannot be regenerated from the XML at all, and db_ol21_ol3's
+tors_and_impr cannot either. db_ff14sb regenerates byte-identical. Established
+by running the unmodified converter as a control, so it is not a consequence of
+any change here.
+
+A deck that cannot be regenerated cannot be checked against a newer release of
+its source, and its provenance rests on a note rather than on a command.
+
+F-21  fixed   The CMAP force was zero at a dihedral of exactly pi
+-----------------------------------------------------------------
+Found by sweeping the finite-difference step. Every energy term's residual
+falls as the step squared, which is what a central difference must do when the
+analytic force is the derivative. CMAP's did not move at all: 1.669519e-03
+Ha/Bohr at a step of 1e-2 and 1.669858e-03 at 3e-7.
+
+A residual that ignores the step is not discretisation error.
+
+The force was pre = dVdphi/(sint*l123*l234), with sint clamped to 1e-8 when it
+went below that. At phi = 0 or pi the two normals are parallel, so the
+numerator vanishes as well and the true force is the finite limit of 0/0. The
+clamp replaced the denominator and left the numerator, so the whole force came
+out as exactly zero: 0 of 168 components on the ff19SB peptide.
+
+A peptide built extended sits at phi = psi = pi on every residue. That is what
+tleap writes, and it is what examples/peptide_ff19sb holds, so all four of its
+CMAP terms sat on the singular point.
+
+Proved by moving every atom by at most 0.01 Angstrom, which took the analytic
+force from 0 non-zero components to 42 agreeing with the numerical one to
+1.844e-10.
+
+Replaced with the chain rule in the form that has no sin(phi) in it. Its only
+singularity is three collinear atoms, which is real and already guarded. After
+the repair the same structure gives 1.772e-08 at a step of 1e-05, and the sweep
+converges at second order: fitted over the declared window of 1e-02 to 3e-04
+Bohr, with no selection of rows, the exponent is 1.994.
+
+The energy was never affected and still matches sander and OpenMM.
+
+tests/cmap_force_driver.cpp already compared these forces to a finite
+difference and passed: its geometry has no dihedral near 0 or pi. It now runs a
+second geometry at exactly pi, which fails against the old code with 0.3998.
+
+F-22  open    CMAP is checked on one system only
+--------------------------------------------------
+examples/peptide_ff19sb is the only committed input with a
+\cmap_database_file, so it is the only structure the correction-map term is
+measured on, at the energy level and at the force level. No staging input has
+one at all, so the staging gradient of this term is not measured anywhere.
+
+None of the six force fields validated here gives CMAP to a nucleic acid, so
+this is a gap in coverage rather than a suspected defect. It is named because
+a blank in coverage.txt must not read as a pass.
+
+Closing it needs a second committed input carrying a correction map, and a
+staging input carrying one.

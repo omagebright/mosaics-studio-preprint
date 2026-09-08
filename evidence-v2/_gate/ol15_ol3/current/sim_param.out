@@ -1,0 +1,104 @@
+~method[]
+simulation_typ	{PT} {PT,PTMC,PTSTG,PTSTGMC,PTRPSW,PTRPSWMC,NM,NMSTG,NMEN,NMPT,MIN,DBFR,DBTD,DBFREN,DBFRSTG,EEMC,SEQ_PT,SEQ_EEMC}
+replica_number	{0} {integer>=0}
+total_step_mc	{1} {integer>=1}
+local_step_md	{1} {integer>=1}
+time_step_md	{0.4} {real>=0}
+statistics_freq	{1} {integer>=1}
+prob_eemc_jump	{0.15} {real>=0}
+temperature	{300} {real>=0}
+eemc_disk_size	{10} {integer>=1}
+burn_in_B	{1} {integer>=0}
+burn_in_N	{1} {integer>=0}
+extend_inter	{off} {3bond_conn,4bond_conn,off}
+EEMC_Emin	{-1} {real}
+EEMC_Emax	{0} {real}
+write_energy_unit	{kcal} {kcal,Ha}
+energy_gap	{1.1} {real>=1.0}
+prop_type	{tors} {cart,tors,bend}
+prop_tors_sig	{0} {0 <= radian < 2 Pi}
+cancel_res_inter	{off} {neighbor,local,off}
+inter_list	{none} {lnk_list,neighbor_list,none}
+num_procs	{1} {integer>=1}
+rinter_switch_length	{0} {real>=0.0}
+prop_tors_type	{full} {full,side_chain}
+minimize_tol	{0.001} {real>0.0}
+minimize_type	{bfgs} {cg,bfgs,samc,stsamc}
+minimize_report	{0} {0,1,2}
+energy_report	{2} {0,1,2}
+prop_rot_sig	{0} {0 <= radian < 2 Pi}
+prop_trans_sig	{0} {Angstrom >= 0.0}
+postprop_minimize	{off} {off,cart,tors,bend,bend_tors,tors_bend,clos,gradclos_bend_tors,side_chain}
+postprop_minimize_itmax	{5} {integer >= 0}
+postprop_minimize_energy	{all} {bond,bond_bend,bond_bend_tors,bond_bend_tors_onfo,all}
+prop_clos_sig	{0.001} {Angstrom >= 0.0}
+prop_notors_sig_scale	{1} {real >= 0.0}
+prop_closcompl_type	{trans_rot} {trans,rot,trans_rot}
+postprop_minimize_gradclos_itmax	{1} {integer >= 0}
+random_seed	{1446354142} {large integer}
+scale_mass	{none} {none,all,backbone}
+scale_mass_value	{1} {real > 0.0}
+scale_mass_value_H	{1} {real > 0.0}
+intra_respa_step	{1} {integer>=1}
+sa_temp_first	{5000} {real > 0.0, in K}
+sa_temp_last	{0.1} {real > 0.0, in K}
+sa_rate	{0.9995} {real > 0.0}
+stsamc_type	{trigonom} {trigonom,linear}
+stsamc_period	{4000} {integer >= 100, # of mc steps}
+stsamc_ampl	{800} {real > 0.0, in K}
+prop_DNA_closcompl_type	{intra_inter_level} {intra_level,inter_level,intra_inter_level}
+cancel_res_inter_replace	{off} {neighbor,local,off}
+neighbor_list_skin	{1} {real>=0.0}
+lnk_list_skin	{0} {real>=0.0}
+stsamc_shift	{0} {real > 0.0, in K}
+rinter_exclude_length	{1000} {real>=0.0}
+prop_regions_type	{superimpose} {superimpose,onebyone}
+debug_force_eps	{1e-06} {a positive length in Bohr}
+
+~system[]
+mol_parm_file	{../../params/top_openmm-ol15_ol3_hybrid_chidef.rtf} {filename}
+bond_database_file	{../../params/db_ol15_ol3/mosaics_openmm-ol15_ol3.bond} {filename}
+pos_init_file	{1efs.pdb} {filename}
+pos_out_file	{out_ol15_ol3_vac.pos_out.pdb} {filename}
+atom_pos_file	{out_ol15_ol3_vac.pos.pdb} {filename}
+epot_file	{out_ol15_ol3_vac.pot_energy} {filename}
+einter_file	{out_ol15_ol3_vac.inter_energy} {filename}
+design_file	{not defined} {filename}
+system_def	{residue} {primitive,residue}
+cgres_model	{off} {off,KB_1pt,KB_3pt,KB_5pt,KB_UA,KB_UAPH,UA,UAPH,Go,BNL}
+bend_database_file	{../../params/db_ol15_ol3/mosaics_openmm-ol15_ol3.bend} {filename}
+tors_database_file	{../../params/db_ol15_ol3/mosaics_openmm-ol15_ol3.tors_and_impr} {filename}
+onfo_database_file	{../../params/db_ol15_ol3/mosaics_openmm-ol15_ol3.onfo} {filename}
+inter_database_file	{../../params/db_ol15_ol3/mosaics_openmm-ol15_ol3.vdw} {filename}
+tors_pos_file	{out_ol15_ol3_vac.tors_pos} {filename}
+hessian_file	{out_ol15_ol3_vac.hessian} {filename}
+implicit_solvent	{off} {off,scp}
+eighess_file	{out_ol15_ol3_vac.eighess} {filename}
+neutralize	{off} {off,nucl,prot,all}
+ddd	{off} {off,DD0S,ce}
+ddd_D	{1} {real >= 0.0}
+ddd_D0	{1} {real >= 0.0}
+ddd_S	{0.4} {real >= 0.0}
+ddd_c	{0.5} {real >= 0.0}
+ddd_e	{6} {real >= 0.0}
+force_const_cutoff	{off} {off,bond,bond_bend}
+force_const_cutoff_bond	{300000} {real >= 0.0, in K/A^2}
+force_const_cutoff_bend	{40000} {real >= 0.0, in K/rad^2}
+eigvechess_file	{not defined} {filename}
+inter_replace_database_file	{not defined} {filename}
+inter_replace_type	{KB_UA} {KB_UA,KB_5pt}
+inter_nonpairwise	{off} {off,ea}
+energy_term	{bond} {bond,bond_off}
+energy_term	{bend} {bend,bend_off}
+energy_term	{tors} {tors,tors_off}
+energy_term	{onfo} {onfo,onfo_off}
+energy_term	{inter} {inter,inter_off}
+energy_term	{cryo_em_off} {cryo_em,cryo_em_off}
+energy_term	{cmap_off} {cmap,cmap_off}
+energy_term	{constraint_off} {constraint,constraint_off}
+cryo_em_database_file	{not defined} {filename}
+cryo_em_expermnt_file	{not defined} {filename}
+region_database_file	{not defined} {filename}
+constraint_database_file	{not defined} {filename}
+cmap_database_file	{not defined} {filename}
+hbfix_database_file	{not defined} {filename}

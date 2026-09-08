@@ -1,0 +1,49 @@
+\section{Availability}
+\label{sec:availability}
+
+\paragraph{\studio{}}
+The page is served as static files at
+\url{https://users.ox.ac.uk/~coml1155/mosaics-studio/} and needs a current
+Chrome, Edge, Firefox or Safari with WebAssembly and Web Workers, about 25~MB on
+first visit and a few hundred megabytes of memory during a run; the version
+described here is 1.2.6. The source is at
+\url{https://github.com/omagebright/mosaics-studio} under the MIT licence. The
+page carries the MOSAICS engine compiled to WebAssembly, redistributed with the
+permission of the engine's author; the force-field data are distributed as
+separate works and the underlying parameter sets should be cited to their
+original publications, which Section~\ref{sec:methods-parameters} names.
+
+\paragraph{The engine}
+MOSAICS \cite{mosaics-software} is developed at
+\url{https://www.cs.ox.ac.uk/mosaics/}. The evaluation code, the deck reader,
+the converters that write the decks, the reference builders and every
+single-point input used here live in the engine's source distribution, with
+the decks under \texttt{params/} and the structures under \texttt{examples/},
+and the inputs and outputs behind every number in this paper are kept in the
+evidence tree that accompanies the manuscript sources, one directory per force
+field and system. That distribution is at present cited by name and project
+page: it carries no DOI and no public release tag, so a reader cannot yet fetch
+the exact tree these numbers came from. An archived, versioned deposit with a
+licence statement is needed and does not yet exist; it is the largest single
+obstacle to reproducing this paper, and closing it means publishing an
+artefact, not running anything again.
+
+\paragraph{Supporting Information}
+The MOSAICS single-point settings, the deck sizes, the reference-engine control
+files, the four 1efs \texttt{tleap} presets, the commands that read each
+engine's output, the CHARMM36 conversion route, the 1efs coordinate edits, and
+the Start and Run steps of the page.
+
+\section*{Acknowledgements}
+The force-field parameter sets are the published work of their authors, cited
+in Section~\ref{sec:methods-parameters}; the reference calculations were made
+with AmberTools, OpenMM and GROMACS as distributed. F.B.O. thanks the
+Department of Computer Science, University of Oxford, for hosting the visit
+during which this work was done.
+
+\section*{Author contributions}
+F.B.O. converted the parameter sets, built the reference calculations and the
+evidence tree, wrote \studio{} and its browser build, and drafted the
+manuscript. P.M. wrote the
+MOSAICS engine and the natural-move method, directed the scope and the
+verification strategy, and revised the manuscript.

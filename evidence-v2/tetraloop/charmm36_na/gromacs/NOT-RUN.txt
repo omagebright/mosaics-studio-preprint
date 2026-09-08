@@ -1,0 +1,27 @@
+GROMACS (gmx_d) was not run under CHARMM36, and this is why.
+
+gmx_d reads a GROMACS topology, which in this protocol is produced
+mechanically from an AMBER prmtop (engines.txt).  There is no CHARMM36
+nucleic prmtop for this system and no independent way to make one:
+  - AmberTools' chamber route needs a CHARMM topology/parameter pair.  What
+    is installed is
+        $AMBERHOME/dat/chamber/
+          par_all22_prot.inp  par_all22_sugar.inp  par_all27_prot_na.prm
+          par_all36_carb.prm  par_all36_prot.prm   top_all22_prot.inp
+          top_all22_sugar.inp top_all27_prot_na.rtf top_all36_carb.rtf
+          top_all36_prot.rtf  toppar_water_ions.str
+    There is no par_all36_na.prm and no top_all36_na.rtf.  CHARMM36 protein
+    and carbohydrate are there; CHARMM36 nucleic is not.  (par_all27_prot_na
+    is CHARMM27, a different release from the one under test.)  No .psf for
+    this structure exists either.
+  - the only CHARMM36 nucleic parameter source present is OpenMM's
+    charmm36_2024.xml, which is what the reference in ../openmm/ uses.  A
+    prmtop could be written out of that built System with ParmEd, but gmx_d
+    would then be evaluating parameters OpenMM produced, and engines.txt
+    requires that "no number in any table here is produced by a program that
+    reads another program's output".
+
+The committed evidence does the same: evidence/charmm36_rna_acgu.tsv and
+evidence/charmm36_dna_acgt.tsv carry MOSAICS and OpenMM only, and
+evidence/coverage.txt records sander and GROMACS as "--" on both CHARMM36
+rows.

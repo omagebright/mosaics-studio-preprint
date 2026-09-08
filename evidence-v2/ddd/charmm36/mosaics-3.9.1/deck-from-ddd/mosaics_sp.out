@@ -1,0 +1,404 @@
+###################################################################################
+#   Copyright (c) 2007 Peter Minary.        ~---------------------------------~   #
+#   All Rights Reserved.                    |     |              /    /    / ~|   #
+#      __           ~-           __         |    \|/     _      /         / ~ |   #
+#     /^^\     M   -  ~   M     /^^\        |   \_|_/  ((|))   /  M /  _ / ~ ~|   #
+#    /^^^^\   O   -    ~   O   /^^^^\       |  \__|__/ ((|))  /      ((|))~ ~ |   #
+#     |  |     S   -  ~   S     |  |        |     |      |   /  O /  ((|)) ~ ~|   #
+#     |  |      A   ~-   A      |  |        |  _     _   |  /         /|~ ~ ~ |   #
+#     |  |     I   ~  -   I     |  |        | {|}  ((|)) | /  S /  _ /~| ~_~ ~|   #
+#    _|__|_   C   ~    -   C   _|__|_       |{{|}} ((|))  /      ((|)) |~{|}~ |   #
+#              S   ~  -   S                 |  |     |   /  A /  ((|))~ {{|}}~|   #
+#   --------------- -~ ----------------     |    _   |  /         /| ~ ~ ~| ~ |   #
+#    Methodologies for Optimization and     |  ((|)) | /  I /  _ / |~ ~ ~| ~ ~|   #
+#    SAmpling In Computational Studies      |  ((|))  /      ((|)) | ~  \|/ ~ |   #
+#   -----------------------------------     |    |   /  C /  ((|))~ ~  \_|_/ ~|   #
+#                                           |    |  /         /| ~ ~  \__|__/~|   #
+#          >>  version.3.9.1  <<            |    | /  S /    /~|~ ~ ~ ~ ~| ~ ~|   #
+#                                           |     /         /~ | ~ ~ ~ ~ ~ ~ ~|   #
+#                                           ~---------------------------------~   #
+###################################################################################
+
+
+===================================================================================
+Reading simulation input file mcmc_ddd_charmm36_vac.input
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file mcmc_ddd_charmm36_vac.input
+===================================================================================
+
+
+===================================================================================
+Reading potential database files 
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading in database from file ../../topology/deck-from-ddd/mosaics_charmm36.bond
+...
+Database reading done, total 136 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file ../../topology/deck-from-ddd/mosaics_charmm36.bend
+...
+Database reading done, total 280 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file ../../topology/deck-from-ddd/mosaics_charmm36.tors_and_impr
+...
+Database reading done, total 449 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file ../../topology/deck-from-ddd/mosaics_charmm36.onfo
+...
+Database reading done, total 6903 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file ../../topology/deck-from-ddd/mosaics_charmm36.vdw
+...
+Database reading done, total 6903 entries read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading potential database files 
+===================================================================================
+
+
+===================================================================================
+Creating atom maps
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Creating atom maps done
+===================================================================================
+
+
+===================================================================================
+Reading file ddd_charmm36_mosaics.pdb
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file ddd_charmm36_mosaics.pdb
+...
+File reading done, total 758 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file ddd_charmm36_mosaics.pdb
+===================================================================================
+
+
+===================================================================================
+Reading residue topology file ../../topology/deck-from-ddd/top_charmm36_nucleic.rtf
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file ../../topology/deck-from-ddd/top_charmm36_nucleic.rtf
+...
+File reading done, total 448 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file ../../topology/deck-from-ddd/top_charmm36_nucleic.rtf
+===================================================================================
+
+
+===================================================================================
+Setting up residue topology
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Sampling atom velocities
+...
+Atom velocities sampling done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Residue topology setup done
+===================================================================================
+
+
+===================================================================================
+Setting up torsional transformations
+-----------------------------------------------------------------------------------
+Constant Bond Length Double Closure (CBLC) for DNA
+Constant Bond Length Double Closure (CBLC) for DNA
+-----------------------------------------------------------------------------------
+Torsional transformations setup done
+===================================================================================
+
+
+===================================================================================
+Setting up connectivity
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Setting up bonds
+...
+Bonds setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up bends
+...
+Bends setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up tors
+...
+Tors setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up onefour
+...
+Onefour setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up inter-molecular interactions
+...
+Inter-mol setting up done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Connectivity setup done
+===================================================================================
+
+
+===================================================================================
+System setup 
+-----------------------------------------------------------------------------------
+Total number of molecules: 24
+
+Number of biopolymer molecules: 24
+Itemizing...
+
+1. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 1  DC5  natom 28, charge -0.47
+molecular charge -0.47
+
+2. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 2  DG  natom 33, charge -1
+molecular charge -1
+
+3. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 3  DC  natom 30, charge -1
+molecular charge -1
+
+4. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 4  DG  natom 33, charge -1
+molecular charge -1
+
+5. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 5  DA  natom 32, charge -1
+molecular charge -1
+
+6. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 6  DA  natom 32, charge -1
+molecular charge -1
+
+7. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 7  DT  natom 32, charge -1
+molecular charge -1
+
+8. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 8  DT  natom 32, charge -1
+molecular charge -1
+
+9. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 9  DC  natom 30, charge -1
+molecular charge -1
+
+10. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 10  DG  natom 33, charge -1
+molecular charge -1
+
+11. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 11  DC  natom 30, charge -1
+molecular charge -1
+
+12. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 12  DG3  natom 34, charge -0.53
+molecular charge -0.53
+
+13. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 13  DC5  natom 28, charge -0.47
+molecular charge -0.47
+
+14. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 14  DG  natom 33, charge -1
+molecular charge -1
+
+15. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 15  DC  natom 30, charge -1
+molecular charge -1
+
+16. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 16  DG  natom 33, charge -1
+molecular charge -1
+
+17. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 17  DA  natom 32, charge -1
+molecular charge -1
+
+18. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 18  DA  natom 32, charge -1
+molecular charge -1
+
+19. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 19  DT  natom 32, charge -1
+molecular charge -1
+
+20. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 20  DT  natom 32, charge -1
+molecular charge -1
+
+21. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 21  DC  natom 30, charge -1
+molecular charge -1
+
+22. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 22  DG  natom 33, charge -1
+molecular charge -1
+
+23. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 23  DC  natom 30, charge -1
+molecular charge -1
+
+24. molecule 
+molecule type ~~~>DNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 24  DG3  natom 34, charge -0.53
+molecular charge -0.53
+
+Number of water molecules: 0
+Number of atoms/ions: 0 
+Number of dummy atoms: 0
+Number of other molecules: 0 
+Total system charge: -22
+-----------------------------------------------------------------------------------
+System setup done
+===================================================================================
+
+
+===================================================================================
+Initial energies in kcal/mol
+-----------------------------------------------------------------------------------
+Initial Bond energy 123.239594547424
+Initial Bend energy 860.1100429165022
+Initial Torsion energy 618.5036851680374
+Initial Onefour energy -2288.078519343999
+Initial Inter energy 316220.235473883
+Initial Constraint energy 0
+Initial Total energy 315534.010277171
+-----------------------------------------------------------------------------------
+Initial energies
+===================================================================================
+
+
+===================================================================================
+Energy/Temparature Domain Partitioning
+-----------------------------------------------------------------------------------
+ Levels in energy partitioning 
+
+-1 0 
+
+ Temperature ladder
+
+300 
+
+ Temperature ladder in energy units
+
+0.00095 
+
+current c value 1.05e+03
+-----------------------------------------------------------------------------------
+Energy/Temparature Domain Partitioning Done
+===================================================================================
+
+
+===================================================================================
+>>Report energies at step 1<<
+-----------------------------------------------------------------------------------
+
+	Energies in kcal/mol
+
+	-Bond energy                 123.2395945474247
+	-Bend energy                 860.1100429165014
+	   Bond-Bend energy          209.1511625233826
+	   Bend-Bend energy          650.9588803931189
+	-Torsion energy              618.5036851680368
+	   Tors-Tors energy          617.7524119943989
+	   Tors-Improper energy      0.7512731736377724
+	-Onefour energy              -2288.078519344001
+	   Onfo-Coulomb energy       -2775.63358982114
+	   Onfo-Lennard-Jones energy 487.5550704771387
+	-Inter energy                316220.2354738895
+	   Lennard-Jones energy      312306.1729229478
+	   Coulomb energy            3914.062550941846
+	   SCP energy                0
+	   Knowledge based energy    0
+	-Total Lennard-Jones energy  312793.7279934249
+	-Total Coulomb energy        1138.428961120707
+	-Constraint energy           0
+	-Total energy                315534.0102771774
+
+-----------------------------------------------------------------------------------
+===================================================================================
+
+===================================================================================
+ Acceptance ratio for MH Chains 
+-----------------------------------------------------------------------------------
+       # of accepted   ||  # of total   || acceptance ratio
+ Chain 0     1	     1	     1
+
+
+ Acceptance ratio for PT jumps 
+
+       # of accepted   ||  # of total   || acceptance ratio
+-----------------------------------------------------------------------------------
+ Acceptance ratio for MH Chains 
+===================================================================================
+
+
+###################################################################################
+##===============================================================================##
+##                M.O.S.A.I.C.S    Successfully Completed                        ##
+##===============================================================================##
+###################################################################################
+ Current Date Tue Aug 25 02:23:15 -03 2026
+ ===================================================================================
+
+

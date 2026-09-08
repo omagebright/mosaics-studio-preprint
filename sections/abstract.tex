@@ -1,0 +1,31 @@
+Natural-move Monte Carlo displaces a structurally meaningful group of atoms as a
+unit and repairs the covalent geometry with a stochastic chain closure. It has
+mostly been run on reduced representations under knowledge-based potentials,
+which return a ranking and not a quantity. We report that MOSAICS, the
+natural-move engine, now evaluates modern additive force fields at all-atom
+resolution, and that \studio{} puts that engine inside a web browser. The force fields are ff14SB and ff19SB for protein, the latter with its
+per-residue $(\phi,\psi)$ correction maps; parmbsc0, parmbsc1, OL15/OL3,
+OL21/OL3 and OL24/OL3 for nucleic acid; and CHARMM36 for nucleic acid, with its
+Urey--Bradley terms and harmonic impropers. Single-point energies were compared
+with sander~24.0, OpenMM~8.5.2 and GROMACS~2025.4 on eleven systems of 56 to
+6,139 atoms, from free-ended 4-mers and capped peptides to a peptide--MHC
+class~I complex and a protein--RNA complex, in 26 system-and-force-field
+combinations. Nineteen of the 26 agree with every available reference to within
+0.001~\kcal{}; the median largest gap is 0.00037~\kcal{}; the worst, 0.043~\kcal{}
+on BPTI under ff19SB, is one improper whose atom order differs between the
+AMBER topology and the MOSAICS residue template. Term by term, on an 818-atom
+DNA:RNA heteroduplex and a capped peptide, the largest difference from OpenMM
+on any term is $1.8\times10^{-4}$ and $9.6\times10^{-6}$~\kcal{}, both on the
+angle term and both arising in the reference topology. The charge-to-energy
+constant was measured, not assumed: it differs between these programs by enough
+to move the heteroduplex by 0.064~\kcal{}. Analytic forces track a central
+difference of the same energy at second order in 61 term-and-system sweeps, and
+one Monte Carlo step at 818 atoms costs 3.46~ms on one core. \studio{} runs the
+engine, compiled to WebAssembly, and its own preparation and analysis pipeline
+inside the visitor's browser tab, so nothing is installed and nothing is
+uploaded; a documented minimisation reproduces between the native and
+WebAssembly engines to the same 2,040 iterations, the same first and last
+energies, and 0.0045~\AA{} between final structures, and every run carries a
+record naming the engine, the parameter files and the inputs by digest. The
+chemistry and geometries tested bound every claim: one conformation per system,
+in vacuum, with no cutoff.

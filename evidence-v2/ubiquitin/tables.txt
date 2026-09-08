@@ -1,0 +1,72 @@
+ff14SB on ubiquitin (1UBQ)
+--------------------------
+  term          MOSAICS 3.9.1        MOSAICS current           sander           OpenMM          GROMACS
+  bond                   no output       125.61189200     125.61190000     125.61189200     125.61189197
+  angle                  no output       275.36422591     275.36490000     275.36487329     275.36487285
+  dihedral               no output       917.58633065     917.58630000     917.58649896     917.58649594
+  lj                     no output       534.14577725     534.14580000     534.14577715     534.14575741
+  coulomb                no output     -2399.66666449   -2399.58550000   -2399.66863505   -2399.66864316
+             (electrostatic values above are as printed)
+  coulomb*               no output     -2399.66863227   -2399.66870122   -2399.66863722   -2399.66864533   corrected to one constant
+  total                  no output      -546.96040647    -546.95980122    -546.95959583    -546.95962717
+
+  MOSAICS minus OpenMM, after correction:
+    current  bond      +6.963e-13
+    current  angle     -6.474e-04
+    current  dihedral  -1.683e-04
+    current  lj        +1.046e-07
+    current  coulomb   +4.945e-06
+    3.9.1    every term   no output: the run stops before any energy
+
+  GROMACS minus OpenMM:
+    bond        -2.602e-08
+    angle       -4.412e-07
+    dihedral    -3.021e-06
+    lj          -1.974e-05
+    coulomb     -8.113e-06
+
+  sander minus OpenMM:
+    bond        +8.005e-06
+    angle       +2.671e-05
+    dihedral    -1.990e-04
+    lj          +2.285e-05
+    coulomb     -6.400e-05
+
+ff19SB on ubiquitin (1UBQ)
+--------------------------
+  term          MOSAICS 3.9.1        MOSAICS current           sander           OpenMM          GROMACS
+  bond                   no output       125.61189200     125.61190000     125.61189200     125.61189197
+  angle                  no output       275.36422591     275.36490000     275.36487329     275.36487285
+  dihedral               no output       372.75171815     372.75040000     372.75052718     372.75052438
+  cmap                   no output        69.95284751      69.95280000      69.95284751      61.54332385
+  lj                     no output       533.93769334     533.93770000     533.93769324     533.93767352
+  coulomb                no output     -2399.66666449   -2399.58550000   -2399.66863505   -2399.66864316
+             (electrostatic values above are as printed)
+  coulomb*               no output     -2399.66863227   -2399.66870122   -2399.66863722   -2399.66864533   corrected to one constant
+  total                  no output     -1022.05025538   -1022.05100122   -1022.05080401               -
+
+  MOSAICS minus OpenMM, after correction:
+    current  bond      +6.963e-13
+    current  angle     -6.474e-04
+    current  dihedral  +1.191e-03
+    current  cmap      -2.700e-13
+    current  lj        +9.904e-08
+    current  coulomb   +4.945e-06
+    3.9.1    every term   no output: the run stops before any energy
+
+  GROMACS minus OpenMM:
+    bond        -2.602e-08
+    angle       -4.412e-07
+    dihedral    -2.802e-06
+    cmap        -8.410e+00
+    lj          -1.972e-05
+    coulomb     -8.113e-06
+
+  sander minus OpenMM:
+    bond        +8.005e-06
+    angle       +2.671e-05
+    dihedral    -1.272e-04
+    cmap        -4.751e-05
+    lj          +6.760e-06
+    coulomb     -6.400e-05
+

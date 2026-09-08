@@ -1,0 +1,29 @@
+
+Coulomb constant measured from a two-point-charge single point
+q = +1 e and -1 e, r = 1.0000000000 A, LJ zeroed, vacuum, no cutoff
+Units: kcal * Angstrom / (mol * e^2)
+--------------------------------------------------------------------
+AMBER sander                        332.052200
+OpenMM                              332.063713
+GROMACS                             332.063713
+MOSAICS (BOHR x KCAL, analytic)     332.063441
+--------------------------------------------------------------------
+Relative difference from sander:
+AMBER sander                        +0.000000e+00
+OpenMM                              +3.467316e-05
+GROMACS                             +3.467284e-05
+MOSAICS (BOHR x KCAL, analytic)     +3.385377e-05
+
+Precision
+---------
+sander prints EEL to four decimals, so its row above carries four
+measured digits and two of formatting. The other three rows are
+read from APIs and files that carry full double precision.
+
+AMBER stores prmtop charges pre-multiplied by 18.2223, so sander's
+constant is that number squared, exactly:
+  18.2223^2 = 332.052217
+
+That exact value is what results.txt corrects the sander column
+with, not the four digits printed above. The two agree to the
+precision sander reports: 332.0522 contains 332.052217.

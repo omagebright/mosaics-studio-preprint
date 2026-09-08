@@ -1,0 +1,44 @@
+BOND rows missing: 10 distinct, 10 instances of 480 bonds
+  CYT-O3'      ADE-P        RC3->RA4         x1   e.g. (3, 'RC', "O3'") - (4, 'RA', 'P')
+  CYT-O3'      CYT-P        RC13->RC314      x1   e.g. (13, 'RC', "O3'") - (14, 'RC3', 'P')
+  CYT-O3'      URA-P        RC5->RU6         x1   e.g. (5, 'RC', "O3'") - (6, 'RU', 'P')
+  CYT-P        GUA-O3'      RG12->RC13       x1   e.g. (13, 'RC', 'P') - (12, 'RG', "O3'")
+  GUA-O3'      CYT-P        RG2->RC3         x1   e.g. (2, 'RG', "O3'") - (3, 'RC', 'P')
+  GUA-O3'      GUA-P        RG9->RG10        x1   e.g. (9, 'RG', "O3'") - (10, 'RG', 'P')
+  GUA-P        GUA-O3'      RG51->RG2        x1   e.g. (2, 'RG', 'P') - (1, 'RG5', "O3'")
+  URA-O3'      CYT-P        RU7->RC8         x1   e.g. (7, 'RU', "O3'") - (8, 'RC', 'P')
+  URA-O3'      GUA-P        RU11->RG12       x1   e.g. (11, 'RU', "O3'") - (12, 'RG', 'P')
+  URA-O3'      URA-P        RU6->RU7         x1   e.g. (6, 'RU', "O3'") - (7, 'RU', 'P')
+BEND rows missing: 32 distinct, 40 instances of 857 bends
+  CYT-C3'      CYT-O3'      ADE-P        x1
+  CYT-C3'      CYT-O3'      CYT-P        x1
+  CYT-C3'      CYT-O3'      URA-P        x1
+  CYT-O3'      ADE-P        ADE-O1P      x1
+  CYT-O3'      ADE-P        ADE-O2P      x1
+  CYT-O3'      ADE-P        ADE-O5'      x1
+  CYT-O3'      CYT-P        CYT-O1P      x1
+  CYT-O3'      CYT-P        CYT-O2P      x1
+  CYT-O3'      CYT-P        CYT-O5'      x1
+  CYT-O3'      URA-P        URA-O1P      x1
+  CYT-O3'      URA-P        URA-O2P      x1
+  CYT-O3'      URA-P        URA-O5'      x1
+  GUA-C3'      GUA-O3'      CYT-P        x2
+  GUA-C3'      GUA-O3'      GUA-P        x2
+  GUA-O3'      CYT-P        CYT-O1P      x2
+  GUA-O3'      CYT-P        CYT-O2P      x2
+  GUA-O3'      CYT-P        CYT-O5'      x2
+  GUA-O3'      GUA-P        GUA-O1P      x2
+  GUA-O3'      GUA-P        GUA-O2P      x2
+  GUA-O3'      GUA-P        GUA-O5'      x2
+  URA-C3'      URA-O3'      CYT-P        x1
+  URA-C3'      URA-O3'      GUA-P        x1
+  URA-C3'      URA-O3'      URA-P        x1
+  URA-O3'      CYT-P        CYT-O1P      x1
+  URA-O3'      CYT-P        CYT-O2P      x1
+  URA-O3'      CYT-P        CYT-O5'      x1
+  URA-O3'      GUA-P        GUA-O1P      x1
+  URA-O3'      GUA-P        GUA-O2P      x1
+  URA-O3'      GUA-P        GUA-O5'      x1
+  URA-O3'      URA-P        URA-O1P      x1
+  URA-O3'      URA-P        URA-O2P      x1
+  URA-O3'      URA-P        URA-O5'      x1

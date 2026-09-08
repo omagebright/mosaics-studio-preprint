@@ -1,0 +1,28 @@
+       :-) GROMACS - gmx mdrun, 2025.4-conda_forge (double precision) (-:
+
+Executable:   /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin.ARM_NEON_ASIMD/gmx_d
+Data prefix:  /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local
+Working dir:  /Users/bright/Library/CloudStorage/OneDrive-Personal/Documents/MOSAICS_AllAtom_Paper/evidence-v2/bpti/ff19sb/gromacs
+Command line:
+  gmx_d mdrun -s sp.tpr -rerun sys.gro -e sp.edr -g sp.log -nt 1
+
+Reading file sp.tpr, VERSION 2025.4-conda_forge (double precision)
+Can not increase nstlist because an NVE ensemble is used
+Using 1 MPI thread
+Using 1 OpenMP thread 
+
+starting md rerun 'Generic title', reading coordinates from input trajectory 'sys.gro'
+
+Reading frames from gro file 'GROningen MAchine for Chemical Simulation', 892 atoms.
+Reading frame       0 time    0.000   Last frame          0 time    0.000   
+
+NOTE: 27 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:        0.003        0.003       99.4
+                 (ns/day)    (hour/ns)
+Performance:       29.723        0.807
+
+GROMACS reminds you: "Academe, n.: An ancient school where morality and philosophy were taught. Academy, n.: A modern school where football is taught." (Ambrose Bierce)
+

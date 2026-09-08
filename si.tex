@@ -1,0 +1,76 @@
+% !TEX program = xelatex
+% Supporting Information, built as a separate document.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=22mm,top=24mm,bottom=26mm]{geometry}
+\usepackage{iftex}
+\ifxetex
+  \usepackage[defaultsups]{newtxtext}
+  \usepackage{newtxmath}
+  \setsansfont{texgyreheros}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic,Scale=0.90]
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage[defaultsups]{newtxtext}
+  \usepackage{newtxmath}
+  \usepackage[scaled=0.90]{helvet}
+\fi
+\emergencystretch=1.5em
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage{authblk}
+\usepackage{url}
+\usepackage[colorlinks=true,allcolors={blue!55!black}]{hyperref}
+\graphicspath{{figures/}}
+\captionsetup{font=small,labelfont={bf,sf},labelsep=period,justification=justified}
+\titleformat{\section}{\sffamily\bfseries\large}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\sffamily\bfseries}{\thesubsection}{0.8em}{}
+\setlength{\parskip}{0pt}
+\renewcommand\Authfont{\normalsize}
+\renewcommand\Affilfont{\small\itshape}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\newcommand{\studio}{MOSAICS Studio}
+\newcommand{\kcal}{kcal/mol}
+\urlstyle{same}
+
+\title{\sffamily\bfseries\large Supporting Information\\[3pt]
+\normalsize\mdseries \studio{}: all-atom natural-move Monte Carlo on modern
+additive force fields in the browser}
+\author[1]{Folorunsho Bright Omage}
+\author[1]{Peter Minary}
+\affil[1]{Department of Computer Science, University of Oxford, Oxford OX1 3QD, United Kingdom}
+\date{8 September 2026}
+
+\begin{document}
+\maketitle
+\input{sections/supporting}
+
+\subsection*{S8. The page, Start and Run steps}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[t]{0.84\linewidth}
+\includegraphics[width=\linewidth]{studio-start.png}
+\caption{}
+\end{subfigure}
+\par\medskip
+\begin{subfigure}[t]{0.84\linewidth}
+\includegraphics[width=\linewidth]{studio-run.png}
+\caption{}
+\end{subfigure}
+\caption{\studio{} in the browser, version 1.2.6, the two steps not shown in
+the main text. (a) Start: a sequence (DNA, RNA or a peptide), a topology and a
+helical form, or a coordinate file; the default CGCGCG duplex is the one used
+for the cross-check of Table~8 of the main text. (b) Run: the protocol chosen
+from the fifteen the Studio offers, here the BFGS local minimisation with its
+deck and its manual reference, and every parameter the engine reads for that
+kind of calculation, grouped as the engine's manual groups them; the engine's
+own output appears line by line in the right-hand panel as it runs.}
+\end{figure}
+\end{document}

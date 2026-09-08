@@ -1,0 +1,19 @@
+The CHARMM36 run reads the same structure as the two AMBER runs:
+
+    tetraloop_mosaics.pdb        447 atoms, identical (cmp-clean) to
+                                 ../../ol3/topology/tetraloop_mosaics.pdb
+                                 and ../../ol21_ol3/topology/tetraloop_mosaics.pdb
+
+It was built by tleap from evidence-v2/_structures/2KOC_A_model1.pdb under
+leaprc.RNA.OL3 (../../ol3/topology/build_ol3.in and build_ol3.log), then
+renamed to MOSAICS naming by tools/pdb_to_mosaics.py --profile terminal.
+There is no CHARMM36 topology file here because no CHARMM36 topology exists
+for this system in this environment: see ../sander/NOT-RUN.txt.  The OpenMM
+reference builds its own System from charmm36_2024.xml at run time, which is
+what ../openmm/charmm36_openmm_reference.out records.
+
+Why the AMBER hydrogen set is used on the CHARMM path is argued in
+../../RESULTS.md section 1.  In short: the committed CHARMM36 controls are
+themselves AMBER leap geometry (evidence/charmm36.txt, C-11), and one
+geometry across three force fields is what makes the force-field comparison
+a force-field comparison.

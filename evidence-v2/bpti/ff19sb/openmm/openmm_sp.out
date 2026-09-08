@@ -1,0 +1,35 @@
+OpenMM single-point energy
+==========================================================================
+OpenMM version         8.5.2.dev-36a30cb
+Platform               Reference (double precision)
+nonbondedMethod        NoCutoff
+constraints            None
+rigidWater             False
+removeCMMotion         False
+implicitSolvent        None
+prmtop                 bpti_ff19sb.prmtop
+rst7                   bpti_ff19sb_matched.rst7
+atoms                  892
+
+Energies in kcal/mol
+--------------------------------------------------------------------------
+CMAPTorsionForce               43.186830422501
+HarmonicAngleForce             389.224630435676
+HarmonicBondForce              112.068146278323
+NonbondedForce                 -1463.714841670248
+PeriodicTorsionForce           230.523892690459
+
+NonbondedForce decomposition
+--------------------------------------------------------------------------
+OpenMM reports one combined non-bonded energy.  The system was
+evaluated twice more, once with every charge set to zero and once
+with every Lennard-Jones epsilon set to zero.
+
+Lennard-Jones (charges zeroed) -48.651774673678
+Coulomb (epsilons zeroed)      -1415.063066996547
+sum of the two                 -1463.714841670225
+NonbondedForce as built        -1463.714841670248
+difference                     2.274e-11
+
+The last two lines must agree; the difference is printed so that a
+reader can confirm it rather than take it on trust.

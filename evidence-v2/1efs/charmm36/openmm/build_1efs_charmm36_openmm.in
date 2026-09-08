@@ -1,0 +1,2 @@
+# the command that produced openmm_sp.out (charmm36_2024.xml, 5TER/3TER patches)
+python engine/tools/charmm_reference_energy.py paper/evidence-v2/1efs/charmm36/topology/1efs_charmm36_5ter.pdb 5TER

@@ -1,0 +1,13 @@
+source leaprc.protein.ff19SB
+chA = loadpdb chain_A.pdb
+chB = loadpdb chain_B.pdb
+chC = loadpdb chain_C.pdb
+mol = combine { chA chB chC }
+bond mol.101.SG mol.164.SG
+bond mol.203.SG mol.259.SG
+bond mol.301.SG mol.356.SG
+check mol
+charge mol
+saveamberparm mol 1hhk_ff19sb.prmtop 1hhk_ff19sb.rst7
+savepdb mol 1hhk_ff19sb_leap.pdb
+quit

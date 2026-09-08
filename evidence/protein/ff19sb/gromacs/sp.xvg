@@ -1,0 +1,33 @@
+# This file was created Wed Aug  5 12:06:04 2026
+# Created by:
+#      :-) GROMACS - gmx energy, 2025.4-conda_forge (double precision) (-:
+# 
+# Executable:   /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin.ARM_NEON_ASIMD/gmx_d
+# Data prefix:  /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local
+# Working dir:  /private/tmp/mosaics-ffc/ff19run/gromacs
+# Command line:
+#   gmx_d energy -f sp.edr -o sp.xvg
+# gmx energy is part of G R O M A C S:
+#
+# S  C  A  M  O  R  G
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(kJ/mol)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Bond"
+@ s1 legend "Angle"
+@ s2 legend "Proper Dih."
+@ s3 legend "Per. Imp. Dih."
+@ s4 legend "CMAP Dih."
+@ s5 legend "LJ-14"
+@ s6 legend "Coulomb-14"
+@ s7 legend "LJ (SR)"
+@ s8 legend "Coulomb (SR)"
+    0.000000    0.617106    4.131009   28.808918    0.000000   -6.776406   76.112021  809.316868  486.659725  -1107.886930

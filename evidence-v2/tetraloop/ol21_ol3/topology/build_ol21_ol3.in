@@ -1,0 +1,7 @@
+source leaprc.DNA.OL21
+source leaprc.RNA.OL3
+mol = loadPdb 2KOC_A_model1.pdb
+check mol
+saveamberparm mol tetraloop_ol21_ol3.prmtop tetraloop_ol21_ol3.rst7
+savepdb mol tetraloop_ol21_ol3.pdb
+quit

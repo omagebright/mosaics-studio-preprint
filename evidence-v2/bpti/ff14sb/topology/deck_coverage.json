@@ -1,0 +1,88 @@
+{
+  "prmtop": "/Users/bright/Library/CloudStorage/OneDrive-Personal/Documents/MOSAICS_AllAtom_Paper/evidence-v2/bpti/ff14sb/topology/bpti_ff14sb.prmtop",
+  "atoms": 892,
+  "residues": 58,
+  "net_charge": 6.0,
+  "distinct_amber_atom_types": [
+    "2C",
+    "3C",
+    "C",
+    "C8",
+    "CA",
+    "CO",
+    "CT",
+    "CX",
+    "H",
+    "H1",
+    "HA",
+    "HC",
+    "HO",
+    "HP",
+    "N",
+    "N2",
+    "N3",
+    "O",
+    "O2",
+    "OH",
+    "S"
+  ],
+  "n_distinct_amber_atom_types": 21,
+  "residue_counts": {
+    "ALA": 6,
+    "ARG": 6,
+    "ASN": 3,
+    "ASP": 2,
+    "CYX": 6,
+    "GLN": 1,
+    "GLU": 2,
+    "GLY": 6,
+    "ILE": 2,
+    "LEU": 2,
+    "LYS": 4,
+    "MET": 1,
+    "PHE": 4,
+    "PRO": 4,
+    "SER": 1,
+    "THR": 3,
+    "TYR": 4,
+    "VAL": 1
+  },
+  "n_bonds": 906,
+  "n_angles": 1626,
+  "n_proper_dihedral_terms": 3791,
+  "n_improper_dihedral_terms": 199,
+  "n_one_four_pairs": 2347,
+  "n_cmap_terms": 0,
+  "deck_rows_touched": {
+    "bond": {
+      "touched": 48,
+      "in_deck": 90,
+      "percent": 53.3
+    },
+    "bend": {
+      "touched": 117,
+      "in_deck": 258,
+      "percent": 45.3
+    },
+    "vdw": {
+      "touched": 231,
+      "in_deck": 595,
+      "percent": 38.8
+    },
+    "onfo": {
+      "touched": 103,
+      "in_deck": 595,
+      "percent": 17.3
+    },
+    "torsion_proper": {
+      "touched": 221,
+      "in_deck": 465,
+      "percent": 47.5
+    },
+    "torsion_improper": {
+      "touched": 15,
+      "in_deck": 61,
+      "percent": 24.6
+    }
+  }
+}

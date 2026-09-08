@@ -1,0 +1,39 @@
+term            MOSAICS-current             sander             OpenMM            GROMACS
+bond               112.06814628       112.06810000       112.06814628       112.06814627
+angle              389.22411959       389.22460000       389.22463044       389.22463026
+dihedral           230.48181304       230.52390000       230.52389269       230.52389054
+cmap                43.18683042        43.18680000        43.18683042       -59.28850741
+lj                 -48.65177437       -48.65180000       -48.65177467       -48.65179708
+coulomb          -1415.06190298     -1415.01410000     -1415.06306700     -1415.06307003
+            (electrostatic values above are as printed)
+coulomb*         -1415.06306336     -1415.06316301     -1415.06306700     -1415.06307003   corrected to one constant
+total             -688.75276802      -688.71156301      -688.71134184      -791.18670746
+
+MOSAICS-current minus OpenMM, after correction:
+  bond       -7.9581e-13
+  angle      -5.1085e-04
+  dihedral   -4.2080e-02
+  cmap       -5.7554e-13
+  lj         +3.0155e-07
+  coulomb    +3.6317e-06
+MOSAICS-3.9.1 minus OpenMM: no run. 3.9.1 produced no energy on this system.
+
+sander minus OpenMM, after correction:
+  bond       -4.6278e-05
+  angle      -3.0436e-05
+  dihedral   +7.3095e-06
+  cmap       -3.0423e-05
+  lj         -2.5326e-05
+  coulomb    -9.6018e-05
+GROMACS minus OpenMM:
+  bond       -6.8125e-09
+  angle      -1.7755e-07
+  dihedral   -2.1551e-06
+  cmap       -1.0248e+02
+  lj         -2.2410e-05
+  coulomb    -3.0321e-06
+
+dihedral split (MOSAICS reports proper and improper separately;
+GROMACS reports Proper Dih. and Per. Imp. Dih.; the table above sums them)
+  proper                 MOSAICS-current      224.973266426   GROMACS      224.973306166
+  improper               MOSAICS-current        5.508546613   GROMACS        5.550584369

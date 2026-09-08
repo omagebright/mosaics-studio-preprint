@@ -1,0 +1,7 @@
+source leaprc.DNA.OL21
+source leaprc.RNA.OL3
+mol = loadpdb 1BNA_AB_ter.pdb
+check mol
+saveamberparm mol ddd_ol21_ol3.prmtop ddd_ol21_ol3.rst7
+savepdb mol ddd_ol21_ol3.pdb
+quit

@@ -1,0 +1,32 @@
+# This file was created Wed Aug  5 11:26:52 2026
+# Created by:
+#      :-) GROMACS - gmx energy, 2025.4-conda_forge (double precision) (-:
+# 
+# Executable:   /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin.ARM_NEON_ASIMD/gmx_d
+# Data prefix:  /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local
+# Working dir:  /private/tmp/mosaics-ffc/force-field-comparison/1efs/bs0/gromacs
+# Command line:
+#   gmx_d energy -f sp.edr -o sp.xvg
+# gmx energy is part of G R O M A C S:
+#
+# Great Red Owns Many ACres of Sand 
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(kJ/mol)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Bond"
+@ s1 legend "Angle"
+@ s2 legend "Proper Dih."
+@ s3 legend "Per. Imp. Dih."
+@ s4 legend "LJ-14"
+@ s5 legend "Coulomb-14"
+@ s6 legend "LJ (SR)"
+@ s7 legend "Coulomb (SR)"
+    0.000000  297.058885  922.844265  2064.133573    0.002210  1028.312849  -10852.532082  -1945.849252  18625.314564

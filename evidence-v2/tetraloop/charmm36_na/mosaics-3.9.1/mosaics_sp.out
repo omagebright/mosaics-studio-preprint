@@ -1,0 +1,334 @@
+###################################################################################
+#   Copyright (c) 2007 Peter Minary.        ~---------------------------------~   #
+#   All Rights Reserved.                    |     |              /    /    / ~|   #
+#      __           ~-           __         |    \|/     _      /         / ~ |   #
+#     /^^\     M   -  ~   M     /^^\        |   \_|_/  ((|))   /  M /  _ / ~ ~|   #
+#    /^^^^\   O   -    ~   O   /^^^^\       |  \__|__/ ((|))  /      ((|))~ ~ |   #
+#     |  |     S   -  ~   S     |  |        |     |      |   /  O /  ((|)) ~ ~|   #
+#     |  |      A   ~-   A      |  |        |  _     _   |  /         /|~ ~ ~ |   #
+#     |  |     I   ~  -   I     |  |        | {|}  ((|)) | /  S /  _ /~| ~_~ ~|   #
+#    _|__|_   C   ~    -   C   _|__|_       |{{|}} ((|))  /      ((|)) |~{|}~ |   #
+#              S   ~  -   S                 |  |     |   /  A /  ((|))~ {{|}}~|   #
+#   --------------- -~ ----------------     |    _   |  /         /| ~ ~ ~| ~ |   #
+#    Methodologies for Optimization and     |  ((|)) | /  I /  _ / |~ ~ ~| ~ ~|   #
+#    SAmpling In Computational Studies      |  ((|))  /      ((|)) | ~  \|/ ~ |   #
+#   -----------------------------------     |    |   /  C /  ((|))~ ~  \_|_/ ~|   #
+#                                           |    |  /         /| ~ ~  \__|__/~|   #
+#          >>  version.3.9.1  <<            |    | /  S /    /~|~ ~ ~ ~ ~| ~ ~|   #
+#                                           |     /         /~ | ~ ~ ~ ~ ~ ~ ~|   #
+#                                           ~---------------------------------~   #
+###################################################################################
+
+
+===================================================================================
+Reading simulation input file mcmc_tetraloop_charmm36_vac.input
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file mcmc_tetraloop_charmm36_vac.input
+===================================================================================
+
+
+===================================================================================
+Reading potential database files 
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_charmm36_na/mosaics_charmm36.bond
+...
+Database reading done, total 237 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_charmm36_na/mosaics_charmm36.bend
+...
+Database reading done, total 562 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_charmm36_na/mosaics_charmm36.tors_and_impr
+...
+Database reading done, total 1036 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_charmm36_na/mosaics_charmm36.onfo
+...
+Database reading done, total 15753 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_charmm36_na/mosaics_charmm36.vdw
+...
+Database reading done, total 15753 entries read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading potential database files 
+===================================================================================
+
+
+===================================================================================
+Creating atom maps
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Creating atom maps done
+===================================================================================
+
+
+===================================================================================
+Reading file tetraloop_mosaics.pdb
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file tetraloop_mosaics.pdb
+...
+File reading done, total 447 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file tetraloop_mosaics.pdb
+===================================================================================
+
+
+===================================================================================
+Reading residue topology file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_charmm36_nucleic.rtf
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_charmm36_nucleic.rtf
+...
+File reading done, total 1450 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_charmm36_nucleic.rtf
+===================================================================================
+
+
+===================================================================================
+Setting up residue topology
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Sampling atom velocities
+...
+Atom velocities sampling done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Residue topology setup done
+===================================================================================
+
+
+===================================================================================
+Setting up connectivity
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Setting up bonds
+...
+Bonds setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up bends
+...
+Bends setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up tors
+...
+Tors setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up onefour
+...
+Onefour setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up inter-molecular interactions
+...
+Inter-mol setting up done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Connectivity setup done
+===================================================================================
+
+
+===================================================================================
+System setup 
+-----------------------------------------------------------------------------------
+Total number of molecules: 14
+
+Number of biopolymer molecules: 14
+Itemizing...
+
+1. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 1  RG5  natom 32, charge -0.47
+molecular charge -0.47
+
+2. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 2  RG  natom 34, charge -1
+molecular charge -1
+
+3. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 3  RC  natom 31, charge -1
+molecular charge -1
+
+4. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 4  RA  natom 33, charge -1
+molecular charge -1
+
+5. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 5  RC  natom 31, charge -1
+molecular charge -1
+
+6. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 6  RU  natom 30, charge -1
+molecular charge -1
+
+7. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 7  RU  natom 30, charge -1
+molecular charge -1
+
+8. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 8  RC  natom 31, charge -1
+molecular charge -1
+
+9. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 9  RG  natom 34, charge -1
+molecular charge -1
+
+10. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 10  RG  natom 34, charge -1
+molecular charge -1
+
+11. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 11  RU  natom 30, charge -1
+molecular charge -1
+
+12. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 12  RG  natom 34, charge -1
+molecular charge -1
+
+13. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 13  RC  natom 31, charge -1
+molecular charge -1
+
+14. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 14  RC3  natom 32, charge -0.53
+molecular charge -0.53
+
+Number of water molecules: 0
+Number of atoms/ions: 0 
+Number of dummy atoms: 0
+Number of other molecules: 0 
+Total system charge: -13
+-----------------------------------------------------------------------------------
+System setup done
+===================================================================================
+
+
+===================================================================================
+Initial energies in kcal/mol
+-----------------------------------------------------------------------------------
+Initial Bond energy 82.50995019872292
+Initial Bend energy 604.8110573840519
+Initial Torsion energy 303.8375768310443
+Initial Onefour energy -100.9641126507927
+Initial Inter energy 174809.1273242425
+Initial Constraint energy 0
+Initial Total energy 175699.3217960055
+-----------------------------------------------------------------------------------
+Initial energies
+===================================================================================
+
+
+===================================================================================
+Energy/Temparature Domain Partitioning
+-----------------------------------------------------------------------------------
+ Levels in energy partitioning 
+
+-1 0 
+
+ Temperature ladder
+
+300 
+
+ Temperature ladder in energy units
+
+0.00095 
+
+current c value 1.05e+03
+-----------------------------------------------------------------------------------
+Energy/Temparature Domain Partitioning Done
+===================================================================================
+
+
+===================================================================================
+>>Report energies at step 1<<
+-----------------------------------------------------------------------------------
+
+	Energies in kcal/mol
+
+	-Bond energy                 140.3454002345726
+	-Bend energy                 520.9528599917625
+	   Bond-Bend energy          57.01546052924648
+	   Bend-Bend energy          463.9373994625159
+	-Torsion energy              298.5075467396736
+	   Tors-Tors energy          298.4024641561545
+	   Tors-Improper energy      0.1050825835191271
+	-Onefour energy              -26.10467959532117
+	   Onfo-Coulomb energy       -377.3133535905043
+	   Onfo-Lennard-Jones energy 351.2086739951836
+	-Inter energy                20812.71158799138
+	   Lennard-Jones energy      19986.9902810903
+	   Coulomb energy            825.721306901088
+	   SCP energy                0
+	   Knowledge based energy    0
+	-Total Lennard-Jones energy  20338.19895508549
+	-Total Coulomb energy        448.4079533105837
+	-Constraint energy           0
+	-Total energy                21746.41271536207
+
+-----------------------------------------------------------------------------------
+===================================================================================
+
+===================================================================================
+ Acceptance ratio for MH Chains 
+-----------------------------------------------------------------------------------
+       # of accepted   ||  # of total   || acceptance ratio
+ Chain 0     1	     1	     1
+
+
+ Acceptance ratio for PT jumps 
+
+       # of accepted   ||  # of total   || acceptance ratio
+-----------------------------------------------------------------------------------
+ Acceptance ratio for MH Chains 
+===================================================================================
+
+
+###################################################################################
+##===============================================================================##
+##                M.O.S.A.I.C.S    Successfully Completed                        ##
+##===============================================================================##
+###################################################################################
+ Current Date Tue Aug 25 02:12:57 -03 2026
+ ===================================================================================
+
+

@@ -1,0 +1,13 @@
+source leaprc.DNA.OL21
+addPdbAtomMap {
+  { "H51" "H71" }
+  { "H52" "H72" }
+  { "H53" "H73" }
+  { "C5M" "C7"  }
+  { "O1P" "OP1" }
+  { "O2P" "OP2" }
+}
+mol = loadpdb /Users/bright/Documents/MOSAICS/work/preprint-I/systems/normalized/dna_acgt.pdb
+saveamberparm mol /Users/bright/Documents/MOSAICS/work/preprint-I/systems/builds/dna_acgt/ol21/dna_acgt_ol21.prmtop /Users/bright/Documents/MOSAICS/work/preprint-I/systems/builds/dna_acgt/ol21/dna_acgt_ol21.rst7
+savepdb mol /Users/bright/Documents/MOSAICS/work/preprint-I/systems/builds/dna_acgt/ol21/dna_acgt_ol21_mosaics.pdb
+quit

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/tools/pdb_to_mosaics.py", line 451, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/tools/pdb_to_mosaics.py", line 435, in main
+    output_lines, mapping_rows = convert_lines(
+                                 ^^^^^^^^^^^^^^
+  File "/Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/tools/pdb_to_mosaics.py", line 369, in convert_lines
+    raise ValueError("RTF validation failed:\n" + "\n".join(failures))
+ValueError: RTF validation failed:
+('A', '1', ''): residue DC5 is missing from /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_all99-bs0_prot_hybrid_chidef.rtf
+('A', '12', ''): residue DG3 is missing from /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_all99-bs0_prot_hybrid_chidef.rtf
+('B', '13', ''): residue DC5 is missing from /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_all99-bs0_prot_hybrid_chidef.rtf
+('B', '24', ''): residue DG3 is missing from /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_all99-bs0_prot_hybrid_chidef.rtf

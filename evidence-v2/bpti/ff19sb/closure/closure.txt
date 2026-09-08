@@ -1,0 +1,33 @@
+==============================================================================
+BPTI ff19SB dihedral term: MOSAICS-current vs OpenMM, closure
+==============================================================================
+prmtop phases present (rad)          : [0.0, 3.141594]
+OpenMM PeriodicTorsionForce          : 230.523892690
+analytic recompute, prmtop phase     : 230.523892690   (diff -5.684e-13)
+   proper  224.973308327   improper 5.550584363
+MOSAICS printed                      : proper 224.973266426   improper 5.508546613
+MOSAICS emulation (RTF order, deck)  : improper 5.508546613   (emulation - printed +6.484e-14)
+
+impropers: prmtop 199, MOSAICS-built 199, common 199, prmtop-only 0, built-only 0
+deck k != prmtop k                   : 0
+atom order differs (RTF vs prmtop)   : 1
+   ASP3   prmtop C-CA-N-H       types C-XC-N-H       phi -156.8404  E 0.340296072
+          RTF    C-H-N-CA       types PROT-C-PROT-H-PROT-N-PROT-XC phi  158.3954  E 0.298255178   k both 1.1
+
+contribution                                                    kcal/mol
+------------------------------------------------------------------------------
+I1  ASP3 N improper: RTF order (-C,H,N,CA) vs prmtop (C,CA,N,H)  -0.042040894
+I2  phase pi (deck) vs 3.141594 rad (prmtop), other 198 impropers +0.000003144
+    (same, from prmtop k with exact-pi phase, cross-check)        +0.000003144
+P1  phase pi/0 (deck) vs prmtop phase, 3791 proper terms          -0.000041817
+------------------------------------------------------------------------------
+improper: MOSAICS - OpenMM = -0.042037750;  I1+I2 = -0.042037750;  residual -6.702e-14
+proper  : MOSAICS - OpenMM = -0.000041902;  P1    = -0.000041817;  residual -8.453e-08
+dihedral: MOSAICS - OpenMM = -0.042079652;  sum   = -0.042079567;  residual -8.453e-08
+
+reconciliation of the earlier 'unexplained 0.011867' (residue 58 resolved as ALA instead of CALA):
+   ALA58 CA-O-C-OXT: present in RTF CALA and built by MOSAICS       +0.059813113  (earlier: counted as missing)
+   ALA58 N improper with ALA record order  (-C H N CA), k=1.1   +0.292024944  (earlier value; deck lookup for C-H-N-CX -> None)
+   ALA58 N improper with CALA record order (-C CA N H)              +0.220345905  (what MOSAICS builds; = prmtop order)
+   net error of the earlier bookkeeping = -OXT + (ALA - CALA)       +0.011865926
+   earlier 'residual' 5.520414 - 5.508546613                        +0.011867387

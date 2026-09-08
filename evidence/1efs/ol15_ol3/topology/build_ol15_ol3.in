@@ -1,0 +1,9 @@
+source leaprc.DNA.OL15
+source leaprc.RNA.OL3
+dna = sequence { DG5 DG DA DG DA DG DG DA DA DG DA DG DA DA DA3 }
+rna = sequence { U5 U U C U C U U C C U C U C C3 }
+combined = combine { dna rna }
+check combined
+saveamberparm combined ol15_ol3_padded.prmtop ol15_ol3_padded.rst7
+savepdb combined ol15_ol3_padded.pdb
+quit

@@ -1,0 +1,570 @@
+\section{Methods}
+\label{sec:methods}
+
+Everything reported in Sections~\ref{sec:coverage} to~\ref{sec:forces} is a
+single-point energy or a force at one fixed geometry. No structure moves during
+any of those runs. The protocol removes every difference between the programs
+being compared except the potential itself, so that a disagreement can only
+come from the parameters or from the code that evaluates them. What a reader
+needs only in order to rerun a job, the engine and reference control files,
+the deck sizes, the \texttt{tleap} presets, the CHARMM36 route and the 1efs
+coordinate edits, is tabulated in the Supporting Information and appears here
+only where a choice carries an argument.
+
+\subsection{The engine and how it was run}
+\label{sec:methods-engine}
+
+MOSAICS \cite{mosaics-software} is the natural-move Monte Carlo engine of Sim
+\emph{et al.}\cite{sim2012naturalmoves} and Minary and
+Levitt\cite{minary2010chainclosure}. It was built from the serial target,
+\texttt{source/compile/serial}, of the engine's main development branch and
+run from the command line. Every run directory in the evidence tree records the
+SHA-256 of the binary that produced it and the commit it was built from, and
+that is how a build is identified, because the banner the engine prints reads
+\texttt{version.3.9.1} on every build used here. The released 3.9.1 binary was
+compared against the development build on the same inputs before the
+comparison began: it refuses the OL21/OL3, parmbsc1 and parmbsc0 decks at the
+deck, because their torsion entries carry a per-molecule label it does not
+know; it refuses the ff19SB input because of the correction-map term, and with
+that term stripped it omits the term silently; and on the OL15/OL3, ff14SB and
+CHARMM36 decks it runs and returns energies tens of thousands of \kcal{} from
+the references, because it does not chain the residues it builds from a deck.
+The development build reproduces every committed single point byte for byte.
+The gate report is in the evidence tree. There is no software paper for the
+engine, so it is cited by name and project page.
+
+A MOSAICS job reads four things: a simulation input file, a residue topology
+file (RTF) naming the atoms of each residue and their types, a set of parameter
+files (a \emph{deck}), and a PDB structure. Supporting Information Table~S1
+lists every setting that makes a run a single point. Four of them decide what
+is measured. Every proposal width is zero, so the one Monte Carlo step taken
+proposes the starting structure. \verb|\energy_report{2}| makes the engine
+print each term and each part of each term, and \verb|\inter_list{none}|
+switches the neighbour list off, with no interaction cut off or switched. The
+nucleic runs use torsional proposals (\texttt{prop\_type} \texttt{tors}) with a
+\texttt{time\_step\_md} of 0.4, the peptide runs Cartesian proposals
+(\texttt{prop\_type} \texttt{cart}) with a time step of zero: in Cartesian mode a
+non-zero step lets the structure drift even at zero proposal width, and the
+energies then describe two different shapes. The fourteen
+committed inputs of the two reference systems and the two controls also run
+clean under the address sanitizer with \texttt{alloc\_dealloc\_mismatch} turned
+on, which is off by default on macOS.
+
+\paragraph{What is new in the engine, and what is not}
+Most of this work is conversion and reference construction, not engine code.
+The six energy terms (bond, bend, torsion and improper, one-four, non-bonded,
+correction map), their analytic forces and the staging transform all predate
+it. Three things changed in engine source. The deck reader carries a
+per-molecule label on torsion entries and chains the residues it builds, which
+is what the released 3.9.1 lacks. The correction-map analytic force was
+identically zero at a dihedral of exactly $0$ or $\pi$, repaired in
+\texttt{cmap.cpp} (finding F-21); the correction-map \emph{energy} was never
+affected. And forty arrays allocated with \texttt{new[]} and grown with
+\texttt{realloc} were made consistent across ten source files (F-19). The two
+CHARMM terms AMBER does not have needed no engine change at all, riding on
+records the engine already evaluates. Finding identifiers throughout follow
+\texttt{evidence/findings.txt}, the register in which an identifier is never
+reused.
+
+\paragraph{The path a sampling run takes}
+No run in Sections~\ref{sec:coverage} to~\ref{sec:forces} samples, so it is
+worth saying which code a sampling run would execute. MOSAICS scores a proposal
+by recomputing the whole potential: \texttt{Pos::potential}, in
+\path{source/energy/energy.cpp}, calls the bond, bend, torsion, one-four,
+non-bonded, correction-map and constraint routines over the entire molecule on
+the trial coordinates, and the Metropolis ratio is formed from two such full
+potentials. There is no incremental $\Delta E$ over a displaced subset, so the
+term routines validated here are the term routines a proposal is judged by. One
+difference remains. \verb|\inter_list| is \verb|none| in every single-point
+run, so the non-bonded sum runs over all non-excluded pairs, while a production
+run may select the link-list or neighbour-list branch; those branches restrict
+the pair set of the same expression and are not exercised by any single point
+here. The cost of a proposal is one full evaluation, quadratic in the number of
+non-excluded pairs, and Section~\ref{sec:methods-cost} measures it.
+
+\subsection{Force fields, and how a parameter set enters the engine}
+\label{sec:methods-parameters}
+
+MOSAICS reads a force field as a deck of five plain-text files alongside an
+RTF: \path{.bond}, \path{.bend}, \path{.tors_and_impr}, \path{.onfo} for atoms
+three bonds apart and \path{.vdw} for everything further. The decks
+used here are \texttt{db\_ff14sb} and \texttt{db\_ff19sb} for protein;
+\texttt{db\_bs0}, \texttt{db\_bsc1}, \texttt{db\_ol15\_ol3},
+\texttt{db\_ol21\_ol3} and \texttt{db\_ol24\_ol3} for nucleic acid, the last
+three each with a \texttt{\_terminal} variant; \texttt{db\_charmm36\_na}; and,
+for the protein--RNA complex, two decks that hold protein and RNA types
+together, \texttt{db\_ff14sb\_ol3} and \texttt{db\_ff19sb\_ol3}. Supporting
+Information Table~S2 collects the entry counts the engine prints as it reads
+the six decks of the two reference systems. How many of those entries a given
+test system actually evaluates is not reported by the engine and is not
+reported here.
+
+The protein sets are ff14SB\cite{maier2015ff14sb} and
+ff19SB\cite{tian2020ff19sb}. ff19SB replaces the ff14SB backbone dihedral terms
+with per-residue two-dimensional $(\phi,\psi)$ correction maps, written in the
+grid-based CMAP form introduced for
+CHARMM\cite{mackerell2004cmap,mackerell2004cmapfull}, so its deck carries a
+sixth file, \texttt{.cmap}, and its input carries \verb|\energy_term{cmap}| and
+\verb|\cmap_database_file|. On the capped tetrapeptide the engine reads 44
+database entries, loads 16 maps ($N=24$) and selects four of those sixteen, one
+per interior residue.
+
+The nucleic sets are parmbsc0\cite{perez2007bsc0}, parmbsc1\cite{ivani2016bsc1},
+OL15\cite{zgarbova2015ol15}, OL21\cite{zgarbova2021ol21} and
+OL24\cite{zgarbova2025ol24} for DNA, each paired with
+$\chi_{\mathrm{OL3}}$\cite{zgarbova2011ol3} for RNA. Every torsion entry
+carries a per-molecule label. The two bsc decks originally carried none, and
+without it the four atom-type quadruplets that need different values for DNA
+and for RNA collapse onto the DNA values, which is worth 0.47~\kcal{} on the
+1efs torsion energy (F-03). The one-four electrostatic scale factor is stored
+as exactly $5/6$ in every deck; storing it to seven or ten digits instead
+shifts the 1efs total by $1.0\times10^{-4}$~\kcal{} (F-04).
+
+Each deck is converted from a published parameter file and named after the
+source it came from. The OL15/OL3, OL21/OL3 and ff14SB decks were written by
+\texttt{tools/openmm\_xml\_to\_mosaics.py} from the OpenMM force-field XML
+files distributed with OpenMM and openmmforcefields, overlaid with the exact
+proper-torsion rows of a matched AMBER \texttt{tleap} topology so that wildcard
+and exact torsion precedence match sander. The OL24/OL3 decks were written by
+\texttt{tools/amber\_prmtop\_to\_mosaics.py} from resolved AMBER topologies,
+the DNA half from the \texttt{ff-DNA-OL24} package distributed by the OL24
+authors and the RNA half from the OL3 files in AmberTools. Regeneration was
+checked with the unmodified converter as a control: \texttt{db\_ff14sb}
+regenerates byte-identical; \texttt{db\_ol15\_ol3} does not regenerate at all,
+and neither does the \texttt{tors\_and\_impr} file of \texttt{db\_ol21\_ol3}
+(F-20), so what backs those two decks' provenance is a note in the repository
+rather than a command a reader can run. The OL15/OL3 and OL21/OL3 rows should
+be weighed accordingly.
+
+\paragraph{Standard and terminal decks}
+A standard nucleic deck expects a phosphate on every residue, which is what the
+padded heteroduplex build provides. A chain with a real $5'$-hydroxyl end
+selects different rows, so OL15, OL21 and OL24 each carry a
+\texttt{\_terminal} deck written from true-terminal tetranucleotide topologies,
+and it is the terminal deck that every free-ended system in this work reads.
+parmbsc1 has no terminal deck. Run on the Drew--Dickerson dodecamer through its
+standard deck it returns a torsion energy 0.385~\kcal{} above the references,
+and the same experiment with OL21/OL3's standard deck in place of its terminal
+one reproduces the size of that error (0.369~\kcal{}), so the gap is the missing
+terminal profile and not the parameters. parmbsc0 does not run on that
+structure at all. Neither combination is in the 26-cell matrix, and both are
+recorded as open findings in the evidence tree.
+
+\paragraph{CHARMM36}
+The CHARMM36 nucleic acid parameters\cite{hart2012charmm36dna,denning2011charmm36rna}
+reach the engine by a different route, recorded in
+\texttt{evidence/charmm36.txt} and set out step by step in Supporting
+Information section~S6. Deck and reference energies are both read out of an
+OpenMM \texttt{System} built from one release, \texttt{charmm36\_2024.xml}, so
+the comparison does not straddle two releases, but the numbers belong to that
+one and no release-independent claim about CHARMM36 is made here. The two
+CHARMM terms AMBER does not have ride on records the engine already has, the
+Urey--Bradley $1$--$3$ harmonic on \texttt{\~{}bend\_parm} and the 188 harmonic
+impropers on \texttt{\~{}torsion\_parm}, where the deck reader expands them into
+a truncated sixth-order Fourier series. That series is the conversion's only
+genuine approximation: exact to four figures at $10^{\circ}$ from equilibrium
+and $-7.7$\,\% at $60^{\circ}$, with the intermediate angles in Table~S6, and
+nucleobase impropers are stiff enough to stay inside $20^{\circ}$. CHARMM36
+here is nucleic acid only, only on the $5'$-hydroxyl terminus, and only against
+OpenMM; the protein force field\cite{best2012charmm36} is not implemented,
+because two of its correction-map selectors distinguish a proline neighbour by
+the class of the \emph{following} residue while \texttt{\~{}cmap\_binding}
+selects a map by the residue itself, so supporting it changes the file format
+and the engine (F-09).
+
+\subsection{Reference engines}
+\label{sec:methods-references}
+
+Three independently written programs serve as references
+(Table~\ref{tab:engines}), and where they agree with each other the target is
+not in doubt. No number here is produced by a program that reads another
+program's output; each writes its own output file and those files are
+committed. Term-by-term cross-engine comparison of this kind has an established
+precedent\cite{shirts2017engines}, and the unit and convention traps it has to
+avoid are catalogued in ref.~\cite{braun2018bestpractices}.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{The engines, the resolution of the file each number is read from, the
+floor that resolution puts under a difference, and the committed file driving
+each run. All four run in double precision. \texttt{D} is the directory for one
+force field and system; ``d.p.'' is decimal places as printed. A composite term
+sums two printed columns, so its floor is twice the per-column figure, about
+$2\times10^{-4}$ for sander and $4.8\times10^{-7}$ for GROMACS.}
+\label{tab:engines}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Program & Version & Output resolution & Floor (\kcal{}) & Input \\
+\midrule
+MOSAICS & main branch, serial & 16 significant figures & not limiting & \texttt{D/mosaics/*.input} \\
+sander  & 24.0 (AmberTools 24.8)\cite{case2023ambertools} & 4 d.p., \kcal{} & $10^{-4}$ & \texttt{D/sander/sander\_sp.in} \\
+OpenMM  & 8.5.2\cite{eastman2017openmm7,eastman2024openmm8} & 12 d.p., \kcal{} & $5\times10^{-13}$ & \texttt{openmm\_single\_point.py} \\
+GROMACS & 2025.4\cite{abraham2015gromacs} & 6 d.p., kJ/mol & $2.4\times10^{-7}$ & \texttt{D/gromacs/sp.mdp} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Those floors are properties of the reference and not of MOSAICS, each a
+half-unit in the last place that reference prints. OpenMM's is the one that
+invites a misreading: it prints twelve decimal places in \kcal{}, not twelve
+significant figures, so its floor is an absolute quantity and does not scale
+with the size of the term. The rule this paper follows is that no difference
+smaller than the coarser of the two engines' floors is reported as a
+measurement; below that floor a difference is reported as below the resolution
+of the reference output, with the floor stated, and is not read as agreement to
+that many digits.
+
+The three control files are reproduced option by option in Supporting
+Information Table~S3. sander is run as a zero-cycle minimisation in vacuum with
+no cutoff at dielectric 1, and its energies are read from the \texttt{FINAL
+RESULTS} block. OpenMM is driven on the same topology and coordinate files
+sander reads, on the Reference platform in double precision with no cutoff, no
+constraints and no centre-of-mass removal. It reports one combined non-bonded
+energy, so the system is evaluated twice more, once with every charge zeroed
+and once with every Lennard-Jones $\epsilon$ zeroed, to split it; the two
+halves and the combined value are all printed, and their difference is a
+self-check the reader can confirm at $1.5\times10^{-11}$~\kcal{} on 1efs.
+GROMACS is run as a rerun over the single frame with plain cut-off
+electrostatics and Lennard-Jones, no modifiers, no dispersion correction, no
+constraints, and the cutoff set past the far end of the molecule so that every
+pair is inside it with 2\,nm to spare and no periodic image is; \texttt{sp.log}
+confirms a potential shift of zero on every term. Energies are read from
+\texttt{sp.xvg}, never from what \texttt{gmx energy} prints on screen, which is
+rounded coarsely enough to look like a disagreement between engines. GROMACS
+references exist for the six original AMBER combinations and for the ff14SB
+proteins and the OL21/OL3, OL15/OL3 and OL3 nucleic systems; the ff19SB rows
+carry no GROMACS total, for the reason given next.
+
+\paragraph{The GROMACS conversion route, and what it does not carry}
+The GROMACS topology is produced mechanically from the same AMBER topology the
+other two engines read, by the ParmEd command in \texttt{evidence/engines.txt};
+ParmEd is used as distributed with AmberTools\cite{case2023ambertools}. In the
+topology this route produces, \texttt{[ cmaptypes ]} is keyed on the five
+backbone atom types, which every residue of a protein shares, so ff19SB's
+per-residue maps collapse onto one (F-06). On the four-residue peptide that
+costs 0.30~\kcal{}; on ubiquitin the GROMACS correction-map energy is
+61.54~\kcal{} against the 69.95 that MOSAICS and OpenMM both return. That is a
+limitation of the conversion route as used here, not of the GROMACS file
+format: published GROMACS ports of amino-acid-specific CMAP force fields
+introduce residue-specific backbone atom types so that each map gets its own
+type quintuple. That workaround was not attempted, so ff19SB is reported as
+verified against sander and OpenMM, and the GROMACS column of every ff19SB row
+is blank rather than wrong.
+
+The engines do not group their terms identically, so all comparisons use three
+composite terms. \emph{Electrostatics} means all of it: \texttt{EEL + 1-4 EEL}
+in sander, \texttt{Coulomb-14 + Coulomb (SR)} in GROMACS, the epsilons-zeroed
+evaluation in OpenMM, \texttt{Total Coulomb energy} in MOSAICS;
+\emph{Lennard-Jones} is the matching sum, and \emph{dihedral} includes impropers
+in all four programs.
+
+\subsection{Test systems}
+\label{sec:methods-systems}
+
+Eleven structures are used (Table~\ref{tab:systems}, Figure~\ref{fig:systems}).
+Two of them, the 818-atom DNA:RNA heteroduplex and the capped tetrapeptide,
+carry the term-by-term comparison against all three references; the other nine
+widen the chemistry the force fields are exercised on, from four nucleic bases
+to eight, from four amino acids to twenty, and from interior residues to real
+chain ends, disulfides, a bound peptide and a protein--RNA interface. A
+single-point comparison is defined by its coordinates, so each file's provenance
+is given here.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{The eleven test systems. Atom counts are read from the built topology,
+hydrogens included; the force fields are those with at least one reference
+engine in the 26-cell matrix of Table~\ref{tab:matrix}. All are run in vacuum at
+dielectric~1 with no cutoff. Source:
+\texttt{work/preprint-I/systems/MANIFEST.json}, which also records the SHA-256 of
+every coordinate file.}
+\label{tab:systems}
+\input{tables/systems}
+\end{table}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{systems-gallery.pdf}
+\caption{The eleven systems, drawn from the coordinates the engine reads.
+Nucleic acids and proteins are shown as cartoons, the peptides and the two
+free-ended 4-mers as sticks with heteroatoms coloured by element; hydrogens are
+present in every file and omitted from the drawing. Chain colour follows the
+polymer, with the second protein chain of 1HHK ($\beta_2$-microglobulin) in a
+lighter blue and its bound Tax nonamer as violet sticks.}
+\label{fig:systems}
+\end{figure}
+
+\paragraph{1efs}
+A heteroduplex of one DNA strand and one RNA strand, model~1 of Protein Data
+Bank entry 1EFS\cite{pdb1efs,hantz2001hybrid}. Chain A is
+\texttt{DG DA DG DA DG DG DA DA DG DA DG DA DA}, six DG at 33 atoms each and
+seven DA at 32, giving 422 atoms; chain B is
+\texttt{RU RU RC RU RC RU RU RC RC RU RC RU RC}, seven RU at 30 atoms and six
+RC at 31, giving 396. Each residue carries a charge of $-1$, so the net charge
+is $-26$ and the run uses \verb|\neutralize{off}|. It is the only structure
+here that mixes DNA and RNA in one duplex, and that is why it carries the
+term-by-term comparison: a parameter set correct for DNA and wrong for RNA is
+invisible on a pure duplex of either, and this is the system on which F-03
+became visible. The coordinates are taken as deposited apart from six built
+atoms, a $5'$ phosphate on each strand, and four renaming or renumbering edits,
+all listed in Supporting Information section~S7. The hydrogens are the
+deposited NMR hydrogens; none was rebuilt, and nothing was minimised. All four
+AMBER presets build the same padded system of 942 atoms in 30 residues, then
+trim four terminal residues to the 818 atoms compared, so every residue that
+enters the term-by-term comparison is an interior one. The CHARMM36 cell on
+this system is a different molecule: the distributed XML has no patch that both
+keeps a $5'$ phosphate and ends a chain (F-08), so the structure was rebuilt as
+a $5'$-OH/$3'$-OH strand, 816 atoms, six phosphate atoms removed and four
+hydroxyl hydrogens added, and its total is not comparable with the AMBER rows.
+
+\paragraph{Capped tetrapeptide}
+ACE-ALA-GLY-SER-VAL-NME, 56 atoms, with four residues of four different kinds
+between the two caps. The four kinds are deliberate: each interior residue
+produces one $(\phi,\psi)$ correction term, ff19SB carries a different map for
+different residues, and a peptide with one interior residue would resolve its
+single term through a fallback and return the same energy whether the map
+selection were right or wrong. The coordinates come from \texttt{tleap} and are
+not minimised: what \texttt{tleap} writes is an extended chain at
+$\phi=\psi=180^{\circ}$ on every residue. Two consequences run through the
+paper. The out-of-plane terms sit exactly at their minima, so both MOSAICS and
+GROMACS report zero for them and the comparison on that term is vacuous
+(F-11); and all four correction-map terms sit at $\phi=\psi=\pi$, the singular
+point of the implemented force expression, which is why every energy comparison
+passed while the analytic CMAP force was identically zero (F-21).
+
+\paragraph{The free-ended 4-mers}
+d(ACGT), 126 atoms, and r(ACGU), 127 atoms, one of each base with free $5'$-OH
+and $3'$-OH ends. They isolate the terminal residues, which is where the residue
+templates of two force fields differ, and they carry the force sweeps, the
+CHARMM36 comparison and, through the terminal decks, AMBER comparisons against
+sander and OpenMM. d(ACGT) carries a geometric defect at residue DG~3, finding
+F-17, set out with its consequences in Section~\ref{sec:limits}.
+
+\paragraph{The deposited structures}
+1BNA, 1UBQ, 5PTI and 2KOC were fetched from the RCSB on 25 August 2026 and
+prepared under one set of rules, recorded in
+\texttt{evidence-v2/\_structures/BUILD-DECISIONS.md}. Only \texttt{ATOM}
+records survive; every water, ion and ligand is dropped. Alternate location A
+is kept. Every hydrogen and deuterium in the deposit is stripped and rebuilt by
+the topology builder, so hydrogen placement is \texttt{tleap}'s for the AMBER
+decks and the OpenMM template's for the CHARMM path, never the depositor's.
+Protein termini are charged, NH$_3^+$ and COO$^-$, because a whole protein is
+not a fragment; nucleic termini are $5'$-OH and $3'$-OH. 1BNA is the
+Drew--Dickerson dodecamer d(CGCGAATTCGCG)\cite{pdb1bna}, both strands kept
+because the duplex is self-complementary and one strand is not the dodecamer,
+758 atoms, net charge $-22$; its terminal residues build as DC5 and DG3. 2KOC
+is model~1 of the 20-model NMR ensemble of the 14-mer cUUCGg tetraloop
+hairpin\cite{pdb2koc}, GGCACUUCGGUGCC, 447 atoms; its deposited $5'$-terminal
+phosphate is removed so that the chain starts at a $5'$-OH, because a bare
+$5'$ phosphate is the one terminus the CHARMM36 XML cannot end a chain on, and
+keeping it would have bought a second system CHARMM36 cannot run. 1UBQ is
+ubiquitin\cite{pdb1ubq}, chain A, 76 residues, 1,231 atoms, net charge 0; its
+one histidine, HIS~68, is built as HIE, and the C-terminal tail deposited at
+occupancy 0.25--0.45 is taken as deposited. 5PTI is bovine pancreatic trypsin
+inhibitor from the joint X-ray and neutron refinement\cite{pdb5pti}, chain A,
+58 residues, 892 atoms, net charge $+6$; its three disulfides, CYS~5--55,
+14--38 and 30--51, are built as CYX and bonded in \texttt{tleap} exactly as the
+deposited SSBOND records give them, and the 103 deuterium positions of the
+neutron model are stripped with the hydrogens.
+
+\paragraph{The peptide and the two complexes}
+The Tax nonamer LLFGYPVYV, the HTLV-1 epitope presented by HLA-A*02:01, is
+taken from the engine's own example of that peptide, capped with ACE and NME,
+165 atoms, at the main-branch commit the run record names. 1HHK is the crystal
+structure of HLA-A*02:01 with $\beta_2$-microglobulin and that
+nonamer\cite{pdb1hhk}, three chains of 275, 100 and 9 residues, built with
+\texttt{tleap} under ff14SB and ff19SB from the prepared coordinates, 6,139
+atoms with 2,978 hydrogens added, net charge $-9$. 1F7Y is ribosomal protein
+S15 bound to a fragment of 16S rRNA\cite{pdb1f7y}, chain A an 86-residue
+protein with charged termini and chain B a 57-nucleotide RNA, 3,321 atoms, net
+charge $-49$. It is the first system run against a deck that holds protein and
+RNA atom types together, and those two decks live on an engine branch that has
+not been merged, which Table~\ref{tab:matrix} records. Its reference
+coordinates were written from the three-decimal PDB the engine reads rather
+than from \texttt{tleap}'s restart file, because the restart differs from the
+PDB by up to $5\times10^{-4}$~\AA{}, which is worth 0.66~\kcal{} of
+Lennard-Jones energy on this system.
+
+One rule governs every build. \emph{The structure MOSAICS reads is the
+structure the reference topology is built from, never the reverse.} MOSAICS
+reads the PDB and the reference engines read the topology, and the two formats
+store positions to different numbers of decimals; the largest resulting
+difference on the heteroduplex was 0.0005~\AA{}. On the peptide that moved the
+short-range energy by 0.573~\kcal{}, because that term rises as the twelfth
+power of distance, and it looked exactly like a broken force field (F-02). The
+builders write the reference positions from the structure MOSAICS reads and
+refuse to continue if the two disagree.
+
+\subsection{Run conditions}
+\label{sec:methods-conditions}
+
+Every single-point run is in vacuum, at dielectric 1, with no cutoff, no
+temperature coupling, no solvent and no move. No temperature enters any number
+reported in Sections~\ref{sec:coverage} to~\ref{sec:forces}: nothing is
+propagated, and the one proposal that is made reproduces the current structure,
+so the energy difference it is judged on is zero. A comparison counts only if
+the structure did not move, and the runs check that. MOSAICS prints each part
+of a term next to that term's total, so the parts must add up. On 1efs with
+OL21/OL3 they do so to within $5.5\times10^{-11}$~\kcal{}, the summation order
+of a double-precision sum over 818 atoms; a larger discrepancy means the
+structure moved.
+
+\subsection{The electrostatic constant}
+\label{sec:methods-coulomb}
+
+The four programs do not share the constant that converts charge into energy,
+and on 1efs the disagreement is worth more than everything else being measured.
+It was measured, not looked up. One AMBER topology holding two point charges,
+$+1\,e$ and $-1\,e$, exactly $1.0000000000$\,\AA{} apart, with Lennard-Jones
+zeroed, in vacuum and with no cutoff, is handed to every engine; the
+electrostatic energy an engine then prints \emph{is} its constant. The script
+is \texttt{measure\_coulomb\_constant.py} in
+\texttt{evidence/coulomb-constants/}, and the four values it returns are in
+Table~\ref{tab:coulomb}. sander's is measured to four digits because it prints
+four decimals; its exact value is $18.2223^2 = 332.052217$, because AMBER
+stores topology charges pre-multiplied by 18.2223. MOSAICS's row is analytic
+rather than measured: it is the product of two constants compiled into the
+engine, $0.529177\times627.50921 = 332.06344122017$, and that unrounded product
+is the number every correction is done with.
+
+Before any comparison, the electrostatic term of the MOSAICS and sander columns
+is scaled by the ratio of its own constant to a single target. That target is
+not any engine's measured value but a number derived from the 2019 SI values of
+$e$ and $N_{\mathrm{A}}$, the thermochemical calorie and the CODATA 2018
+$\varepsilon_{0}$, given in Section~\ref{sec:constant}: $k = 332.0637133$
+kcal\,\AA\,mol$^{-1}$\,$e^{-2}$. The OpenMM and GROMACS columns are left as
+printed: both print six decimals and to those six decimals both equal the
+derived target. Every total in the 26-cell matrix and every electrostatic
+residual in the term-by-term tables is on this constant.
+
+\subsection{Force validation}
+\label{sec:methods-forces}
+
+The analytic force is compared with a central difference of the same energy,
+atom by atom and component by component, for each term separately and for the
+total. The step is swept over ten values from $10^{-2}$ to
+$3\times10^{-7}$\,Bohr, and what is recorded at each step is the largest
+$|$numerical $-$ analytic$|$ over every atom and component, in Hartree per
+Bohr. Sixty-one such sweeps are committed in \texttt{evidence/forces/}:
+thirty-seven against Cartesian coordinates on 1efs, the two 4-mers and the
+peptide, and twenty-four against a staging coordinate, the fourth staging
+system being a capped peptide fixture whose NME cap is not a physical amide and
+whose energy is therefore recorded, not validated (F-18).
+
+The measurement is the slope, not the residual. A central difference is wrong
+at order step$^2$, so a force that is the derivative of the energy makes the
+residual fall as the square of the step until round-off in the energy takes
+over, while a force wrong by a fixed amount stops falling at that amount. The
+slope is fitted by least squares on $\log_{10}$(residual) against
+$\log_{10}$(step) over a window declared in advance, $10^{-2}$ to
+$3\times10^{-4}$\,Bohr, four of the ten steps and spanned by every sweep.
+Fixing the window matters, because a fit over rows selected for already
+falling as the square would test nothing.
+
+\subsection{The cost of one Monte Carlo step}
+\label{sec:methods-cost}
+
+A single run is setup, parse, one initial energy, $N$ steps and output. At
+$N=1$ the constant part is 99.8\,\% of the wall clock, so timing one run and
+calling it the cost of one evaluation would overstate it by more than two
+orders of magnitude. The constant was measured instead of assumed. The
+committed 1efs OL21/OL3 input was run unmodified except for
+\verb|\total_step_mc| at $N = 0, 1, 5, 10, 25, 50$ and $100$, five repeats
+each, and $t(N) = a + bN$ was fitted by least squares on the medians; $b$ is
+the marginal cost of a step and $a$ is everything that happens once. Medians
+rather than means because this is a laptop: the $N=0$ point has one 866~ms
+outlier against a 442~ms floor. The build was the serial target at commit
+\texttt{eccdf74}, Apple clang 21.0.0 at \texttt{-O3}, one process on one core
+of an Apple M5, and the timed run is the committed run: its initial total
+energy, 2526.184857387672~\kcal{}, is byte-identical to the committed
+single-point output. Acceptance over the timed steps was 59 of 100. A rejected
+step still costs a full energy evaluation, since the evaluation is what decides
+it, so the slope is an average over a stable accept/reject mix and not a cost
+conditional on acceptance.
+
+\subsection{\studio{}}
+\label{sec:methods-studio}
+
+\studio{} is a web page. Behind it is a Python package (Python 3.10 or later,
+MIT licence) whose pipeline is headless: four functions carry every operation,
+\path{sequence_to_structure}, \path{structure_to_minimised},
+\path{build_variant} and \path{compare_structures}, and the page calls those
+functions through Pyodide. The engine is the MOSAICS executable compiled
+to WebAssembly and driven through a small JavaScript bridge: the pipeline
+writes the input file, the residue topology, the deck and the structure into a
+run folder on the in-tab file system, runs the engine on it, follows its
+progress from the lines it prints and reads back every file it writes.
+
+\paragraph{The guided workflow}
+The page presents four steps over that pipeline. \emph{Start} takes a sequence (DNA, RNA or a peptide, a pasted or
+dropped FASTA record) or a coordinate file, and builds nucleic acids on ideal
+A- or B-form geometry as single strands, duplexes or DNA$\cdot$RNA hybrids;
+peptides are built on an ideal backbone with side chains and pH-7 protonation
+from PDB2PQR's residue definitions\cite{dolinsky2004pdb2pqr,jurrus2018apbs}
+and optional ACE/NME caps; proteins are prepared from coordinates, not built.
+\emph{Prepare} chooses the chains to keep, leaves ligands and waters out, adds
+hydrogens to a deposited protein, and chooses the force field from every
+compatible profile with the reason the default was chosen; thirteen profiles
+are declared, twelve over the AMBER and CHARMM36 decks of
+Section~\ref{sec:methods-parameters} and one knowledge-based three-point
+protein model, and each names its six files. One validation gate
+sits on this step: whether the ordinary bonded and non-bonded energies for
+every residue type present reproduce a committed reference. \emph{Run} offers
+fifteen protocols, each with the deck it comes from, the work it is cited to
+and a link to the engine's manual, and exposes every parameter the engine reads
+for that kind of calculation, grouped as the manual groups them; the deck the
+engine will read is one click away. \emph{Understand} shows the energy along
+the run, the RMSD to the starting structure along the trajectory, energy
+against RMSD with one point per frame, acceptance tallies, the energy table, a
+residue-by-residue comparison of before and after, the molecular graph export
+(NumPy, JSON, PyTorch Geometric and DGL formats
+\cite{fey2019pyg,wang2019dgl}, with no learned embeddings), and the record.
+The three-dimensional view is 3Dmol.js\cite{rego2015threedmol}, and a viewer
+plays the trajectory frame by frame.
+
+\paragraph{The record}
+Every run writes a record naming the Studio version, the engine, the SHA-256 of
+the engine executable, the SHA-256 of each force-field file that was staged,
+the preset and every parameter it resolved, the inputs and the outputs by
+digest, and the start and end times. The record and every file it names
+can be downloaded from the page, and the package's verify routine recomputes
+every digest and reports whether the recorded files are present and unchanged.
+The engine itself already writes every parameter it resolved to
+\texttt{sim\_param.out}; what the record adds is the binding of those
+parameters to the engine build, the deck files and the inputs in one document
+that can be re-checked.
+
+\paragraph{The engine in the browser}
+The engine was compiled to WebAssembly with Emscripten
+6.0.9\cite{zakai2011emscripten} from the serial target of the engine's main
+branch at commit \texttt{73f598a} (7 September 2026). The 151 objects compile
+with no source changes; the link needs a 32~MB stack, because the input parser
+overruns Emscripten's 64~KB default at once, and one guard on the single
+\texttt{popen("date")} call, made in the scratch copy used for the build and
+not in the engine repository. The result, \texttt{mosaics.wasm}, is 713,184
+bytes. The Studio's own pipeline runs beside it under Pyodide
+0.27.7\cite{pyodide-software} in a Web Worker; one Python shim registers the
+WebAssembly build as the engine and replaces the one function that would have
+launched a native executable, and everything else is the package's own code. The
+distribution is about 8.5~MB of static files (the page, the engine, the Python
+archive, one archive per force-field profile fetched only when that profile is
+chosen, the manuals and a version manifest); a first visit downloads about
+25~MB including Pyodide and NumPy from a content delivery network, cached
+afterwards. Every URL the page fetches carries the build identifier, so a
+redeploy is never served from a browser's cache. Nothing is uploaded and no
+server computes: any static host serves it, and the copy reported here is on a
+personal web page at the University of Oxford. The engine is single-threaded
+in the browser, a run cannot be interrupted from outside, and everything lives
+in the tab's memory until it is downloaded.
+
+\paragraph{Tests}
+The package carries 84 test files with 2,198 test functions (counted on 8
+September 2026), run on every push on three operating systems across Python
+3.10 to 3.13, and the browser build is checked end to end by a headless test
+that drives the whole pipeline under Node with the same Python archive and the
+same bridge the page uses, and fails unless the documented case study
+reproduces (Section~\ref{sec:studio-results}).

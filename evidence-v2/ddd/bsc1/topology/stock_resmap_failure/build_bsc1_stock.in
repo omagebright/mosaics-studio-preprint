@@ -1,0 +1,10 @@
+source oldff/leaprc.ff99
+addAtomTypes { { "CI" "C" "sp3" } { "CE" "C" "sp3" } { "C1" "C" "sp2" } { "C2" "C" "sp2" } }
+loadAmberParams frcmod.parmbsc0
+loadOff parmBSC1.lib
+loadAmberParams frcmod.parmbsc1
+mol = loadpdb 1BNA_AB_ter.pdb
+check mol
+saveamberparm mol ddd_bsc1.prmtop ddd_bsc1.rst7
+savepdb mol ddd_bsc1.pdb
+quit

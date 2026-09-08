@@ -1,0 +1,14 @@
+Setting the LD random seed to 1845223084
+
+Generated 231 of the 231 non-bonded parameter combinations
+
+Generated 231 of the 231 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'system1'
+
+Taking velocities from 'sys.gro', all velocities are zero
+Analysing residue names:
+There are:    58    Protein residues
+Analysing Protein...
+
+This run will generate roughly 0 Mb of data

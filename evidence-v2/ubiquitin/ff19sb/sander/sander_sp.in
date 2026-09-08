@@ -1,0 +1,4 @@
+single-point energy ubiquitin 1UBQ (vacuum, dielectric=1)
+ &cntrl
+  imin=1, maxcyc=0, ntb=0, cut=999.0, ntpr=1, dielc=1.0
+ /

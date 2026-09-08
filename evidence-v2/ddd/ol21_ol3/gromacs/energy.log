@@ -1,0 +1,40 @@
+      :-) GROMACS - gmx energy, 2025.4-conda_forge (double precision) (-:
+
+Executable:   /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin.ARM_NEON_ASIMD/gmx_d
+Data prefix:  /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local
+Working dir:  /Users/bright/Library/CloudStorage/OneDrive-Personal/Documents/MOSAICS_AllAtom_Paper/evidence-v2/ddd/ol21_ol3/gromacs
+Command line:
+  gmx_d energy -f sp.edr -o sp.xvg
+
+Opened sp.edr as double precision energy file
+
+Select the terms you want from the following list by
+selecting either (part of) the name or the number or a combination.
+End your selection with an empty line or a zero.
+-------------------------------------------------------------------
+  1  Bond             2  Angle            3  Proper-Dih.      4  Per.-Imp.-Dih.
+  5  LJ-14            6  Coulomb-14       7  LJ-(SR)          8  Coulomb-(SR)  
+  9  Potential     
+
+number 10 is out of range
+
+Back Off! I just backed up sp.xvg to ./#sp.xvg.1#
+Reading energy frame      0 time    0.000         Last energy frame read 0 time    0.000         
+
+GROMACS reminds you: "We can make it into a friend class. But I don't like having friends." (Joe Jordan)
+
+
+Statistics over 1 steps [ 0.0000 through 0.0000 ps ], 9 data sets
+All statistics are over 1 points
+
+Energy                      Average   Err.Est.       RMSD  Tot-Drift
+-------------------------------------------------------------------------------
+Bond                        394.771         --          0          0  (kJ/mol)
+Angle                       3469.03         --          0          0  (kJ/mol)
+Proper Dih.                 2723.91         --          0          0  (kJ/mol)
+Per. Imp. Dih.              2.64124         --          0          0  (kJ/mol)
+LJ-14                       1102.35         --          0          0  (kJ/mol)
+Coulomb-14                   -12473         --          0          0  (kJ/mol)
+LJ (SR)                    -1534.28         --          0          0  (kJ/mol)
+Coulomb (SR)                15274.5         --          0          0  (kJ/mol)
+Potential                   8959.99         --          0          0  (kJ/mol)

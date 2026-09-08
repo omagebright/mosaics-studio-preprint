@@ -1,0 +1,99 @@
+What is measured, and what is not
+=================================
+
+pass    the engines that can run it agree within the limits in engines.txt
+part    the conversion route to one program does not carry part of this
+        force field; see findings.txt
+--      not measured, with the reason given below
+
+  force field    system    MOSAICS  sander  OpenMM  GROMACS   result
+  ---------------------------------------------------------------------------
+  OL21/OL3       1efs        yes      yes     yes     yes      pass
+  OL15/OL3       1efs        yes      yes     yes     yes      pass
+  parmbsc1       1efs        yes      yes     yes     yes      pass
+  parmbsc0       1efs        yes      yes     yes     yes      pass
+  ff14SB         peptide     yes      yes     yes     yes      pass
+  ff19SB         peptide     yes      yes     yes     part     pass   F-06
+  OL24/OL3       1efs        --       --      --      --       F-07
+  CHARMM36 na    rna_acgu    yes      --      yes     --       pass
+  CHARMM36 na    dna_acgt    yes      --      yes     --       pass
+  CHARMM36 na    1efs        --       --      --      --       F-08
+  CHARMM36 prot  --          --       --      --      --       F-09
+  any            dna_acgt    --       --      --      --       F-10
+  any            rna_acgu    --       --      --      --       F-10
+
+Forces, analytic against a central difference of the same energy
+----------------------------------------------------------------
+
+The measurement is not the residual, it is the slope. A central difference is
+wrong at order step squared, so a force that IS the derivative makes the
+residual fall as the square as the step shrinks. A force wrong by a fixed
+amount cannot: it stops falling at that amount. Tables in forces/.
+
+slope is a least-squares fit of log(residual) on log(step) over a FIXED
+window, declared before any curve was looked at: the four steps from 1e-02
+down to 3e-04 Bohr, which every sweep spans, with no selection of rows. It is
+not fitted on whichever rows happen to be falling. residual is the minimum of
+the sweep, which is the quantity these tables report; it is neither the value
+at the coarsest step nor the value at the finest.
+
+  system              worst term    residual (Ha/Bohr)   slope     result
+  ---------------------------------------------------------------------------
+  dna_acgt_ol21_ol3   tors          1.52e-09             2.000     pass
+  rna_acgu_ol21_ol3   inter         1.48e-09             2.000     pass
+  1efs_ol21_ol3       inter         2.79e-10             2.001     pass
+  1efs_bsc1           inter         2.59e-10             1.999     pass
+  peptide_ff14sb      inter         4.93e-11             2.000     pass
+  peptide_ff19sb      cmap          7.21e-10             1.994     pass   F-21
+  any nucleic         cmap          --                   --        F-22
+
+  0.002 kcal/mol per Bohr is 3.2e-06 Ha/Bohr. Every term is three orders
+  inside it.
+
+Staging gradients, the same check against a staging coordinate
+---------------------------------------------------------------
+
+  system              worst term    residual (Ha/Bohr)   slope     result
+  ---------------------------------------------------------------------------
+  stage_dna_acgt      all           3.03e-09             2.000     pass
+  stage_rna_acgu      inter         3.84e-09             2.000     pass
+  stage_1efs          inter         2.48e-09             2.001     pass
+  stage_mhc_peptide   all           1.68e-09             2.008     pass
+  any                 cmap          --                   --        F-22
+
+Why the empty rows are empty
+----------------------------
+
+  F-07  OL24/OL3 needs three parameter files that its authors do not permit
+        us to redistribute, so they are not in this repository and the row
+        cannot be filled from a clone.
+
+  F-08  CHARMM36 nucleic 5-prime-phosphate cannot be built from this XML.
+        charmm36_2024.xml's 5PHO patch keeps the phosphate and cannot end a
+        chain, so 1efs has no OpenMM reference. The 5-OH path (5TER/3TER) is
+        measured: rna_acgu and dna_acgt vs OpenMM, leftover ~10^{-4} kcal/mol
+        on electrostatics. Deck in params/db_charmm36_na. See charmm36.txt
+        C-08, C-11.
+
+  F-09  CHARMM36 for protein cannot be expressed at all in the current file
+        format. Its correction maps are chosen partly by the residue that
+        FOLLOWS the one being corrected. The format selects a map by the
+        residue itself and has no way to say "unless the next one is
+        proline". Fixing this changes the file format and the engine, so it
+        is a decision, not a conversion.
+
+  F-10  dna_acgt and rna_acgu were used only for the move-size check at the
+        energy level. Both are measured at the force level above.
+
+  F-21  The CMAP force was identically zero at a dihedral of exactly pi, and
+        the ff19SB peptide is built extended so every one of its four CMAP
+        terms sat there. Before the repair that row read 1.671e-03 with no
+        slope at all. Fixed; see findings.txt.
+
+  F-22  cmap is measured on one system only, because ff19SB is the only
+        committed input with a \cmap_database_file, and no staging input has
+        one at all. A nucleic force field with CMAP would need one; none of
+        the six here has CMAP.
+
+Force fields that pass here are correct on these structures at a single
+geometry. That is not the same as correct.

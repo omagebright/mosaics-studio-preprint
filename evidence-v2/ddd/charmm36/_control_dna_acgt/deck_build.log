@@ -1,0 +1,48 @@
+  structure dna_acgt_openmm.pdb
+  renamed 9 atom(s) to CHARMM spelling
+  bonds built 132 intra-residue, 3 backbone links, 4 deoxyribose
+  unbonded atoms in residue 1: none
+  5TER_0 removes an external bond: yes
+  read from the built System
+    angles                           227
+    bonds                            121
+    harmonic_impropers               11
+    lj_classes                       32
+    lj_types                         108
+    nbfix_pairs                      0
+    onefour_classes_recovered        32
+    onefour_classes_unrecovered      0
+    onefour_pairs                    314
+    torsion_types                    291
+    torsion_zero_filled              51
+    urey_bradley                     52
+  round trip, rebuilt from the per-type tables
+    angle_degrees                    0.000000e+00
+    angle_force_relative             0.000000e+00
+    bond_force_relative              0.000000e+00
+    bond_length_angstrom             0.000000e+00
+    harmonic_improper_degrees        0.000000e+00
+    harmonic_improper_force_relative 0.000000e+00
+    lj_epsilon_relative              4.272858e-16
+    lj_sigma_angstrom                8.881784e-16
+    negative_urey_bradley            0.000000e+00
+    onefour_epsilon_relative         4.438534e-16
+    onefour_sigma_angstrom           4.440892e-16
+    topology_atom_type               0.000000e+00
+    topology_charge_e                0.000000e+00
+    topology_mass_dalton             0.000000e+00
+    torsion_k_kcal                   0.000000e+00
+    torsion_phase_degrees            0.000000e+00
+    unsupported_cmap_torsions        0.000000e+00
+    unsupported_extracted_terms      0.000000e+00
+    unsupported_force_types          0.000000e+00
+    urey_bradley_force_relative      0.000000e+00
+    urey_bradley_length_angstrom     0.000000e+00
+  residues in the RTF          4
+  DA5, DC, DG, DT3
+  deck written to deck
+    mosaics_charmm36.bend                 506 lines
+    mosaics_charmm36.bond                 121 lines
+    mosaics_charmm36.onfo               17658 lines
+    mosaics_charmm36.tors_and_impr       2416 lines
+    mosaics_charmm36.vdw                17658 lines

@@ -1,0 +1,18 @@
+1efs_charmm36_5ter.pdb, 5-prime patch 5TER
+  renamed 28 atom(s) to CHARMM spelling
+  bonds built 855 intra-residue, 24 backbone links, 13 deoxyribose
+  unbonded atoms in residue 1: none
+  5TER_0 removes an external bond: yes
+  BUILD OK   816 particles, 10 forces
+  term                               kcal/mol   openmm force          
+  torsion                      844.8091820522   PeriodicTorsionForce  
+  correction map                 0.0000000000   CMAPTorsionForce      
+  electrostatics              2320.3811151278   NonbondedForce        
+  Lennard-Jones               -460.6185344682   CustomNonbondedForce  
+  -                              0.0000000000   CMMotionRemover       
+  angle                        291.1631419672   HarmonicAngleForce    
+  1-4 Lennard-Jones            470.1217475520   CustomBondForce       
+  improper (harmonic)            0.0005749696   CustomTorsionForce    
+  bond                         124.8488542890   HarmonicBondForce     
+  Urey-Bradley (1-3)           185.2898452192   HarmonicBondForce     
+  TOTAL                       3775.9959267089

@@ -1,0 +1,34 @@
+# This file was created Tue Aug 25 02:07:10 2026
+# Created by:
+#      :-) GROMACS - gmx energy, 2025.4-conda_forge (double precision) (-:
+# 
+# Executable:   /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin.ARM_NEON_ASIMD/gmx_d
+# Data prefix:  /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local
+# Working dir:  /Users/bright/Library/CloudStorage/OneDrive-Personal/Documents/MOSAICS_AllAtom_Paper/evidence-v2/ubiquitin/ff19sb/gromacs
+# Command line:
+#   gmx_d energy -f sp.edr -o sp.xvg
+# gmx energy is part of G R O M A C S:
+#
+# Gyas ROwers Mature At Cryogenic Speed
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(kJ/mol)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Bond"
+@ s1 legend "Angle"
+@ s2 legend "Proper Dih."
+@ s3 legend "Per. Imp. Dih."
+@ s4 legend "CMAP Dih."
+@ s5 legend "LJ-14"
+@ s6 legend "Coulomb-14"
+@ s7 legend "LJ (SR)"
+@ s8 legend "Coulomb (SR)"
+@ s9 legend "Potential"
+    0.000000  525.560156  1152.126628  1524.592821   34.995373  257.497267  1625.470813  12997.309471  608.524413  -23037.523074  -4311.446131

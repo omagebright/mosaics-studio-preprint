@@ -1,0 +1,31 @@
+{
+  "all_terms_pass": true,
+  "amber_energy": "amber_energy_summary.tsv",
+  "cutoff_angstrom": 999.0,
+  "force_records": [
+    {
+      "force_name": "HarmonicBondForce",
+      "group": 0,
+      "mapped_term": "bond"
+    },
+    {
+      "force_name": "HarmonicAngleForce",
+      "group": 1,
+      "mapped_term": "angle"
+    },
+    {
+      "force_name": "PeriodicTorsionForce",
+      "group": 2,
+      "mapped_term": "dihedral"
+    },
+    {
+      "force_name": "NonbondedForce",
+      "group": 3,
+      "mapped_term": "nonbonded_total"
+    }
+  ],
+  "nonbonded_method": "NoCutoff",
+  "platform": "Reference",
+  "prmtop": "tetraloop_ol21_ol3.prmtop",
+  "rst7": "tetraloop_ol21_ol3_canonical.rst7"
+}

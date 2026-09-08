@@ -1,0 +1,58 @@
+~sim_gen_def[
+   \simulation_typ{PT}
+   \minimize_tol{1.e-3}
+   \minimize_type{bfgs}
+   \minimize_report{0}
+   \energy_report{2}
+   \prop_type{cart}
+   \prop_tors_sig{0.0}
+   \prop_trans_sig{0.0}
+   \prop_rot_sig{0.0}
+   \prop_tors_type{full}
+   \replica_number{0}
+   \prob_eemc_jump{0.15}
+   \eemc_disk_size{10}
+   \energy_gap{1.1}
+   \total_step_mc{1}
+   \local_step_md{1}
+   \time_step_md{0.0}
+   \statistics_freq{1}
+   \burn_in_B{1}
+   \burn_in_N{1}
+   \write_energy_unit{kcal}
+   \temperature{300}
+   \inter_list{none}
+   \rinter_switch_length{0}
+   \rinter_exclude_length{1000}
+   \random_seed{-7143580450}
+   \EEMC_Emin{-1.0}
+   \EEMC_Emax{0.0}
+]
+
+~sim_mol_def[
+  \system_def{residue}
+  \energy_term{cmap}
+  \implicit_solvent{off}
+  \ddd{off}
+  \ddd_D{1.0}
+  \ddd_D0{1.0}
+  \ddd_S{0.4}
+  \ddd_c{0.5}
+  \ddd_e{6.0}
+  \neutralize{off}
+  \cmap_database_file{../../../../../engine/params/db_ff19sb_ol3/mosaics_openmm-ff19sb_ol3.cmap}
+  \mol_parm_file{../../../../../engine/params/top_openmm-ff19sb_ol3_protein_rna.rtf}
+  \bond_database_file{../../../../../engine/params/db_ff19sb_ol3/mosaics_openmm-ff19sb_ol3.bond}
+  \bend_database_file{../../../../../engine/params/db_ff19sb_ol3/mosaics_openmm-ff19sb_ol3.bend}
+  \tors_database_file{../../../../../engine/params/db_ff19sb_ol3/mosaics_openmm-ff19sb_ol3.tors_and_impr}
+  \onfo_database_file{../../../../../engine/params/db_ff19sb_ol3/mosaics_openmm-ff19sb_ol3.onfo}
+  \inter_database_file{../../../../../engine/params/db_ff19sb_ol3/mosaics_openmm-ff19sb_ol3.vdw}
+  \pos_init_file{1f7y_ff19sb_ol3_mosaics.pdb}
+  \pos_out_file{out_1f7y_ff19sb_ol3.pos_out.pdb}
+  \atom_pos_file{out_1f7y_ff19sb_ol3.pos.pdb}
+  \tors_pos_file{out_1f7y_ff19sb_ol3.tors_pos}
+  \epot_file{out_1f7y_ff19sb_ol3.pot_energy}
+  \einter_file{out_1f7y_ff19sb_ol3.inter_energy}
+  \hessian_file{out_1f7y_ff19sb_ol3.hessian}
+  \eighess_file{out_1f7y_ff19sb_ol3.eighess}
+]

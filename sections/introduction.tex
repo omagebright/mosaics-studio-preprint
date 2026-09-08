@@ -1,0 +1,176 @@
+\section{Introduction}
+\label{sec:introduction}
+
+The conformational changes that matter biologically are collective: a loop
+folding over an occupied active site, two domains rotating against one another
+so that a duplex groove opens far enough to admit a protein side chain. Tens to
+hundreds of atoms move together, over microseconds or longer, and molecular
+dynamics reaches that regime slowly for a structural reason rather than an
+implementation one. The integrator has to resolve the fastest motion present,
+which is the stretch of a bond to hydrogen, so the step is a few femtoseconds
+and a microsecond costs of order $10^{9}$ of them \cite{dror2012microscope};
+trajectories long enough to watch a domain rearrange or a small protein fold
+have generally required purpose-built hardware
+\cite{shaw2010anton,lindorfflarsen2011folding}. The usual response is to bias
+the dynamics, by umbrella sampling \cite{torrie1977umbrella}, replica exchange
+\cite{sugita1999remd}, metadynamics \cite{laio2002metadynamics} or one of their
+relatives \cite{bernardi2015enhanced}, which buys sampling at the price of
+either many replicas or a collective variable that has to be guessed before the
+run starts.
+
+Natural-move Monte Carlo attacks the same problem from the other side. Instead
+of displacing every atom by a small amount and repeating, it displaces a
+structurally meaningful group of atoms by a large amount, once. The user
+partitions the molecule into groups (a chain, a domain, a helical arm, a
+backbone segment between two anchors) and nests those groups in a hierarchy. A
+move picks a group and applies a rigid rotation and translation to it, or turns
+torsions inside it, leaving everything outside where it was. That breaks the
+covalent geometry at the two boundaries of the group, and the break is repaired
+by a stochastic chain-closure algorithm that finds the alternative closed
+geometries, chooses among them and reports the weight needed to keep the
+Metropolis test exact \cite{minary2010chainclosure}. The composite proposal is
+then accepted or rejected against the Boltzmann factor in the usual way
+\cite{sim2012naturalmoves}. The granularity is the point: one accepted move can
+shift a whole segment along the path a hinge would take, and the nesting lets
+one proposal act at the scale of a domain and the next at the scale of a sugar
+pucker. Nothing has to be chosen in advance about \emph{where} the system should
+go, only about which parts of it are plausibly rigid. The approach has predicted
+sequence-dependent nucleosome occupancy without training on occupancy data
+\cite{minary2014nucleosome}, refined structures into single-particle EM and
+cryo-EM densities \cite{zhang2012multiscale,chang2020rnacryoem}, modelled
+epigenetic marks on DNA \cite{krawczyk2018epigenetic}, and followed peptide
+dissociation from MHC class~I \cite{knapp2016pmhc}.
+
+All-atom Monte Carlo on additive force fields is not itself new, and this paper
+does not claim it. CAMPARI samples all-atom polypeptide and nucleic-acid models
+under the ABSINTH implicit-solvent model and under imported additive parameter
+sets \cite{vitalis2009mcmethods}; MCPRO and BOSS were built around OPLS-AA
+\cite{jorgensen2005mcpro}; ProtoMS computes binding free energies under AMBER
+and OPLS parameters \cite{protoms-software}; and Cassandra samples all-atom
+fixed-charge models of molecular fluids \cite{shah2017cassandra}. Concerted
+rotation closes a protein or nucleic backbone under OPLS in much the same spirit
+as a natural move does
+\cite{ulmschneider2003concerted,ulmschneider2004concertedna}. What is new here
+is the combination: a nested natural-move proposal, acting at the scale of a
+domain on one step and a sugar pucker on the next, driven by a published
+additive potential whose evaluation has been checked term by term against the
+molecular dynamics codes that distribute it.
+
+Two things have held the natural-move method back, and neither is the sampling.
+The first is the energy. Where the natural-move studies above did not use an
+experimental restraint they used a knowledge-based or simplified potential, on a
+reduced representation where the question allowed one \cite{minary2008foldspace},
+the same family of scoring functions Monte Carlo structure prediction has relied
+on more generally \cite{leaverfay2011rosetta}. For the questions those studies
+asked this was the right choice: a statistical potential is cheap, it tolerates
+a coarse representation, and it was trained on the discrimination being
+requested, which is whether one model ranks above another. But ranking is all it
+returns. A number produced for one system cannot be compared with one produced
+for another, or with experiment, and a structure cannot pass between the Monte
+Carlo engine and a molecular dynamics run without changing what the energy
+means. The second is access. The engine is a command-line program driven by a
+plain-text input file, a residue topology file and a parameter deck, and the
+move set has to be written down as a hierarchy of atom groups. A PyMOL plugin,
+PymoSAICS \cite{pymosaics-plugin}, was written because defining those groups by
+hand was the step users found hardest, and it remains a plugin: it lives inside
+PyMOL and reaches only the users who already have the engine. Closing both gaps is what this paper
+is about.
+
+The energies to adopt are the additive force fields molecular dynamics already
+uses, and the specific ones matter, because each was written to repair a named
+failure of its predecessor. For protein, ff14SB refits the backbone $\phi/\psi$
+and side-chain $\chi$ dihedral terms of ff99SB against quantum reference data
+\cite{maier2015ff14sb}; ff19SB then removes the backbone dihedral terms
+altogether and replaces them with amino-acid-specific two-dimensional
+$(\phi,\psi)$ correction maps fitted to solution-phase surfaces
+\cite{tian2020ff19sb}, using the grid-based CMAP cross-term introduced for
+CHARMM a decade and a half earlier
+\cite{mackerell2004cmap,mackerell2004cmapfull}. For nucleic acids, parmbsc0
+refits $\alpha$ and $\gamma$ and so removes the irreversible backbone flips that
+used to destroy long DNA trajectories \cite{perez2007bsc0}; parmbsc1 goes
+further into $\epsilon/\zeta$, $\chi$ and sugar pucker, benchmarked against a
+large set of experimental DNA structures \cite{ivani2016bsc1}. The Olomouc
+corrections take a different route: $\chi_{\mathrm{OL3}}$ for RNA
+\cite{zgarbova2011ol3}, a $\beta$ refit that gives OL15 for DNA
+\cite{zgarbova2015ol15}, an $\alpha/\gamma$ refit against Z-DNA that gives OL21
+\cite{zgarbova2021ol21}, and a deoxyribose pucker refit that gives OL24
+\cite{zgarbova2025ol24}. The DNA variants among these have been compared
+against experiment over long trajectories
+\cite{galindomurillo2016amberdna,love2023amberdna}. CHARMM36 is a separately
+developed alternative with a different functional form, carrying Urey--Bradley
+1--3 terms and harmonic impropers, refit for the DNA BI/BII equilibrium
+\cite{hart2012charmm36dna} and for RNA $2'$-hydroxyl sampling
+\cite{denning2011charmm36rna}.
+
+These parameter sets are not interchangeable, and they differ from one another
+substantially. How much they differ is not something that can be read off an
+absolute energy at a single geometry, and this paper does not try: a Fourier
+torsion sum carries an arbitrary additive constant, so a refit moves the
+constant as freely as it moves the shape, and the difference between two
+parameter sets' absolute torsion energies at one conformation is not a physical
+quantity. What an all-atom engine buys is narrower and more useful. The number
+it returns is the published function's, evaluated on a named parameter set, so a
+preference the sampler reports can be attributed to that parameter set, and an
+ensemble it produces and an ensemble a molecular dynamics code produces under
+the same parameters are ensembles of the same function. A knowledge-based
+potential returns a ranking on a scale of its own and can do neither.
+
+This paper reports two things. The first is that MOSAICS evaluates these force
+fields at all-atom resolution, and how well. Little of that is new engine code.
+MOSAICS reads a force field as a deck of plain-text parameter files, and the
+code that evaluates those terms was already there. CHARMM36's Urey--Bradley
+1--3 terms go into a slot the bend record already carried, evaluated by the
+expression the bend routine already applied to it; its 188 harmonic impropers
+go onto the power series the torsion record already expanded. The
+correction-map machinery was present and its energy was already correct, but
+its analytic force was identically zero at a dihedral of exactly $\pi$, which is
+where a peptide built extended sits. That repair, a memory-allocation defect
+that ran on every committed job, and a deck reader that carries a per-molecule
+label on torsion entries and chains the residues it builds are the changes to
+engine code reported here; the released engine cannot read most of these decks
+at all. The rest of the work is conversion:
+the decks, the converters that write them, and the defects that writing them
+exposed. The verification is term by term, on the same coordinates, in vacuum
+and with no cutoff, at one fixed conformation per system, against three
+independently written programs, sander~24.0, OpenMM~8.5.2 on the Reference
+platform and GROMACS~2025.4 in double precision
+\cite{case2023ambertools,eastman2017openmm7,eastman2024openmm8,abraham2015gromacs},
+following the cross-engine practice established for this purpose
+\cite{shirts2017engines,braun2018bestpractices}. It covers eleven systems of
+56 to 6,139 atoms and 26 system-and-force-field combinations
+(Figure~\ref{fig:systems}), and it is completed by a finite-difference check of
+the analytic forces and by a measurement of what one Monte Carlo step costs.
+
+The second is \studio{}, which puts that engine in front of a user who has
+never seen its input syntax, in a web browser. The engine is compiled to
+WebAssembly and the Studio's own pipeline, four operations, sequence to
+structure, structure to minimised structure, variant building and structure
+comparison, runs beside it under Pyodide, so a sequence or a coordinate file
+goes in, a minimised structure and a molecular graph come out, nothing is
+installed and nothing leaves the visitor's machine. Every run carries a record
+naming the engine build, the parameter files and the inputs by digest. The
+WebAssembly engine was checked against the native engine on a documented
+minimisation, and that number is reported alongside the force-field ones,
+because the Studio is only as good as the engine it carries.
+
+After every electrostatic term is put on a single Coulomb constant, nineteen of
+the 26 combinations agree with every reference available to them to within
+0.001~\kcal{}, the median largest gap over the 26 is 0.00037~\kcal{}, and the
+one combination that is worse than 0.01~\kcal{} is BPTI under ff19SB, where a
+single improper is read in a different atom order by the AMBER topology and the
+MOSAICS residue template. On the two systems compared term by term, the largest
+difference between MOSAICS and OpenMM on any term is $1.8\times10^{-4}$~\kcal{}
+on the 818-atom DNA:RNA heteroduplex and $9.6\times10^{-6}$~\kcal{} on the
+capped peptide, in both cases on the angle term, and in both cases traceable to
+the reference topology and not to MOSAICS. Analytic forces were checked against
+a central difference of the same energy in 61 term-and-system combinations;
+fitted over a fixed window, the convergence exponent lies between 1.994 and
+2.009. One Monte Carlo step at 818 atoms costs 3.46~ms on one core of a laptop.
+
+Section~\ref{sec:methods} describes the systems, the parameter decks, how each
+reference calculation was produced, and how the Studio is built and served.
+Section~\ref{sec:results} gives the 26-cell comparison, the term-by-term
+comparison for the two reference systems, the electrostatic-constant correction,
+the force checks, the cost measurement and the Studio's own verification.
+Section~\ref{sec:discussion} sets out what follows from single-point agreement,
+and what does not.

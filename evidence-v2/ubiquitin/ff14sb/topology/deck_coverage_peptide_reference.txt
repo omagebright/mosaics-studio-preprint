@@ -1,0 +1,19 @@
+topology            /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/examples/peptide_ff14sb/peptide_ff14sb.prmtop
+atoms               56
+residues            6
+
+term        deck rows   rows this system touches
+--------------------------------------------------------------
+atom types         34   12
+bond               90   18
+bend              258   38
+torsion           465   59 matched (51 of them wildcard-free)
+improper           61   4 matched (4 of them wildcard-free)
+vdw pair          595   78
+onfo pair         595   78
+
+distinct type tuples present in the system
+  bond 18   bend 38   proper 53   improper 4
+  bonds 55   angles 97   dihedral terms 223
+
+atom types used: 2C, 3C, C, CT, CX, H, H1, HC, HO, N, O, OH

@@ -1,0 +1,320 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{What an additive all-atom energy makes available}
+\label{sec:whatchanges}
+
+The sampling half of natural-move Monte Carlo is unchanged by any of this. What
+changes is what an accepted structure is worth. A knowledge-based potential
+returns a ranking: it says which of two models is preferred, on a scale fitted
+to that comparison and to the representation it was fitted on
+\cite{minary2008foldspace,leaverfay2011rosetta}. For structure prediction, and
+for refinement where an experimental restraint carries most of the signal
+\cite{zhang2012multiscale,chang2020rnacryoem}, that is sufficient. It is not
+sufficient for anything that needs the energy itself. Two such numbers computed
+for two different molecules do not lie on the same axis, nothing computed from
+the energy on an absolute scale is available, and a structure cannot pass
+between the Monte Carlo engine and a molecular dynamics run without the sampled
+quantity changing definition on the way.
+
+With eight parameter families evaluated to the tolerances of
+Sections~\ref{sec:matrix} and~\ref{sec:energies}, those obstructions are lifted
+for the chemistry and the geometries tested, and for nothing beyond them. The
+claim the data supports is narrow and should be stated narrowly: handed a
+published deck, the engine reproduces that deck's energy and its gradient to
+the tolerance reported, whichever deck it is. The four AMBER nucleic decks are
+substantially different parameter sets, and the engine follows each of them
+without being retuned for any. What that does not license is a statement about
+how far apart the decks put a molecule. A Fourier torsion sum, $\sum
+(V_n/2)[1+\cos(n\phi-\gamma)]$, does not vanish at any reference state, and a
+refit moves its additive constant as freely as it moves its shape; the
+quantity that would carry that argument is $\Delta\Delta E$ between at least
+two conformations of the same molecule under two decks, and it is not computed
+here.
+
+What the engine can now be asked, for the systems tested, is a different class
+of question. It can be run at a stated temperature against a named force field,
+so that an ensemble it produces and an ensemble a molecular dynamics code
+produces under the same parameters are ensembles of the same function; and a
+configuration produced by a collective move can be continued under molecular
+dynamics, or taken from one, without the energy being redefined in between.
+Neither is demonstrated in this paper. What is demonstrated is the
+precondition: the energy and its gradient are the published ones, at the
+geometries and on the chemistry tested.
+
+\subsection{What the extension to eleven systems adds, and what it does not}
+\label{sec:elevenadds}
+
+The two reference systems of Section~\ref{sec:energies} settle whether the
+engine evaluates a deck correctly, term by term, against three programs. The
+other nine settle a different question: whether it does so on the chemistry a
+user will actually bring. A deck is a few hundred to a few thousand parameter
+rows and a 56-atom peptide reaches a fraction of them. Ubiquitin, BPTI and the
+MHC heavy chain between them select every amino-acid type ff14SB and ff19SB
+carry, with charged, aromatic, histidine and proline residues, disulfides and
+charged termini; the dodecamer and the tetraloop select all eight bases and both
+$5'$-OH and $3'$-OH ends; the two complexes select a bound peptide in a groove
+and a protein--RNA interface. That every one of those cells lands within a few
+thousandths of a \kcal{} of the references, and that the two that land further
+away resolve to the atom order of a single improper, is what the extension
+adds.
+
+It also sharpens what the residuals mean. On the two reference systems the
+angle term carried the largest residual and it was attributed to the reference
+topology (F-12). Seven further systems now carry the same residual with the
+same sign, growing with the number of angles, which is what a rounding of
+$\pi/180$ in the topology builder predicts and what a defect in the engine's
+bend routine would not. The improper cells make the complementary point: the
+one large disagreement in the matrix is not a parameter or an expression but a
+convention, the order in which four atoms are listed, and it appears where the
+geometry departs from planarity and nowhere else. Cross-engine agreement
+certifies the evaluation path. It does not certify the path that produced the
+parameters, and both of the residuals that survive at the top of the matrix
+live there.
+
+What the extension does not add is a per-term comparison against all three
+references for every cell. The totals are against two or three programs on 20
+of the 26 cells and against OpenMM alone on the other six; the per-term
+resolution in Figure~\ref{fig:energy-agreement}(b) exists only where the output
+files carry it, and eleven OpenMM comparisons print a single non-bonded sum.
+Nor does it add a second conformation per system. The extension widens the
+chemistry and holds the geometry fixed, and the failure mode F-21 demonstrates
+remains open on every cell.
+
+\subsection{What changed in the engine, and what did not}
+\label{sec:baseline}
+
+A reader is entitled to know how much of this is new code, because that is
+where the risk of a new defect lives. The honest answer is that most of it is
+not. Both CHARMM-specific terms were carried on machinery the engine already
+had. The 1497 Urey--Bradley entries in CHARMM36 reduce to 810 unordered
+triples, of which 807 are written into the bond slot of the existing bend
+record, which \texttt{bend.cpp} already evaluates as
+$\tfrac{1}{2}k(r_{13}-r_0)^2$, the functional form CHARMM asks for; three
+triples are dropped and counted, because four P--ON2--P variants carry negative
+force constants that CHARMM permits and the deck reader rejects, and they are
+pyrophosphate linkages that do not occur in a phosphodiester backbone (F-16).
+The 188 harmonic impropers are carried on the existing torsion record with
+\verb|\pot_type{harm}|, which the deck reader expands onto the same power series
+it uses for the cosine form. That expansion is a genuine approximation, exact
+to four figures at $10^{\circ}$ from equilibrium and $-7.7$\,\% at
+$60^{\circ}$, and the ten-digit agreement reported for the improper term is at
+a total of $1.0\times10^{-3}$~\kcal{}, where the series and the quadratic
+coincide by construction.
+
+Where the defects were was the converter and, in a few places, the engine. The
+CHARMM XML splits the non-bonded term between two elements, charge in
+\texttt{NonbondedForce} and $\sigma$, $\epsilon$ in
+\texttt{LennardJonesForce}; the converter read only the first, so an entire
+CHARMM deck carried $\epsilon = 0$ on all 85\,078 pair entries. The
+correction-map analytic force was identically zero at $\phi = \pi$, because a
+$\sin\phi$ clamp replaced a vanishing denominator and left a vanishing
+numerator (F-21); it is now written in the form with no $\sin\phi$ in it. Forty
+arrays allocated with \verb|new[]| were grown with \verb|realloc| (F-19), which
+ran on every committed job and was invisible because the relevant sanitizer
+check is off by default on macOS. And the deck reader now carries the
+per-molecule torsion label and chains the residues it builds; the released
+3.9.1 refuses the decks that need the first and returns energies tens of
+thousands of \kcal{} from the references without the second.
+
+The novelty is not all-atom Monte Carlo on an additive force field. That
+exists: CAMPARI with ABSINTH, MCPRO and BOSS, ProtoMS and Cassandra all evaluate
+all-atom additive potentials under Metropolis Monte Carlo, and concerted-rotation
+move sets have been run in OPLS for both protein and nucleic acid backbones
+\cite{ulmschneider2003concerted,ulmschneider2004concertedna,vitalis2009mcmethods}.
+What is new here is the pairing of that energy with the nested natural-move
+hierarchy and its stochastic chain closure
+\cite{minary2010chainclosure,sim2012naturalmoves}, so that one proposal can act
+at the scale of a domain and the next at the scale of a sugar pucker while the
+accepted energy stays a published one, and the delivery of that pairing to a
+user who has never seen the engine's input syntax. The claim is the combination,
+and it should be read that way.
+
+\subsection{Three references, and what the third one pays for}
+\label{sec:threerefs}
+
+Agreement with a single reference program is a weaker claim than it looks. It
+establishes that two codes treat a parameter file the same way, which confounds
+correct evaluation with shared convention: the same choice of 1--4 scaling, the
+same grouping of impropers, the same charge-to-energy constant. Three
+independently written programs break that confound in both directions. Where
+they agree with one another, the target is not in dispute and a residual
+against any of them is a measurement of the implementation. Where they
+disagree, the disagreement is itself a number, and it bounds what any
+cross-engine claim can resolve. On 1efs the bound is $2.6\times10^{-5}$~\kcal{}
+on Lennard-Jones and $3.4\times10^{-5}$ on electrostatics, which is what OpenMM
+and GROMACS return against each other when handed the same parameters and the
+same coordinates through the ordinary conversion route.
+
+Each of the two convention differences reported here was invisible to some
+subset of the three. The GROMACS route is the only one that could not carry
+ff19SB's per-residue correction maps, and running it put a number on what that
+costs: 0.30~\kcal{} on a four-residue peptide and 8.4~\kcal{} on ubiquitin, from
+applying one residue's map to every residue. sander, separately, is the only one
+of the three that does not share the modern charge-to-energy constant, and a
+comparison against OpenMM and GROMACS alone would have shown MOSAICS's own
+$8.2\times10^{-7}$ offset while leaving the $3.5\times10^{-5}$ carried by a
+widely used engine undetected. Neither is a defect in the engine that exposed
+it, and neither would have been found by adding a fourth code from the same
+family. The independence is in the code and not in the input, and that limit is
+worth stating because it is where the argument is weakest: all three references
+read a topology written by one builder, so an error in the builder appears
+identically in all three, and F-12 is exactly that case. The three references
+are also not of equal weight: six combinations against three engines, fourteen
+more against two, and six against OpenMM alone are not the same strength of
+claim, and Table~\ref{tab:matrix} keeps them apart.
+
+\subsection{The charge-to-energy constant is a general hazard}
+\label{sec:constantgeneral}
+
+The constant that converts $q_iq_j/r$ into \kcal{} is not the same number in
+every program, and any group differencing energies across programs is exposed
+to that. sander uses $18.2223^2 = 332.052217$, an older value carried in the
+way it stores topology charges; OpenMM and GROMACS both return $332.063713$
+from the same two-charge measurement. The relative gap is $3.5\times10^{-5}$,
+which on the 1efs electrostatic term of 1857.7~\kcal{} is 0.064~\kcal{}, roughly
+360 times the largest residual this work is trying to resolve and about a tenth
+of $kT$ at 300~K. The constant enters multiplicatively, so it does not cancel
+when two conformations of the same molecule are compared: it biases the
+electrostatic part of that difference by the same $3.5\times10^{-5}$, and its
+absolute size grows with the electrostatic energy, which is to say with system
+size and with net charge. It also has nothing to do with the AMBER family: the
+same offset accounts for the CHARMM36 residuals on every one of the five
+CHARMM36 cells, and once it is removed those cells are the closest agreement in
+this work, at a few parts in $10^{12}$ of the term. The practical
+recommendation is to measure the constant instead of taking it from
+documentation, which is a few minutes of work in any engine that will read a
+topology, and to state which constant a comparison was corrected to, because
+the choice is worth $1.7\times10^{-6}$~\kcal{} on this system.
+
+\subsection{What these numbers do not establish}
+\label{sec:limits}
+
+The first limit is the one conformation. Every run sets all proposal widths to
+zero, so a term that happens to vanish at that geometry is untested. The capped
+peptide sits at the minimum of its out-of-plane terms and both MOSAICS and
+GROMACS return zero for them (F-11). More seriously, the correction-map
+analytic force was identically zero, 0 of 168 components, because a peptide
+built extended sits at $\phi = \psi = \pi$, the singular point of the
+implemented expression, and \emph{every energy comparison on that system passed
+while that was true} (F-21). It took a gradient sweep to find it. The same
+failure mode is available to any term whose parameter is wrong but inactive, or
+whose phase is wrong but degenerate, at the one geometry tested, on any of the
+26 cells. Repeating these single points over 50 to 100 decorrelated snapshots
+per system, as Shirts \emph{et al.}\cite{shirts2017engines} do, would close it,
+and it is cheap on vacuum systems of this size. It has not been done here.
+
+The second is that the force sweeps cover four systems and the term-by-term
+comparison two. The nine added systems carry totals, and per-term differences
+where the output files resolve them, but no force sweep and no staged sweep.
+The correction map is exercised at the force level on one system, because the
+ff19SB peptide is the only committed force input that loads a map database and
+no nucleic parameter set here carries one (F-22).
+
+One committed structure is geometrically defective and the defect is not
+repaired. In \path{examples/pure_terminal_controls/dna_acgt.pdb}, residue DG~3,
+H5$'$ and H5$''$ each sit 1.089 and 1.090~\AA{} from C5$'$, which is right, and
+0.060~\AA{} from each other, which makes the H--C--H angle $3.15^{\circ}$
+instead of $109.5^{\circ}$ (F-17). The offending pair is 1--3, which the
+non-bonded sum excludes, so no energy check sees it as an error; the symptom is
+that this 126-atom 4-mer returns a bend energy of 508.62~\kcal{} under the AMBER
+decks against 220.56 for the 818-atom heteroduplex, and 412.79 under CHARMM36
+against 166.36 for the RNA 4-mer of the same size. The cross-engine comparison
+is unaffected, because every program reads the same coordinates and they
+reproduce each other on them. The file was pinned in a test and left alone
+because committed reference tables were computed from it; repairing it and
+regenerating those tables is the right fix and has not been done.
+
+Three scope limits belong with these. CHARMM36 for protein is not available in
+MOSAICS, and the obstruction is a file format and not a physical one: its
+correction maps are selected partly by the residue that follows the one being
+corrected, while the engine's map-selection record keys on the residue itself
+(F-09), and no claim about the CHARMM36 protein parameters
+\cite{best2012charmm36,huang2017charmm36m} appears anywhere in this work. Two
+decks cannot be regenerated from their sources (F-20), so the seventh decimal
+of the OL15/OL3 and OL21/OL3 bonded terms is reporting transcription; and the
+OL24 parameter files come from a package whose redistribution terms are its
+authors', so a reader who does not hold that package cannot rebuild those three
+cells from a clone. And parmbsc1 has no terminal deck and parmbsc0 does not run
+on a free-ended duplex, which is why the dodecamer has no cell under either.
+
+There is a gap between the code path validated here and the code path a
+production run executes, and it is narrower than that sentence usually implies.
+MOSAICS scores a proposal by recomputing the whole potential, so the term
+routines checked here are the term routines a proposal is judged by. What no
+single point exercises is a choice of pair set: \texttt{inter\_list} is
+\texttt{none} in every committed input, so the link-list and neighbour-list
+branches never ran. Closing that costs one single point per branch with a list
+cutoff longer than the molecule, differenced against the numbers reported here
+to the summation-order tolerance of $5.5\times10^{-11}$~\kcal{}. Neither run is
+in this paper.
+
+Single-point energies and finite-difference force checks fix the value of the
+energy function at a geometry and its gradient there. They say nothing about
+whether the move set, the stochastic chain closure and the acceptance rule
+together generate the Boltzmann distribution of that energy
+\cite{minary2010chainclosure,hatch2025mcbestpractices}; that is a separate
+validation with separate diagnostics, and it is not attempted here. The cost
+figure of Section~\ref{sec:cost} is likewise not an efficiency result: a
+per-step time on one machine compares nothing with anything, and the quantity
+that would, sampling per unit cost against a molecular dynamics baseline on the
+same system and the same force field, is the next measurement and not this
+one. Nor do these numbers speak to whether ff19SB or OL21/OL3 is right about a
+molecule, which is measured against experiment and not against another program
+\cite{lindorfflarsen2012validation,beauchamp2012benchmark,love2023amberdna}.
+And everything was run in vacuum at dielectric~1 with no cutoff, so no cutoff
+scheme, switching function or implicit-solvent term is covered by any number in
+this paper.
+
+\subsection{What the Studio does and does not establish}
+\label{sec:studio-limits}
+
+The Studio's verification is of the engine it carries, on one documented run.
+The cross-check shows that the WebAssembly build follows the native one through
+2,040 minimisation steps to the same energies at the precision the energy file
+carries and to 0.0045~\AA{} in the final structure; it does not show that every
+protocol behaves identically in the browser, and two protocols are known to
+differ by construction, because the browser engine is single-threaded and
+parallel-tempering replicas take turns. The record binds what ran to what was
+produced; it does not make the run correct, and the validation gate on the
+Prepare step checks the ordinary energy terms of the residue types present
+against a committed reference, which is the baseline of this paper and not
+more. No external user has run the software at the time of writing, and
+proteins are prepared from coordinates rather than built.
+
+\subsection{Next}
+\label{sec:next}
+
+The intended application is conformational sampling of peptide--MHC complexes,
+and it is the next piece of work rather than a result reported here. The system
+suits the move set: a bound peptide with a small number of internal degrees of
+freedom in a groove, flanked by domains that move as units, which is the
+granularity natural moves were built for \cite{sim2012naturalmoves}, and
+hierarchical natural-move Monte Carlo has already been applied to peptide
+dissociation from MHC class~I \cite{knapp2016pmhc}. What exists in this work is
+the implementation side of that study: the complex evaluates under both
+protein force fields to within 0.005~\kcal{} of two references at 6,139 atoms,
+the staging transform was checked on a peptide--MHC fixture at the gradient
+level, and the Studio will prepare and run it. No sampling run of any kind on
+that system appears in the evidence.
+
+Several things should be settled before such a study is worth reporting, and
+each is small and named. The single points should be repeated over an ensemble
+of decorrelated configurations per system, the only cheap defence against the
+failure mode F-21 demonstrates. The force sweeps should be extended to the nine
+added systems. The two large cells that are not resolved into terms should be.
+The link-list and neighbour-list branches of the non-bonded sum need the two
+single points described above. The defective control structure should be
+repaired and its reference tables regenerated (F-17); the two decks that cannot
+be regenerated should be rebuilt (F-20); the peptide needs a deliberately
+distorted copy so that the out-of-plane terms and the CHARMM improper series
+are exercised away from their minima (F-11). Beyond the fixtures, the certified
+regime has to be widened from vacuum with no cutoff to whatever solvent
+treatment a production run will use, which is a further round of the same
+term-by-term comparison and not an extrapolation from these numbers. The
+criterion for judging the study that follows should not be whether the Monte
+Carlo engine reproduces a molecular dynamics trajectory. It should be whether
+the engine reaches configurations that molecular dynamics does not reach in
+comparable time, at energies that mean the same thing in both. The present
+paper speaks only to the second half of that sentence, and only on the
+chemistry and the geometries it tested.

@@ -1,0 +1,8 @@
+source leaprc.protein.ff14SB
+mol = loadpdb 5PTI_A_cyx.pdb
+bond mol.5.SG mol.55.SG
+bond mol.14.SG mol.38.SG
+bond mol.30.SG mol.51.SG
+saveamberparm mol bpti_ff14sb.prmtop bpti_ff14sb.rst7
+savepdb mol bpti_ff14sb_leap.pdb
+quit

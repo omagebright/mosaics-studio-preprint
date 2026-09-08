@@ -1,0 +1,8 @@
+source oldff/leaprc.ff99bsc0
+dna = sequence { DG5 DG DA DG DA DG DG DA DA DG DA DG DA DA DA3 }
+rna = sequence { RU5 RU RU RC RU RC RU RU RC RC RU RC RU RC RC3 }
+combined = combine { dna rna }
+check combined
+saveamberparm combined bs0_padded.prmtop bs0_padded.rst7
+savepdb combined bs0_padded.pdb
+quit

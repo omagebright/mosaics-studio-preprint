@@ -1,0 +1,403 @@
+###################################################################################
+#   Copyright (c) 2007 Peter Minary.        ~---------------------------------~   #
+#   All Rights Reserved.                    |     |              /    /    / ~|   #
+#      __           ~-           __         |    \|/     _      /         / ~ |   #
+#     /^^\     M   -  ~   M     /^^\        |   \_|_/  ((|))   /  M /  _ / ~ ~|   #
+#    /^^^^\   O   -    ~   O   /^^^^\       |  \__|__/ ((|))  /      ((|))~ ~ |   #
+#     |  |     S   -  ~   S     |  |        |     |      |   /  O /  ((|)) ~ ~|   #
+#     |  |      A   ~-   A      |  |        |  _     _   |  /         /|~ ~ ~ |   #
+#     |  |     I   ~  -   I     |  |        | {|}  ((|)) | /  S /  _ /~| ~_~ ~|   #
+#    _|__|_   C   ~    -   C   _|__|_       |{{|}} ((|))  /      ((|)) |~{|}~ |   #
+#              S   ~  -   S                 |  |     |   /  A /  ((|))~ {{|}}~|   #
+#   --------------- -~ ----------------     |    _   |  /         /| ~ ~ ~| ~ |   #
+#    Methodologies for Optimization and     |  ((|)) | /  I /  _ / |~ ~ ~| ~ ~|   #
+#    SAmpling In Computational Studies      |  ((|))  /      ((|)) | ~  \|/ ~ |   #
+#   -----------------------------------     |    |   /  C /  ((|))~ ~  \_|_/ ~|   #
+#                                           |    |  /         /| ~ ~  \__|__/~|   #
+#          >>  version.3.9.1  <<            |    | /  S /    /~|~ ~ ~ ~ ~| ~ ~|   #
+#                                           |     /         /~ | ~ ~ ~ ~ ~ ~ ~|   #
+#                                           ~---------------------------------~   #
+###################################################################################
+
+
+===================================================================================
+Reading simulation input file sp_1f7y_ff14sb_ol3_vac.input
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file sp_1f7y_ff14sb_ol3_vac.input
+===================================================================================
+
+
+===================================================================================
+Reading potential database files 
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading in database from file ../../../../../engine/params/db_ff14sb_ol3/mosaics_openmm-ff14sb_ol3.bond
+...
+Database reading done, total 160 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file ../../../../../engine/params/db_ff14sb_ol3/mosaics_openmm-ff14sb_ol3.bend
+...
+Database reading done, total 433 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file ../../../../../engine/params/db_ff14sb_ol3/mosaics_openmm-ff14sb_ol3.tors_and_impr
+...
+Database reading done, total 1209 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file ../../../../../engine/params/db_ff14sb_ol3/mosaics_openmm-ff14sb_ol3.onfo
+...
+Database reading done, total 1891 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file ../../../../../engine/params/db_ff14sb_ol3/mosaics_openmm-ff14sb_ol3.vdw
+...
+Database reading done, total 1891 entries read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading potential database files 
+===================================================================================
+
+
+===================================================================================
+Creating atom maps
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Creating atom maps done
+===================================================================================
+
+
+===================================================================================
+Reading file 1f7y_ff14sb_ol3_mosaics.pdb
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file 1f7y_ff14sb_ol3_mosaics.pdb
+...
+File reading done, total 3321 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file 1f7y_ff14sb_ol3_mosaics.pdb
+===================================================================================
+
+
+===================================================================================
+Reading residue topology file ../../../../../engine/params/top_openmm-ff14sb_ol3_protein_rna.rtf
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file ../../../../../engine/params/top_openmm-ff14sb_ol3_protein_rna.rtf
+...
+File reading done, total 3310 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file ../../../../../engine/params/top_openmm-ff14sb_ol3_protein_rna.rtf
+===================================================================================
+
+
+===================================================================================
+Setting up residue topology
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Sampling atom velocities
+...
+Atom velocities sampling done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Residue topology setup done
+===================================================================================
+
+
+===================================================================================
+Setting up connectivity
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Setting up bonds
+...
+Bonds setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up bends
+...
+Bends setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up tors
+...
+Tors setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up onefour
+...
+Onefour setting up done.
+----------------------------------------------
+----------------------------------------------
+Setting up inter-molecular interactions
+...
+Inter-mol setting up done.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Connectivity setup done
+===================================================================================
+
+
+===================================================================================
+System setup 
+-----------------------------------------------------------------------------------
+Total number of molecules: 2
+
+Number of biopolymer molecules: 2
+Itemizing...
+
+1. molecule 
+molecule type ~~~>RNA<~~~
+molecule chain id ~~~>B<~~~
+ 1. residue is 1  RG5  natom 32, charge -0.31
+ 2. residue is 2  RG  natom 34, charge -1
+ 3. residue is 3  RG  natom 34, charge -1
+ 4. residue is 4  RC  natom 31, charge -1
+ 5. residue is 5  RG  natom 34, charge -1
+ 6. residue is 6  RG  natom 34, charge -1
+ 7. residue is 7  RC  natom 31, charge -1
+ 8. residue is 8  RC  natom 31, charge -1
+ 9. residue is 9  RU  natom 30, charge -1
+ 10. residue is 10  RU  natom 30, charge -1
+ 11. residue is 11  RC  natom 31, charge -1
+ 12. residue is 12  RG  natom 34, charge -1
+ 13. residue is 13  RG  natom 34, charge -1
+ 14. residue is 14  RG  natom 34, charge -1
+ 15. residue is 15  RC  natom 31, charge -1
+ 16. residue is 16  RU  natom 30, charge -1
+ 17. residue is 17  RA  natom 33, charge -1
+ 18. residue is 18  RG  natom 34, charge -1
+ 19. residue is 19  RA  natom 33, charge -1
+ 20. residue is 20  RC  natom 31, charge -1
+ 21. residue is 21  RG  natom 34, charge -1
+ 22. residue is 22  RG  natom 34, charge -1
+ 23. residue is 23  RU  natom 30, charge -1
+ 24. residue is 24  RG  natom 34, charge -1
+ 25. residue is 25  RG  natom 34, charge -1
+ 26. residue is 26  RG  natom 34, charge -1
+ 27. residue is 27  RA  natom 33, charge -1
+ 28. residue is 28  RG  natom 34, charge -1
+ 29. residue is 29  RA  natom 33, charge -1
+ 30. residue is 30  RG  natom 34, charge -1
+ 31. residue is 31  RG  natom 34, charge -1
+ 32. residue is 32  RC  natom 31, charge -1
+ 33. residue is 33  RU  natom 30, charge -1
+ 34. residue is 34  RU  natom 30, charge -1
+ 35. residue is 35  RC  natom 31, charge -1
+ 36. residue is 36  RG  natom 34, charge -1
+ 37. residue is 37  RG  natom 34, charge -1
+ 38. residue is 38  RC  natom 31, charge -1
+ 39. residue is 39  RU  natom 30, charge -1
+ 40. residue is 40  RG  natom 34, charge -1
+ 41. residue is 41  RG  natom 34, charge -1
+ 42. residue is 42  RU  natom 30, charge -1
+ 43. residue is 43  RC  natom 31, charge -1
+ 44. residue is 44  RC  natom 31, charge -1
+ 45. residue is 45  RA  natom 33, charge -1
+ 46. residue is 46  RC  natom 31, charge -1
+ 47. residue is 47  RC  natom 31, charge -1
+ 48. residue is 48  RC  natom 31, charge -1
+ 49. residue is 49  RG  natom 34, charge -1
+ 50. residue is 50  RU  natom 30, charge -1
+ 51. residue is 51  RG  natom 34, charge -1
+ 52. residue is 52  RA  natom 33, charge -1
+ 53. residue is 53  RC  natom 31, charge -1
+ 54. residue is 54  RG  natom 34, charge -1
+ 55. residue is 55  RC  natom 31, charge -1
+ 56. residue is 56  RU  natom 30, charge -1
+ 57. residue is 57  RC3  natom 32, charge -0.69
+molecular charge -56
+
+2. molecule 
+molecule type ~~~>protein<~~~
+molecule chain id ~~~>A<~~~
+ 1. residue is 58  NPRO  natom 16, charge  1
+ 2. residue is 59  ILE  natom 19, charge  0
+ 3. residue is 60  THR  natom 14, charge  0
+ 4. residue is 61  LYS  natom 22, charge  1
+ 5. residue is 62  GLU  natom 15, charge -1
+ 6. residue is 63  GLU  natom 15, charge -1
+ 7. residue is 64  LYS  natom 22, charge  1
+ 8. residue is 65  GLN  natom 17, charge  0
+ 9. residue is 66  LYS  natom 22, charge  1
+ 10. residue is 67  VAL  natom 16, charge  0
+ 11. residue is 68  MET  natom 17, charge  0
+ 12. residue is 69  GLN  natom 17, charge  0
+ 13. residue is 70  GLU  natom 15, charge -1
+ 14. residue is 71  PHE  natom 20, charge  0
+ 15. residue is 72  ALA  natom 10, charge  0
+ 16. residue is 73  ARG  natom 24, charge  1
+ 17. residue is 74  PHE  natom 20, charge  0
+ 18. residue is 75  PRO  natom 14, charge  0
+ 19. residue is 76  GLY  natom 7, charge  0
+ 20. residue is 77  ASP  natom 12, charge -1
+ 21. residue is 78  THR  natom 14, charge  0
+ 22. residue is 79  GLY  natom 7, charge  0
+ 23. residue is 80  SER  natom 11, charge  0
+ 24. residue is 81  THR  natom 14, charge  0
+ 25. residue is 82  GLU  natom 15, charge -1
+ 26. residue is 83  VAL  natom 16, charge  0
+ 27. residue is 84  GLN  natom 17, charge  0
+ 28. residue is 85  VAL  natom 16, charge  0
+ 29. residue is 86  ALA  natom 10, charge  0
+ 30. residue is 87  LEU  natom 19, charge  0
+ 31. residue is 88  LEU  natom 19, charge  0
+ 32. residue is 89  THR  natom 14, charge  0
+ 33. residue is 90  LEU  natom 19, charge  0
+ 34. residue is 91  ARG  natom 24, charge  1
+ 35. residue is 92  ILE  natom 19, charge  0
+ 36. residue is 93  ASN  natom 14, charge  0
+ 37. residue is 94  ARG  natom 24, charge  1
+ 38. residue is 95  LEU  natom 19, charge  0
+ 39. residue is 96  SER  natom 11, charge  0
+ 40. residue is 97  GLU  natom 15, charge -1
+ 41. residue is 98  HIE  natom 17, charge  0
+ 42. residue is 99  LEU  natom 19, charge  0
+ 43. residue is 100  LYS  natom 22, charge  1
+ 44. residue is 101  VAL  natom 16, charge  0
+ 45. residue is 102  HIE  natom 17, charge  0
+ 46. residue is 103  LYS  natom 22, charge  1
+ 47. residue is 104  LYS  natom 22, charge  1
+ 48. residue is 105  ASP  natom 12, charge -1
+ 49. residue is 106  HIE  natom 17, charge  0
+ 50. residue is 107  HIE  natom 17, charge  0
+ 51. residue is 108  SER  natom 11, charge  0
+ 52. residue is 109  HIE  natom 17, charge  0
+ 53. residue is 110  ARG  natom 24, charge  1
+ 54. residue is 111  GLY  natom 7, charge  0
+ 55. residue is 112  LEU  natom 19, charge  0
+ 56. residue is 113  LEU  natom 19, charge  0
+ 57. residue is 114  MET  natom 17, charge  0
+ 58. residue is 115  MET  natom 17, charge  0
+ 59. residue is 116  VAL  natom 16, charge  0
+ 60. residue is 117  GLY  natom 7, charge  0
+ 61. residue is 118  GLN  natom 17, charge  0
+ 62. residue is 119  ARG  natom 24, charge  1
+ 63. residue is 120  ARG  natom 24, charge  1
+ 64. residue is 121  ARG  natom 24, charge  1
+ 65. residue is 122  LEU  natom 19, charge  0
+ 66. residue is 123  LEU  natom 19, charge  0
+ 67. residue is 124  ARG  natom 24, charge  1
+ 68. residue is 125  TYR  natom 21, charge  0
+ 69. residue is 126  LEU  natom 19, charge  0
+ 70. residue is 127  GLN  natom 17, charge  0
+ 71. residue is 128  ARG  natom 24, charge  1
+ 72. residue is 129  GLU  natom 15, charge -1
+ 73. residue is 130  ASP  natom 12, charge -1
+ 74. residue is 131  PRO  natom 14, charge  0
+ 75. residue is 132  GLU  natom 15, charge -1
+ 76. residue is 133  ARG  natom 24, charge  1
+ 77. residue is 134  TYR  natom 21, charge  0
+ 78. residue is 135  ARG  natom 24, charge  1
+ 79. residue is 136  MET  natom 17, charge  0
+ 80. residue is 137  LEU  natom 19, charge  0
+ 81. residue is 138  ILE  natom 19, charge  0
+ 82. residue is 139  GLU  natom 15, charge -1
+ 83. residue is 140  LYS  natom 22, charge  1
+ 84. residue is 141  LEU  natom 19, charge  0
+ 85. residue is 142  GLY  natom 7, charge  0
+ 86. residue is 143  CILE  natom 20, charge -1
+molecular charge 7
+
+Number of water molecules: 0
+Number of atoms/ions: 0 
+Number of dummy atoms: 0
+Number of other molecules: 0 
+Total system charge: -49
+-----------------------------------------------------------------------------------
+System setup done
+===================================================================================
+
+
+===================================================================================
+Initial energies in kcal/mol
+-----------------------------------------------------------------------------------
+Initial Bond energy 228.6962985984192
+Initial Bend energy 2324.606742768175
+Initial Torsion energy 2355.244137385037
+Initial Onefour energy -3372.291125655939
+Initial Inter energy 12702.06898004156
+Initial Constraint energy 0
+Initial Total energy 14238.32503313725
+-----------------------------------------------------------------------------------
+Initial energies
+===================================================================================
+
+
+===================================================================================
+Energy/Temparature Domain Partitioning
+-----------------------------------------------------------------------------------
+ Levels in energy partitioning 
+
+-1 0 
+
+ Temperature ladder
+
+300 
+
+ Temperature ladder in energy units
+
+0.00095 
+
+current c value 1.05e+03
+-----------------------------------------------------------------------------------
+Energy/Temparature Domain Partitioning Done
+===================================================================================
+
+
+===================================================================================
+>>Report energies at step 1<<
+-----------------------------------------------------------------------------------
+
+	Energies in kcal/mol
+
+	-Bond energy                 228.6962985984192
+	-Bend energy                 2324.606742768175
+	   Bond-Bend energy          0
+	   Bend-Bend energy          2324.606742768175
+	-Torsion energy              2355.244137385037
+	   Tors-Tors energy          2353.831597107754
+	   Tors-Improper energy      1.412540277282612
+	-Onefour energy              -3372.291125655939
+	   Onfo-Coulomb energy       -4902.01681282907
+	   Onfo-Lennard-Jones energy 1529.725687173078
+	-Inter energy                12702.06898004156
+	   Lennard-Jones energy      3392.585871708226
+	   Coulomb energy            9309.48310833436
+	   SCP energy                0
+	   Knowledge based energy    0
+	-Total Lennard-Jones energy  4922.311558881304
+	-Total Coulomb energy        4407.46629550529
+	-Constraint energy           0
+	-Total energy                14238.32503313725
+
+-----------------------------------------------------------------------------------
+===================================================================================
+
+===================================================================================
+ Acceptance ratio for MH Chains 
+-----------------------------------------------------------------------------------
+       # of accepted   ||  # of total   || acceptance ratio
+ Chain 0     1	     1	     1
+
+
+ Acceptance ratio for PT jumps 
+
+       # of accepted   ||  # of total   || acceptance ratio
+-----------------------------------------------------------------------------------
+ Acceptance ratio for MH Chains 
+===================================================================================
+
+
+###################################################################################
+##===============================================================================##
+##                M.O.S.A.I.C.S    Successfully Completed                        ##
+##===============================================================================##
+###################################################################################
+ Current Date Sat Sep  5 01:48:09 -03 2026
+ ===================================================================================
+
+

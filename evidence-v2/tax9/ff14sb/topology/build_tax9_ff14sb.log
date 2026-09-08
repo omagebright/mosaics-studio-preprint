@@ -1,0 +1,41 @@
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/prep to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd to search path.
+-f: Source build_tax9_ff14sb.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./build_tax9_ff14sb.in
+----- Source: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.protein.ff14SB
+----- Source of /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.protein.ff14SB done
+Log file: ./leap.log
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/parm10.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/frcmod.ff14SB
+Reading force field modification type file (frcmod)
+Reading title:
+ff14SB protein backbone and sidechain parameters
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/amino12.lib
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/aminoct12.lib
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/aminont12.lib
+Loading PDB file: ./tax_peptide_capped_main_norm.pdb
+  total atoms in file: 165
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 38 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+ (no restraints)
+Writing pdb file: tax9_ff14sb_leap.pdb
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 0; Notes = 0.

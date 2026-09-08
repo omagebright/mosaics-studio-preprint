@@ -1,0 +1,33 @@
+{
+  "name": "bpti_ff14sb",
+  "leaprc": "leaprc.protein.ff14SB",
+  "structure": "5PTI_A_cyx.pdb",
+  "atoms": 892,
+  "residues": 58,
+  "net_charge": 6.0,
+  "first_residue": "ARG",
+  "last_residue": "ALA",
+  "disulfides": [
+    {
+      "res1": "CYX5",
+      "res2": "CYX55",
+      "distance_angstrom": 2.043
+    },
+    {
+      "res1": "CYX14",
+      "res2": "CYX38",
+      "distance_angstrom": 2.0302
+    },
+    {
+      "res1": "CYX30",
+      "res2": "CYX51",
+      "distance_angstrom": 2.0218
+    }
+  ],
+  "max_coordinate_disagreement_angstrom": 0.0,
+  "files": {
+    "topology": "bpti_ff14sb.prmtop",
+    "reference_coordinates": "bpti_ff14sb_matched.rst7",
+    "mosaics_structure": "bpti_ff14sb_mosaics.pdb"
+  }
+}

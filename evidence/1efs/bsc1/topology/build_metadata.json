@@ -1,0 +1,65 @@
+{
+  "expected_trimmed_atoms": 818,
+  "expected_trimmed_residues": 26,
+  "forcefield_source_dir": "",
+  "leaprc_lines": [
+    "source oldff/leaprc.ff99",
+    "addAtomTypes { { \"CI\" \"C\" \"sp3\" } { \"CE\" \"C\" \"sp3\" } { \"C1\" \"C\" \"sp2\" } { \"C2\" \"C\" \"sp2\" } }",
+    "loadAmberParams frcmod.parmbsc0",
+    "loadOff parmBSC1.lib",
+    "loadAmberParams frcmod.parmbsc1"
+  ],
+  "matched_atoms": 818,
+  "mosaics_pdb": "examples/1efs_heteroduplex/1efs.pdb",
+  "output_dir": "/private/tmp/mosaics-ffc/force-field-comparison/1efs/bsc1/topology",
+  "outputs": {
+    "pdb": "1efs_matched_bsc1.pdb",
+    "prmtop": "1efs_matched_bsc1.prmtop",
+    "residue_mapping": "residue_mapping.tsv",
+    "rst7": "1efs_matched_bsc1.rst7"
+  },
+  "padded_counts": {
+    "atoms": 942,
+    "residues": 30
+  },
+  "preset": "bsc1",
+  "renamed_atoms": 88,
+  "sander_energies_kcal_per_mol": {
+    "angle": 220.5651,
+    "bond": 70.9988,
+    "dihedral": 513.1192,
+    "eamber": 2443.062,
+    "eel": 4451.4029,
+    "hbond": 0.0,
+    "one_four_eel": -2593.7276,
+    "one_four_vdw": 245.7727,
+    "restraint": 0.0,
+    "vdwaals": -465.0691
+  },
+  "stripped_caps": [
+    {
+      "atom_count": 32,
+      "name": "RC3",
+      "one_indexed_residue": 30
+    },
+    {
+      "atom_count": 28,
+      "name": "RU5",
+      "one_indexed_residue": 16
+    },
+    {
+      "atom_count": 33,
+      "name": "DA3",
+      "one_indexed_residue": 15
+    },
+    {
+      "atom_count": 31,
+      "name": "DG5",
+      "one_indexed_residue": 1
+    }
+  ],
+  "trimmed_counts": {
+    "atoms": 818,
+    "residues": 26
+  }
+}

@@ -1,0 +1,103 @@
+###################################################################################
+#   Copyright (c) 2007 Peter Minary.        ~---------------------------------~   #
+#   All Rights Reserved.                    |     |              /    /    / ~|   #
+#      __           ~-           __         |    \|/     _      /         / ~ |   #
+#     /^^\     M   -  ~   M     /^^\        |   \_|_/  ((|))   /  M /  _ / ~ ~|   #
+#    /^^^^\   O   -    ~   O   /^^^^\       |  \__|__/ ((|))  /      ((|))~ ~ |   #
+#     |  |     S   -  ~   S     |  |        |     |      |   /  O /  ((|)) ~ ~|   #
+#     |  |      A   ~-   A      |  |        |  _     _   |  /         /|~ ~ ~ |   #
+#     |  |     I   ~  -   I     |  |        | {|}  ((|)) | /  S /  _ /~| ~_~ ~|   #
+#    _|__|_   C   ~    -   C   _|__|_       |{{|}} ((|))  /      ((|)) |~{|}~ |   #
+#              S   ~  -   S                 |  |     |   /  A /  ((|))~ {{|}}~|   #
+#   --------------- -~ ----------------     |    _   |  /         /| ~ ~ ~| ~ |   #
+#    Methodologies for Optimization and     |  ((|)) | /  I /  _ / |~ ~ ~| ~ ~|   #
+#    SAmpling In Computational Studies      |  ((|))  /      ((|)) | ~  \|/ ~ |   #
+#   -----------------------------------     |    |   /  C /  ((|))~ ~  \_|_/ ~|   #
+#                                           |    |  /         /| ~ ~  \__|__/~|   #
+#          >>  version.3.9.1  <<            |    | /  S /    /~|~ ~ ~ ~ ~| ~ ~|   #
+#                                           |     /         /~ | ~ ~ ~ ~ ~ ~ ~|   #
+#                                           ~---------------------------------~   #
+###################################################################################
+
+
+===================================================================================
+Reading simulation input file ctl_ff19sb_nocmap.input
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file ctl_ff19sb_nocmap.input
+===================================================================================
+
+
+===================================================================================
+Reading potential database files 
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.bond
+...
+Database reading done, total 102 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.bend
+...
+Database reading done, total 329 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.tors_and_impr
+...
+Database reading done, total 690 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.onfo
+...
+Database reading done, total 666 entries read.
+----------------------------------------------
+----------------------------------------------
+Reading in database from file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/db_ff19sb/mosaics_openmm-ff19sb.vdw
+...
+Database reading done, total 666 entries read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading potential database files 
+===================================================================================
+
+
+===================================================================================
+Creating atom maps
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+Creating atom maps done
+===================================================================================
+
+
+===================================================================================
+Reading file explicit_termini_ff19sb.pdb
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file explicit_termini_ff19sb.pdb
+...
+File reading done, total 1231 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file explicit_termini_ff19sb.pdb
+===================================================================================
+
+
+===================================================================================
+Reading residue topology file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff19sb_protein.rtf
+-----------------------------------------------------------------------------------
+----------------------------------------------
+Reading file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff19sb_protein.rtf
+...
+File reading done, total 2566 lines read.
+----------------------------------------------
+-----------------------------------------------------------------------------------
+Completed reading file /Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/params/top_openmm-ff19sb_protein.rtf
+===================================================================================
+
+
+===================================================================================
+Setting up residue topology
+-----------------------------------------------------------------------------------
+@@@@@@@@@@@@@@@@@@@@@@@@_error_@@@@@@@@@@@@@@@@@@@@@@@@@
+Total 19 atoms in 1. residue(NME) doesn't fit topology
+@@@@@@@@@@@@@@@@@@@@@@@@_error_@@@@@@@@@@@@@@@@@@@@@@@@@

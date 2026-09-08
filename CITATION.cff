@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this deposit, please cite it as below."
+title: "MOSAICS Studio: all-atom natural-move Monte Carlo on modern additive force fields in the browser"
+type: dataset
+authors:
+  - family-names: Omage
+    given-names: Folorunsho Bright
+    orcid: "https://orcid.org/0000-0002-9750-5034"
+    affiliation: "Department of Computer Science, University of Oxford"
+  - family-names: Minary
+    given-names: Peter
+    orcid: "https://orcid.org/0000-0002-1779-6741"
+    affiliation: "Department of Computer Science, University of Oxford"
+date-released: 2026-09-08
+version: 1.0.0
+license: CC-BY-4.0
+repository-code: "https://github.com/omagebright/mosaics-studio-preprint"
+url: "https://users.ox.ac.uk/~coml1155/mosaics-studio/"
+keywords:
+  - natural-move Monte Carlo
+  - MOSAICS
+  - additive force fields
+  - AMBER ff14SB
+  - AMBER ff19SB
+  - CHARMM36
+  - cross-engine verification
+  - WebAssembly
+preferred-citation:
+  type: generic
+  title: "MOSAICS Studio: all-atom natural-move Monte Carlo on modern additive force fields in the browser"
+  authors:
+    - family-names: Omage
+      given-names: Folorunsho Bright
+    - family-names: Minary
+      given-names: Peter
+  year: 2026
+  publisher:
+    name: Zenodo

@@ -1,0 +1,31 @@
+{
+  "all_terms_pass": true,
+  "amber_energy": "/Users/bright/Library/CloudStorage/OneDrive-Personal/Documents/MOSAICS_AllAtom_Paper/evidence-v2/ddd/ol15_ol3/topology/amber_energy_summary.tsv",
+  "cutoff_angstrom": 999.0,
+  "force_records": [
+    {
+      "force_name": "HarmonicBondForce",
+      "group": 0,
+      "mapped_term": "bond"
+    },
+    {
+      "force_name": "HarmonicAngleForce",
+      "group": 1,
+      "mapped_term": "angle"
+    },
+    {
+      "force_name": "PeriodicTorsionForce",
+      "group": 2,
+      "mapped_term": "dihedral"
+    },
+    {
+      "force_name": "NonbondedForce",
+      "group": 3,
+      "mapped_term": "nonbonded_total"
+    }
+  ],
+  "nonbonded_method": "NoCutoff",
+  "platform": "Reference",
+  "prmtop": "/Users/bright/Library/CloudStorage/OneDrive-Personal/Documents/MOSAICS_AllAtom_Paper/evidence-v2/ddd/ol15_ol3/topology/ddd_ol15_ol3.prmtop",
+  "rst7": "/Users/bright/Library/CloudStorage/OneDrive-Personal/Documents/MOSAICS_AllAtom_Paper/evidence-v2/ddd/ol15_ol3/topology/ddd_ol15_ol3.rst7"
+}

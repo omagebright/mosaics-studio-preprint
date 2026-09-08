@@ -1,0 +1,93 @@
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/prep to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd to search path.
+-f: Source build_ol21_ol3.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./build_ol21_ol3.in
+----- Source: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.DNA.OL21
+----- Source of /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.DNA.OL21 done
+Log file: ./leap.log
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/ff-nucleic-OL21.lib
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/parm10.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/ff-nucleic-OL21.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+OL21 force field for DNA (OL15 + alpha/gamma OL21), see http://ffol.upol.cz
+----- Source: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.RNA.OL3
+----- Source of /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.RNA.OL3 done
+Log file: ./leap.log
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Note.
+Skipping parm10.dat: already loaded
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/RNA.lib
+Substituting map O5* -> O5'  for  O5* -> O5'
+Substituting map C5* -> C5'  for  C5* -> C5'
+Substituting map C4* -> C4'  for  C4* -> C4'
+Substituting map O4* -> O4'  for  O4* -> O4'
+Substituting map C3* -> C3'  for  C3* -> C3'
+Substituting map O3* -> O3'  for  O3* -> O3'
+Substituting map C2* -> C2'  for  C2* -> C2'
+Substituting map O2* -> O2'  for  O2* -> O2'
+Substituting map C1* -> C1'  for  C1* -> C1'
+Substituting map C5M -> C7  for  C5M -> C7
+Substituting map H1* -> H1'  for  H1* -> H1'
+Substituting map H2*1 -> H2'  for  H2*1 -> H2'
+Substituting map H2*2 -> H2''  for  H2*2 -> H2''
+Substituting map H2'1 -> H2'  for  H2'1 -> H2'
+Substituting map H2'2 -> H2''  for  H2'2 -> H2''
+Substituting map H3* -> H3'  for  H3* -> H3'
+Substituting map H4* -> H4'  for  H4* -> H4'
+Substituting map H5*1 -> H5'  for  H5*1 -> H5'
+Substituting map H5*2 -> H5''  for  H5*2 -> H5''
+Substituting map H5'1 -> H5'  for  H5'1 -> H5'
+Substituting map H5'2 -> H5''  for  H5'2 -> H5''
+Substituting map HO'2 -> HO2'  for  HO'2 -> HO2'
+Substituting map H5T -> HO5'  for  H5T -> HO5'
+Substituting map H3T -> HO3'  for  H3T -> HO3'
+Substituting map O1' -> O4'  for  O1' -> O4'
+Substituting map OA -> OP1  for  OA -> OP1
+Substituting map OB -> OP2  for  OB -> OP2
+Substituting map O1P -> OP1  for  O1P -> OP1
+Substituting map O2P -> OP2  for  O2P -> OP2
+Loading PDB file: ./1BNA_AB_ter.pdb
+  total atoms in file: 486
+  Leap added 272 missing atoms according to residue templates:
+       272 H / lone pairs
+Checking 'mol'....
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+The unperturbed charge of the unit (-22.000000) is not zero.
+Checking parameters for unit 'mol'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 1
+Unit is OK.
+Checking Unit.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+The unperturbed charge of the unit (-22.000000) is not zero.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Note.
+Ignoring the warning from Unit Checking.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 260 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+ (no restraints)
+Writing pdb file: ddd_ol21_ol3.pdb
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 2; Notes = 2.

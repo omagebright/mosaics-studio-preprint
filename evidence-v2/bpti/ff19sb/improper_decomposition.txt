@@ -1,0 +1,29 @@
+Improper decomposition of the AMBER reference topology, ff19sb
+======================================================================
+Computed directly from bpti_ff19sb.prmtop and bpti_ff19sb_matched.rst7 with
+E = k(1 + cos(n*phi - phase)), independently of any of the four engines.
+Its purpose is to say WHICH impropers the improper term is made of, so
+that a disagreement in that term can be located rather than described.
+
+proper   total  224.973308327 kcal/mol
+improper total  5.550584363 kcal/mol
+
+atom-type quadruple (prmtop order)  count         kcal/mol
+XC-N-C-O                           56         3.413052
+C-H-N-XC                           51         0.973341
+C-XC-N-H                            1         0.340296
+C-CX-N-H                            1         0.220345
+2C-N-C-O                            4         0.172878
+2C-O2-CO-O2                         4         0.155121
+N2-N2-CA-N2                         6         0.070966
+CA-CA-CA-CT                         8         0.064430
+CX-O2-C-O2                          1         0.059812
+C-CT-N-XC                           4         0.029913
+CA-C-CA-HA                          4         0.016631
+CA-CA-C-OH                          4         0.015280
+CX-N-C-O                            1         0.011655
+C8-CA-N2-H                          6         0.006848
+CA-CA-CA-HA                        28         0.000008
+CA-H-N2-H                          12         0.000007
+C-CA-CA-HA                          4         0.000001
+C-H-N-H                             4         0.000001

@@ -1,0 +1,60 @@
+#!/bin/bash
+# $1 outdir  $2 rtf  $3 deckdir  $4 deckprefix  $5 pdbname  $6 tag
+cat > "$1/mcmc_${6}_vac.input" <<EOF
+~sim_gen_def[
+   \\simulation_typ{PT}
+   \\minimize_tol{1.e-3}
+   \\minimize_type{bfgs}
+   \\minimize_report{0}
+   \\energy_report{2}
+   \\prop_type{tors}
+   \\prop_tors_sig{0.0}
+   \\prop_trans_sig{0.0}
+   \\prop_rot_sig{0.0}
+   \\prop_tors_type{full}
+   \\replica_number{0}
+   \\prob_eemc_jump{0.15}
+   \\eemc_disk_size{10}
+   \\energy_gap{1.1}
+   \\total_step_mc{1}
+   \\local_step_md{1}
+   \\time_step_md{0.4}
+   \\statistics_freq{1}
+   \\burn_in_B{1}
+   \\burn_in_N{1}
+   \\write_energy_unit{kcal}
+   \\temperature{300}
+   \\inter_list{none}
+   \\rinter_switch_length{0}
+   \\rinter_exclude_length{1000}
+   \\random_seed{-7143580450}
+   \\EEMC_Emin{-1.0}
+   \\EEMC_Emax{0.0}
+]
+
+~sim_mol_def[
+  \\system_def{residue}
+  \\implicit_solvent{off}
+  \\ddd{off}
+  \\ddd_D{1.0}
+  \\ddd_D0{1.0}
+  \\ddd_S{0.4}
+  \\ddd_c{0.5}
+  \\ddd_e{6.0}
+  \\neutralize{off}
+  \\mol_parm_file{$2}
+  \\bond_database_file{$3/$4.bond}
+  \\bend_database_file{$3/$4.bend}
+  \\tors_database_file{$3/$4.tors_and_impr}
+  \\onfo_database_file{$3/$4.onfo}
+  \\inter_database_file{$3/$4.vdw}
+  \\pos_init_file{$5}
+  \\pos_out_file{out_${6}.pos_out.pdb}
+  \\atom_pos_file{out_${6}.pos.pdb}
+  \\tors_pos_file{out_${6}.tors_pos}
+  \\epot_file{out_${6}.pot_energy}
+  \\einter_file{out_${6}.inter_energy}
+  \\hessian_file{out_${6}.hessian}
+  \\eighess_file{out_${6}.eighess}
+]
+EOF

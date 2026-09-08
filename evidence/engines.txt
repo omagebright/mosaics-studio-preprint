@@ -1,0 +1,68 @@
+Engines
+=======
+
+MOSAICS is the program under test. The other three are references. They are
+independent programs, not variants of one another, and where they agree with
+each other the target is not in doubt.
+
+  engine    version                     how it is run
+  ---------------------------------------------------------------------------
+  MOSAICS   source/compile/serial       <system>/mosaics/*.input
+  sander    24.0 (AmberTools 24.8)      <system>/sander/sander_sp.in
+  OpenMM    8.5.2, Reference platform   tools/openmm_single_point.py
+  GROMACS   2025.4, double precision    <system>/gromacs/sp.mdp
+
+Each writes its own output file, and those files are committed. No number in
+any table here is produced by a program that reads another program's output.
+
+Electrostatic constant
+----------------------
+
+The four do not share the constant that converts charge into energy. It was
+measured, not looked up: two charges of +1 and -1 exactly 1 Angstrom apart
+with all other interactions switched off, so the energy an engine prints is
+the constant itself. See coulomb-constants/.
+
+  engine    constant, kcal Angstrom / (mol e^2)   difference from CODATA
+  ---------------------------------------------------------------------------
+  sander    332.052200                            -3.5e-05
+  OpenMM    332.063713                            -1.0e-09
+  GROMACS   332.063713                            -1.0e-09
+  MOSAICS   332.063441                            -8.2e-07
+
+sander stores charge multiplied by 18.2223 and its constant is that number
+squared. It is an older value. OpenMM and GROMACS, written independently of
+one another, agree with the current standard to ten digits. sander is the odd
+one out, not MOSAICS.
+
+On 1efs this is worth 0.064 kcal/mol, which is larger than anything else being
+measured. Every electrostatic number in these tables is therefore corrected to
+one common constant before it is compared, and each engine's own constant is
+stated above. Nothing else is corrected.
+
+Precision limits
+----------------
+
+  sander    prints four decimals, so a sander number is known to about 2e-04
+  GROMACS   read energies from sp.xvg, never from what gmx energy prints on
+            screen, which is rounded to about six digits and is coarse enough
+            to look like a disagreement between engines
+
+Regenerating a GROMACS input
+----------------------------
+
+The GROMACS topology is not committed. It is half a megabyte per structure,
+nobody reads it, and it is produced mechanically from the reference topology
+that the other two programs read, which is itself rebuilt by a committed
+command. What is committed is the settings file and the output.
+
+  python3 -c "import parmed,numpy as np; \
+    p=parmed.load_file('X.prmtop',xyz='X.rst7'); \
+    x=np.asarray(p.coordinates); \
+    d=np.sqrt(((x[:,None]-x[None])**2).sum(-1)).max()/10.0; \
+    p.box=[(2*(d+1)+2)*10]*3+[90.,90.,90.]; \
+    p.save('sys.gro',precision=8); p.save('sys.top',format='gromacs')"
+
+  gmx_d grompp -f sp.mdp -c sys.gro -p sys.top -o sp.tpr -maxwarn 3
+  gmx_d mdrun  -s sp.tpr -rerun sys.gro -e sp.edr -g sp.log
+  gmx_d energy -f sp.edr -o sp.xvg

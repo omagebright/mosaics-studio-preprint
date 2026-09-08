@@ -1,0 +1,506 @@
+~bend_parm[\atom1{3TER-C3'}\atom2{3TER-O3'}\atom3{3TER-H3T}
+           \pot_type_bend{harm}\fk_bend{57870.63268760629}\eq_bend{109}]
+~bend_parm[\atom1{3TER-C3'}\atom2{DEOX-C2'}\atom3{DEOX-C1'}
+           \pot_type_bend{harm}\fk_bend{80515.66286971309}\eq_bend{100}]
+~bend_parm[\atom1{3TER-C3'}\atom2{DEOX-C2'}\atom3{DEOX-H2'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{3TER-C3'}\atom2{DEOX-C2'}\atom3{DEOX-H2''}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{3TER-C3'}\atom2{DEOX-C4'}\atom3{DEOX-H4'}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{108}]
+~bend_parm[\atom1{3TER-C3'}\atom2{DEOX-C4'}\atom3{DEOX-O4'}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{104}]
+~bend_parm[\atom1{3TER-C3'}\atom2{DEOX-C4'}\atom3{THY-C5'}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{110}]
+~bend_parm[\atom1{3TER-H3'}\atom2{3TER-C3'}\atom3{3TER-O3'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{3TER-H3'}\atom2{3TER-C3'}\atom3{DEOX-C2'}
+           \pot_type_bend{harm}\fk_bend{34722.37961256377}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{3TER-H3'}\atom2{3TER-C3'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{108}]
+~bend_parm[\atom1{3TER-O3'}\atom2{3TER-C3'}\atom3{DEOX-C2'}
+           \pot_type_bend{harm}\fk_bend{76187.94599046602}\eq_bend{110}]
+~bend_parm[\atom1{3TER-O3'}\atom2{3TER-C3'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{76187.94599046602}\eq_bend{110.1}]
+~bend_parm[\atom1{5TER-C5'}\atom2{5TER-O5'}\atom3{5TER-H5T}
+           \pot_type_bend{harm}\fk_bend{57870.63268760629}\eq_bend{106}]
+~bend_parm[\atom1{5TER-C5'}\atom2{DEO5-C4'}\atom3{ADE-C3'}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{110}]
+~bend_parm[\atom1{5TER-C5'}\atom2{DEO5-C4'}\atom3{DEO5-H4'}
+           \pot_type_bend{harm}\fk_bend{34722.37961256377}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{5TER-C5'}\atom2{DEO5-C4'}\atom3{DEO5-O4'}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{108.2}]
+~bend_parm[\atom1{5TER-H5'}\atom2{5TER-C5'}\atom3{5TER-H5''}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{109}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{5TER-H5'}\atom2{5TER-C5'}\atom3{5TER-O5'}
+           \pot_type_bend{harm}\fk_bend{46195.86157149789}\eq_bend{108.89}]
+~bend_parm[\atom1{5TER-H5'}\atom2{5TER-C5'}\atom3{DEO5-C4'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{5TER-H5''}\atom2{5TER-C5'}\atom3{5TER-O5'}
+           \pot_type_bend{harm}\fk_bend{46195.86157149789}\eq_bend{108.89}]
+~bend_parm[\atom1{5TER-H5''}\atom2{5TER-C5'}\atom3{DEO5-C4'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{5TER-O5'}\atom2{5TER-C5'}\atom3{DEO5-C4'}
+           \pot_type_bend{harm}\fk_bend{76187.94599046602}\eq_bend{110.1}]
+~bend_parm[\atom1{ADE-C2}\atom2{ADE-N1}\atom3{ADE-C6}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{117.8}]
+~bend_parm[\atom1{ADE-C2}\atom2{ADE-N3}\atom3{ADE-C4}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{110.1}]
+~bend_parm[\atom1{ADE-C3'}\atom2{ADE-O3'}\atom3{DEOX-P}
+           \pot_type_bend{harm}\fk_bend{20128.91571742827}\eq_bend{120}
+           \pot_type_bond{harm}\fk_bond{35225.60250549949}\eq_bond{2.33}]
+~bend_parm[\atom1{ADE-C3'}\atom2{DEO5-C2'}\atom3{DEO5-C1'}
+           \pot_type_bend{harm}\fk_bend{80515.66286971309}\eq_bend{100}]
+~bend_parm[\atom1{ADE-C3'}\atom2{DEO5-C2'}\atom3{DEO5-H2'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{ADE-C3'}\atom2{DEO5-C2'}\atom3{DEO5-H2''}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{ADE-C3'}\atom2{DEO5-C4'}\atom3{DEO5-H4'}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{108}]
+~bend_parm[\atom1{ADE-C3'}\atom2{DEO5-C4'}\atom3{DEO5-O4'}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{104}]
+~bend_parm[\atom1{ADE-C4}\atom2{ADE-C5}\atom3{ADE-C6}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{121}]
+~bend_parm[\atom1{ADE-C4}\atom2{ADE-C5}\atom3{ADE-N7}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{110}]
+~bend_parm[\atom1{ADE-C4}\atom2{ADE-N9}\atom3{ADE-C8}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{106.3}]
+~bend_parm[\atom1{ADE-C4}\atom2{ADE-N9}\atom3{DEO5-C1'}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{126.1}]
+~bend_parm[\atom1{ADE-C5}\atom2{ADE-C4}\atom3{ADE-N3}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{127.4}]
+~bend_parm[\atom1{ADE-C5}\atom2{ADE-C4}\atom3{ADE-N9}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{105.7}]
+~bend_parm[\atom1{ADE-C5}\atom2{ADE-C6}\atom3{ADE-N1}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{110.7}]
+~bend_parm[\atom1{ADE-C5}\atom2{ADE-C6}\atom3{ADE-N6}
+           \pot_type_bend{harm}\fk_bend{50322.28929357068}\eq_bend{118.6}]
+~bend_parm[\atom1{ADE-C5}\atom2{ADE-N7}\atom3{ADE-C8}
+           \pot_type_bend{harm}\fk_bend{120773.4943045696}\eq_bend{104.6}]
+~bend_parm[\atom1{ADE-C6}\atom2{ADE-C5}\atom3{ADE-N7}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{129}]
+~bend_parm[\atom1{ADE-C6}\atom2{ADE-N6}\atom3{ADE-H61}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{121.5}]
+~bend_parm[\atom1{ADE-C6}\atom2{ADE-N6}\atom3{ADE-H62}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{121.5}]
+~bend_parm[\atom1{ADE-C8}\atom2{ADE-N9}\atom3{DEO5-C1'}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{127.6}]
+~bend_parm[\atom1{ADE-H2}\atom2{ADE-C2}\atom3{ADE-N1}
+           \pot_type_bend{harm}\fk_bend{38244.93986311372}\eq_bend{113.5}]
+~bend_parm[\atom1{ADE-H2}\atom2{ADE-C2}\atom3{ADE-N3}
+           \pot_type_bend{harm}\fk_bend{38244.93986311372}\eq_bend{113.5}]
+~bend_parm[\atom1{ADE-H3'}\atom2{ADE-C3'}\atom3{ADE-O3'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{ADE-H3'}\atom2{ADE-C3'}\atom3{DEO5-C2'}
+           \pot_type_bend{harm}\fk_bend{34722.37961256377}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{ADE-H3'}\atom2{ADE-C3'}\atom3{DEO5-C4'}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{108}]
+~bend_parm[\atom1{ADE-H61}\atom2{ADE-N6}\atom3{ADE-H62}
+           \pot_type_bend{harm}\fk_bend{31199.81936201383}\eq_bend{117}]
+~bend_parm[\atom1{ADE-H8}\atom2{ADE-C8}\atom3{ADE-N7}
+           \pot_type_bend{harm}\fk_bend{39251.38564898513}\eq_bend{124.8}]
+~bend_parm[\atom1{ADE-H8}\atom2{ADE-C8}\atom3{ADE-N9}
+           \pot_type_bend{harm}\fk_bend{39251.38564898513}\eq_bend{121.8}]
+~bend_parm[\atom1{ADE-N1}\atom2{ADE-C2}\atom3{ADE-N3}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{133}]
+~bend_parm[\atom1{ADE-N1}\atom2{ADE-C6}\atom3{ADE-N6}
+           \pot_type_bend{harm}\fk_bend{50322.28929357068}\eq_bend{130.7}]
+~bend_parm[\atom1{ADE-N3}\atom2{ADE-C4}\atom3{ADE-N9}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{126.9}]
+~bend_parm[\atom1{ADE-N7}\atom2{ADE-C8}\atom3{ADE-N9}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{113.4}]
+~bend_parm[\atom1{ADE-N9}\atom2{DEO5-C1'}\atom3{DEO5-C2'}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{113.7}]
+~bend_parm[\atom1{ADE-N9}\atom2{DEO5-C1'}\atom3{DEO5-H1'}
+           \pot_type_bend{harm}\fk_bend{43277.16879247079}\eq_bend{111}]
+~bend_parm[\atom1{ADE-N9}\atom2{DEO5-C1'}\atom3{DEO5-O4'}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{108}]
+~bend_parm[\atom1{ADE-O3'}\atom2{ADE-C3'}\atom3{DEO5-C2'}
+           \pot_type_bend{harm}\fk_bend{115741.2653752126}\eq_bend{109.7}]
+~bend_parm[\atom1{ADE-O3'}\atom2{ADE-C3'}\atom3{DEO5-C4'}
+           \pot_type_bend{harm}\fk_bend{115741.2653752126}\eq_bend{109.7}]
+~bend_parm[\atom1{ADE-O3'}\atom2{DEOX-P}\atom3{CYT-O1P}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{ADE-O3'}\atom2{DEOX-P}\atom3{CYT-O2P}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{ADE-O3'}\atom2{DEOX-P}\atom3{CYT-O5'}
+           \pot_type_bend{harm}\fk_bend{80515.66286971309}\eq_bend{104.3}]
+~bend_parm[\atom1{CYT-C2}\atom2{CYT-N1}\atom3{CYT-C6}
+           \pot_type_bend{harm}\fk_bend{50322.28929357068}\eq_bend{124.1}]
+~bend_parm[\atom1{CYT-C2}\atom2{CYT-N1}\atom3{DEOX-C1'}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{120}]
+~bend_parm[\atom1{CYT-C2}\atom2{CYT-N3}\atom3{CYT-C4}
+           \pot_type_bend{harm}\fk_bend{85547.89179907016}\eq_bend{119.1}]
+~bend_parm[\atom1{CYT-C3'}\atom2{CYT-O3'}\atom3{DEOX-P}
+           \pot_type_bend{harm}\fk_bend{20128.91571742827}\eq_bend{120}
+           \pot_type_bond{harm}\fk_bond{35225.60250549949}\eq_bond{2.33}]
+~bend_parm[\atom1{CYT-C3'}\atom2{DEOX-C2'}\atom3{DEOX-C1'}
+           \pot_type_bend{harm}\fk_bend{80515.66286971309}\eq_bend{100}]
+~bend_parm[\atom1{CYT-C3'}\atom2{DEOX-C2'}\atom3{DEOX-H2'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{CYT-C3'}\atom2{DEOX-C2'}\atom3{DEOX-H2''}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{CYT-C3'}\atom2{DEOX-C4'}\atom3{CYT-C5'}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{110}]
+~bend_parm[\atom1{CYT-C3'}\atom2{DEOX-C4'}\atom3{DEOX-H4'}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{108}]
+~bend_parm[\atom1{CYT-C3'}\atom2{DEOX-C4'}\atom3{DEOX-O4'}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{104}]
+~bend_parm[\atom1{CYT-C4}\atom2{CYT-C5}\atom3{CYT-C6}
+           \pot_type_bend{harm}\fk_bend{85547.89179907016}\eq_bend{117.8}]
+~bend_parm[\atom1{CYT-C4}\atom2{CYT-C5}\atom3{CYT-H5}
+           \pot_type_bend{harm}\fk_bend{38244.93986311372}\eq_bend{120.1}]
+~bend_parm[\atom1{CYT-C4}\atom2{CYT-N4}\atom3{CYT-H41}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{121.5}]
+~bend_parm[\atom1{CYT-C4}\atom2{CYT-N4}\atom3{CYT-H42}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{121.5}]
+~bend_parm[\atom1{CYT-C5}\atom2{CYT-C4}\atom3{CYT-N3}
+           \pot_type_bend{harm}\fk_bend{85547.89179907016}\eq_bend{119.3}]
+~bend_parm[\atom1{CYT-C5}\atom2{CYT-C4}\atom3{CYT-N4}
+           \pot_type_bend{harm}\fk_bend{81522.10865558451}\eq_bend{118.4}]
+~bend_parm[\atom1{CYT-C5}\atom2{CYT-C6}\atom3{CYT-H6}
+           \pot_type_bend{harm}\fk_bend{38244.93986311372}\eq_bend{122.1}]
+~bend_parm[\atom1{CYT-C5}\atom2{CYT-C6}\atom3{CYT-N1}
+           \pot_type_bend{harm}\fk_bend{85547.89179907016}\eq_bend{122.9}]
+~bend_parm[\atom1{CYT-C5'}\atom2{CYT-O5'}\atom3{DEOX-P}
+           \pot_type_bend{harm}\fk_bend{20128.91571742827}\eq_bend{120}
+           \pot_type_bond{harm}\fk_bond{35225.60250549949}\eq_bond{2.33}]
+~bend_parm[\atom1{CYT-C5'}\atom2{DEOX-C4'}\atom3{DEOX-H4'}
+           \pot_type_bend{harm}\fk_bend{34722.37961256377}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{CYT-C5'}\atom2{DEOX-C4'}\atom3{DEOX-O4'}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{108.2}]
+~bend_parm[\atom1{CYT-C6}\atom2{CYT-C5}\atom3{CYT-H5}
+           \pot_type_bend{harm}\fk_bend{38244.93986311372}\eq_bend{122.1}]
+~bend_parm[\atom1{CYT-C6}\atom2{CYT-N1}\atom3{DEOX-C1'}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{115.9}]
+~bend_parm[\atom1{CYT-H3'}\atom2{CYT-C3'}\atom3{CYT-O3'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{CYT-H3'}\atom2{CYT-C3'}\atom3{DEOX-C2'}
+           \pot_type_bend{harm}\fk_bend{34722.37961256377}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{CYT-H3'}\atom2{CYT-C3'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{108}]
+~bend_parm[\atom1{CYT-H41}\atom2{CYT-N4}\atom3{CYT-H42}
+           \pot_type_bend{harm}\fk_bend{31199.81936201383}\eq_bend{117}]
+~bend_parm[\atom1{CYT-H5'}\atom2{CYT-C5'}\atom3{CYT-H5''}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{109}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{CYT-H5'}\atom2{CYT-C5'}\atom3{CYT-O5'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{CYT-H5'}\atom2{CYT-C5'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{CYT-H5''}\atom2{CYT-C5'}\atom3{CYT-O5'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{CYT-H5''}\atom2{CYT-C5'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{CYT-H6}\atom2{CYT-C6}\atom3{CYT-N1}
+           \pot_type_bend{harm}\fk_bend{44283.6145783422}\eq_bend{115}]
+~bend_parm[\atom1{CYT-N1}\atom2{CYT-C2}\atom3{CYT-N3}
+           \pot_type_bend{harm}\fk_bend{50322.28929357068}\eq_bend{116.8}]
+~bend_parm[\atom1{CYT-N1}\atom2{CYT-C2}\atom3{CYT-O2}
+           \pot_type_bend{harm}\fk_bend{130837.9521632838}\eq_bend{119.4}]
+~bend_parm[\atom1{CYT-N1}\atom2{DEOX-C1'}\atom3{DEOX-C2'}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{113.7}]
+~bend_parm[\atom1{CYT-N1}\atom2{DEOX-C1'}\atom3{DEOX-H1'}
+           \pot_type_bend{harm}\fk_bend{43277.16879247079}\eq_bend{111}]
+~bend_parm[\atom1{CYT-N1}\atom2{DEOX-C1'}\atom3{DEOX-O4'}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{108}]
+~bend_parm[\atom1{CYT-N3}\atom2{CYT-C2}\atom3{CYT-O2}
+           \pot_type_bend{harm}\fk_bend{130837.9521632838}\eq_bend{123.8}]
+~bend_parm[\atom1{CYT-N3}\atom2{CYT-C4}\atom3{CYT-N4}
+           \pot_type_bend{harm}\fk_bend{81522.10865558451}\eq_bend{122.3}]
+~bend_parm[\atom1{CYT-O1P}\atom2{DEOX-P}\atom3{CYT-O2P}
+           \pot_type_bend{harm}\fk_bend{120773.4943045696}\eq_bend{120}]
+~bend_parm[\atom1{CYT-O1P}\atom2{DEOX-P}\atom3{CYT-O5'}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{CYT-O2P}\atom2{DEOX-P}\atom3{CYT-O5'}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{CYT-O3'}\atom2{CYT-C3'}\atom3{DEOX-C2'}
+           \pot_type_bend{harm}\fk_bend{115741.2653752126}\eq_bend{109.7}]
+~bend_parm[\atom1{CYT-O3'}\atom2{CYT-C3'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{115741.2653752126}\eq_bend{109.7}]
+~bend_parm[\atom1{CYT-O3'}\atom2{DEOX-P}\atom3{GUA-O1P}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{CYT-O3'}\atom2{DEOX-P}\atom3{GUA-O2P}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{CYT-O3'}\atom2{DEOX-P}\atom3{GUA-O5'}
+           \pot_type_bend{harm}\fk_bend{80515.66286971309}\eq_bend{104.3}]
+~bend_parm[\atom1{CYT-O5'}\atom2{CYT-C5'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{108.4}]
+~bend_parm[\atom1{DEO5-C1'}\atom2{DEO5-C2'}\atom3{DEO5-H2'}
+           \pot_type_bend{harm}\fk_bend{33615.28924810522}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEO5-C1'}\atom2{DEO5-C2'}\atom3{DEO5-H2''}
+           \pot_type_bend{harm}\fk_bend{33615.28924810522}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEO5-C1'}\atom2{DEO5-O4'}\atom3{DEO5-C4'}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{108}]
+~bend_parm[\atom1{DEO5-C2'}\atom2{ADE-C3'}\atom3{DEO5-C4'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{102}
+           \pot_type_bond{harm}\fk_bond{8051.56628697131}\eq_bond{2.561}]
+~bend_parm[\atom1{DEO5-C2'}\atom2{DEO5-C1'}\atom3{DEO5-H1'}
+           \pot_type_bend{harm}\fk_bend{33615.28924810522}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEO5-C2'}\atom2{DEO5-C1'}\atom3{DEO5-O4'}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{102}]
+~bend_parm[\atom1{DEO5-H1'}\atom2{DEO5-C1'}\atom3{DEO5-O4'}
+           \pot_type_bend{harm}\fk_bend{45491.3495213879}\eq_bend{107.24}]
+~bend_parm[\atom1{DEO5-H2'}\atom2{DEO5-C2'}\atom3{DEO5-H2''}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{109}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{DEO5-H4'}\atom2{DEO5-C4'}\atom3{DEO5-O4'}
+           \pot_type_bend{harm}\fk_bend{45491.3495213879}\eq_bend{107.24}]
+~bend_parm[\atom1{DEOX-C1'}\atom2{DEOX-C2'}\atom3{DEOX-H2'}
+           \pot_type_bend{harm}\fk_bend{33615.28924810522}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-C1'}\atom2{DEOX-C2'}\atom3{DEOX-H2''}
+           \pot_type_bend{harm}\fk_bend{33615.28924810522}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-C1'}\atom2{DEOX-C2'}\atom3{GUA-C3'}
+           \pot_type_bend{harm}\fk_bend{80515.66286971309}\eq_bend{100}]
+~bend_parm[\atom1{DEOX-C1'}\atom2{DEOX-O4'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{108}]
+~bend_parm[\atom1{DEOX-C1'}\atom2{GUA-N9}\atom3{GUA-C4}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{126.5}]
+~bend_parm[\atom1{DEOX-C1'}\atom2{GUA-N9}\atom3{GUA-C8}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{126.3}]
+~bend_parm[\atom1{DEOX-C1'}\atom2{THY-N1}\atom3{THY-C2}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{118.4}]
+~bend_parm[\atom1{DEOX-C1'}\atom2{THY-N1}\atom3{THY-C6}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{119.6}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{3TER-C3'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{102}
+           \pot_type_bond{harm}\fk_bond{8051.56628697131}\eq_bond{2.561}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{CYT-C3'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{102}
+           \pot_type_bond{harm}\fk_bond{8051.56628697131}\eq_bond{2.561}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{DEOX-C1'}\atom3{DEOX-H1'}
+           \pot_type_bend{harm}\fk_bend{33615.28924810522}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{DEOX-C1'}\atom3{DEOX-O4'}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{102}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{DEOX-C1'}\atom3{GUA-N9}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{113.7}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{DEOX-C1'}\atom3{THY-N1}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{113.7}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{GUA-C3'}\atom3{DEOX-C4'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{102}
+           \pot_type_bond{harm}\fk_bond{8051.56628697131}\eq_bond{2.561}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{GUA-C3'}\atom3{GUA-H3'}
+           \pot_type_bend{harm}\fk_bend{34722.37961256377}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-C2'}\atom2{GUA-C3'}\atom3{GUA-O3'}
+           \pot_type_bend{harm}\fk_bend{115741.2653752126}\eq_bend{109.7}]
+~bend_parm[\atom1{DEOX-C4'}\atom2{GUA-C3'}\atom3{GUA-H3'}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{108}]
+~bend_parm[\atom1{DEOX-C4'}\atom2{GUA-C3'}\atom3{GUA-O3'}
+           \pot_type_bend{harm}\fk_bend{115741.2653752126}\eq_bend{109.7}]
+~bend_parm[\atom1{DEOX-C4'}\atom2{GUA-C5'}\atom3{GUA-H5'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-C4'}\atom2{GUA-C5'}\atom3{GUA-H5''}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-C4'}\atom2{GUA-C5'}\atom3{GUA-O5'}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{108.4}]
+~bend_parm[\atom1{DEOX-C4'}\atom2{THY-C5'}\atom3{THY-H5'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-C4'}\atom2{THY-C5'}\atom3{THY-H5''}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-C4'}\atom2{THY-C5'}\atom3{THY-O5'}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{108.4}]
+~bend_parm[\atom1{DEOX-H1'}\atom2{DEOX-C1'}\atom3{DEOX-O4'}
+           \pot_type_bend{harm}\fk_bend{45491.3495213879}\eq_bend{107.24}]
+~bend_parm[\atom1{DEOX-H1'}\atom2{DEOX-C1'}\atom3{GUA-N9}
+           \pot_type_bend{harm}\fk_bend{43277.16879247079}\eq_bend{111}]
+~bend_parm[\atom1{DEOX-H1'}\atom2{DEOX-C1'}\atom3{THY-N1}
+           \pot_type_bend{harm}\fk_bend{43277.16879247079}\eq_bend{111}]
+~bend_parm[\atom1{DEOX-H2'}\atom2{DEOX-C2'}\atom3{DEOX-H2''}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{109}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{DEOX-H2'}\atom2{DEOX-C2'}\atom3{GUA-C3'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-H2''}\atom2{DEOX-C2'}\atom3{GUA-C3'}
+           \pot_type_bend{harm}\fk_bend{34752.57298613992}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-H4'}\atom2{DEOX-C4'}\atom3{DEOX-O4'}
+           \pot_type_bend{harm}\fk_bend{45491.3495213879}\eq_bend{107.24}]
+~bend_parm[\atom1{DEOX-H4'}\atom2{DEOX-C4'}\atom3{GUA-C3'}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{108}]
+~bend_parm[\atom1{DEOX-H4'}\atom2{DEOX-C4'}\atom3{GUA-C5'}
+           \pot_type_bend{harm}\fk_bend{34722.37961256377}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-H4'}\atom2{DEOX-C4'}\atom3{THY-C5'}
+           \pot_type_bend{harm}\fk_bend{34722.37961256377}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{DEOX-O4'}\atom2{DEOX-C1'}\atom3{GUA-N9}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{108}]
+~bend_parm[\atom1{DEOX-O4'}\atom2{DEOX-C1'}\atom3{THY-N1}
+           \pot_type_bend{harm}\fk_bend{110709.0364458555}\eq_bend{108}]
+~bend_parm[\atom1{DEOX-O4'}\atom2{DEOX-C4'}\atom3{GUA-C3'}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{104}]
+~bend_parm[\atom1{DEOX-O4'}\atom2{DEOX-C4'}\atom3{GUA-C5'}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{108.2}]
+~bend_parm[\atom1{DEOX-O4'}\atom2{DEOX-C4'}\atom3{THY-C5'}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{108.2}]
+~bend_parm[\atom1{DEOX-P}\atom2{GUA-O3'}\atom3{GUA-C3'}
+           \pot_type_bend{harm}\fk_bend{20128.91571742827}\eq_bend{120}
+           \pot_type_bond{harm}\fk_bond{35225.60250549949}\eq_bond{2.33}]
+~bend_parm[\atom1{DEOX-P}\atom2{GUA-O5'}\atom3{GUA-C5'}
+           \pot_type_bend{harm}\fk_bend{20128.91571742827}\eq_bend{120}
+           \pot_type_bond{harm}\fk_bond{35225.60250549949}\eq_bond{2.33}]
+~bend_parm[\atom1{DEOX-P}\atom2{THY-O5'}\atom3{THY-C5'}
+           \pot_type_bend{harm}\fk_bend{20128.91571742827}\eq_bend{120}
+           \pot_type_bond{harm}\fk_bond{35225.60250549949}\eq_bond{2.33}]
+~bend_parm[\atom1{GUA-C2}\atom2{GUA-N1}\atom3{GUA-C6}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{131.1}]
+~bend_parm[\atom1{GUA-C2}\atom2{GUA-N1}\atom3{GUA-H1}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{115.6}]
+~bend_parm[\atom1{GUA-C2}\atom2{GUA-N2}\atom3{GUA-H21}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{121.5}]
+~bend_parm[\atom1{GUA-C2}\atom2{GUA-N2}\atom3{GUA-H22}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{121.5}]
+~bend_parm[\atom1{GUA-C2}\atom2{GUA-N3}\atom3{GUA-C4}
+           \pot_type_bend{harm}\fk_bend{90580.12072842724}\eq_bend{109.4}]
+~bend_parm[\atom1{GUA-C3'}\atom2{DEOX-C4'}\atom3{GUA-C5'}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{110}]
+~bend_parm[\atom1{GUA-C4}\atom2{GUA-C5}\atom3{GUA-C6}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{119.6}]
+~bend_parm[\atom1{GUA-C4}\atom2{GUA-C5}\atom3{GUA-N7}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{111.4}]
+~bend_parm[\atom1{GUA-C4}\atom2{GUA-N9}\atom3{GUA-C8}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{107.2}]
+~bend_parm[\atom1{GUA-C5}\atom2{GUA-C4}\atom3{GUA-N3}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{129.9}]
+~bend_parm[\atom1{GUA-C5}\atom2{GUA-C4}\atom3{GUA-N9}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{104.6}]
+~bend_parm[\atom1{GUA-C5}\atom2{GUA-C6}\atom3{GUA-N1}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{107.8}]
+~bend_parm[\atom1{GUA-C5}\atom2{GUA-C6}\atom3{GUA-O6}
+           \pot_type_bend{harm}\fk_bend{50322.28929357068}\eq_bend{124.7}]
+~bend_parm[\atom1{GUA-C5}\atom2{GUA-N7}\atom3{GUA-C8}
+           \pot_type_bend{harm}\fk_bend{120773.4943045696}\eq_bend{103.8}]
+~bend_parm[\atom1{GUA-C6}\atom2{GUA-C5}\atom3{GUA-N7}
+           \pot_type_bend{harm}\fk_bend{125805.7232339267}\eq_bend{129}]
+~bend_parm[\atom1{GUA-C6}\atom2{GUA-N1}\atom3{GUA-H1}
+           \pot_type_bend{harm}\fk_bend{45290.06036421362}\eq_bend{113.3}]
+~bend_parm[\atom1{GUA-H21}\atom2{GUA-N2}\atom3{GUA-H22}
+           \pot_type_bend{harm}\fk_bend{31199.81936201383}\eq_bend{117}]
+~bend_parm[\atom1{GUA-H3'}\atom2{GUA-C3'}\atom3{GUA-O3'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{GUA-H5'}\atom2{GUA-C5'}\atom3{GUA-H5''}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{109}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{GUA-H5'}\atom2{GUA-C5'}\atom3{GUA-O5'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{GUA-H5''}\atom2{GUA-C5'}\atom3{GUA-O5'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{GUA-H8}\atom2{GUA-C8}\atom3{GUA-N7}
+           \pot_type_bend{harm}\fk_bend{39251.38564898513}\eq_bend{124.8}]
+~bend_parm[\atom1{GUA-H8}\atom2{GUA-C8}\atom3{GUA-N9}
+           \pot_type_bend{harm}\fk_bend{40257.83143485655}\eq_bend{122.2}]
+~bend_parm[\atom1{GUA-N1}\atom2{GUA-C2}\atom3{GUA-N2}
+           \pot_type_bend{harm}\fk_bend{95612.3496577843}\eq_bend{115.4}]
+~bend_parm[\atom1{GUA-N1}\atom2{GUA-C2}\atom3{GUA-N3}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{122.2}]
+~bend_parm[\atom1{GUA-N1}\atom2{GUA-C6}\atom3{GUA-O6}
+           \pot_type_bend{harm}\fk_bend{50322.28929357068}\eq_bend{127.5}]
+~bend_parm[\atom1{GUA-N2}\atom2{GUA-C2}\atom3{GUA-N3}
+           \pot_type_bend{harm}\fk_bend{95612.3496577843}\eq_bend{122.4}]
+~bend_parm[\atom1{GUA-N3}\atom2{GUA-C4}\atom3{GUA-N9}
+           \pot_type_bend{harm}\fk_bend{140902.4100219979}\eq_bend{125.5}]
+~bend_parm[\atom1{GUA-N7}\atom2{GUA-C8}\atom3{GUA-N9}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{113}]
+~bend_parm[\atom1{GUA-O1P}\atom2{DEOX-P}\atom3{GUA-O2P}
+           \pot_type_bend{harm}\fk_bend{120773.4943045696}\eq_bend{120}]
+~bend_parm[\atom1{GUA-O1P}\atom2{DEOX-P}\atom3{GUA-O5'}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{GUA-O2P}\atom2{DEOX-P}\atom3{GUA-O5'}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{GUA-O3'}\atom2{DEOX-P}\atom3{THY-O1P}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{GUA-O3'}\atom2{DEOX-P}\atom3{THY-O2P}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{GUA-O3'}\atom2{DEOX-P}\atom3{THY-O5'}
+           \pot_type_bend{harm}\fk_bend{80515.66286971309}\eq_bend{104.3}]
+~bend_parm[\atom1{THY-C2}\atom2{THY-N1}\atom3{THY-C6}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{122}]
+~bend_parm[\atom1{THY-C2}\atom2{THY-N3}\atom3{THY-C4}
+           \pot_type_bend{harm}\fk_bend{50322.28929357068}\eq_bend{130.2}]
+~bend_parm[\atom1{THY-C2}\atom2{THY-N3}\atom3{THY-H3}
+           \pot_type_bend{harm}\fk_bend{40761.05432779226}\eq_bend{114.4}]
+~bend_parm[\atom1{THY-C4}\atom2{THY-C5}\atom3{THY-C5M}
+           \pot_type_bend{harm}\fk_bend{38244.93986311372}\eq_bend{118.7}]
+~bend_parm[\atom1{THY-C4}\atom2{THY-C5}\atom3{THY-C6}
+           \pot_type_bend{harm}\fk_bend{120773.4943045696}\eq_bend{116.7}]
+~bend_parm[\atom1{THY-C4}\atom2{THY-N3}\atom3{THY-H3}
+           \pot_type_bend{harm}\fk_bend{40761.05432779226}\eq_bend{115.4}]
+~bend_parm[\atom1{THY-C5}\atom2{THY-C4}\atom3{THY-N3}
+           \pot_type_bend{harm}\fk_bend{70451.20501099897}\eq_bend{113.5}]
+~bend_parm[\atom1{THY-C5}\atom2{THY-C4}\atom3{THY-O4}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{124.6}]
+~bend_parm[\atom1{THY-C5}\atom2{THY-C5M}\atom3{THY-H51}
+           \pot_type_bend{harm}\fk_bend{33645.48262168136}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{THY-C5}\atom2{THY-C5M}\atom3{THY-H52}
+           \pot_type_bend{harm}\fk_bend{33645.48262168136}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{THY-C5}\atom2{THY-C5M}\atom3{THY-H53}
+           \pot_type_bend{harm}\fk_bend{33645.48262168136}\eq_bend{110.1}
+           \pot_type_bond{harm}\fk_bond{22675.22355568295}\eq_bond{2.179}]
+~bend_parm[\atom1{THY-C5}\atom2{THY-C6}\atom3{THY-H6}
+           \pot_type_bend{harm}\fk_bend{30193.37357614241}\eq_bend{122.1}]
+~bend_parm[\atom1{THY-C5}\atom2{THY-C6}\atom3{THY-N1}
+           \pot_type_bend{harm}\fk_bend{120773.4943045696}\eq_bend{123.6}]
+~bend_parm[\atom1{THY-C5M}\atom2{THY-C5}\atom3{THY-C6}
+           \pot_type_bend{harm}\fk_bend{38244.93986311372}\eq_bend{124.6}]
+~bend_parm[\atom1{THY-H5'}\atom2{THY-C5'}\atom3{THY-H5''}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{109}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{THY-H5'}\atom2{THY-C5'}\atom3{THY-O5'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{THY-H5''}\atom2{THY-C5'}\atom3{THY-O5'}
+           \pot_type_bend{harm}\fk_bend{60386.74715228482}\eq_bend{109.5}]
+~bend_parm[\atom1{THY-H51}\atom2{THY-C5M}\atom3{THY-H52}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{108.4}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{THY-H51}\atom2{THY-C5M}\atom3{THY-H53}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{108.4}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{THY-H52}\atom2{THY-C5M}\atom3{THY-H53}
+           \pot_type_bend{harm}\fk_bend{35728.82539843518}\eq_bend{108.4}
+           \pot_type_bond{harm}\fk_bond{5434.807243705634}\eq_bond{1.802}]
+~bend_parm[\atom1{THY-H6}\atom2{THY-C6}\atom3{THY-N1}
+           \pot_type_bend{harm}\fk_bend{30193.37357614241}\eq_bend{114.3}]
+~bend_parm[\atom1{THY-N1}\atom2{THY-C2}\atom3{THY-N3}
+           \pot_type_bend{harm}\fk_bend{50322.28929357068}\eq_bend{114}]
+~bend_parm[\atom1{THY-N1}\atom2{THY-C2}\atom3{THY-O2}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{121.6}]
+~bend_parm[\atom1{THY-N3}\atom2{THY-C2}\atom3{THY-O2}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{124.4}]
+~bend_parm[\atom1{THY-N3}\atom2{THY-C4}\atom3{THY-O4}
+           \pot_type_bend{harm}\fk_bend{100644.5785871414}\eq_bend{121.9}]
+~bend_parm[\atom1{THY-O1P}\atom2{DEOX-P}\atom3{THY-O2P}
+           \pot_type_bend{harm}\fk_bend{120773.4943045696}\eq_bend{120}]
+~bend_parm[\atom1{THY-O1P}\atom2{DEOX-P}\atom3{THY-O5'}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]
+~bend_parm[\atom1{THY-O2P}\atom2{DEOX-P}\atom3{THY-O5'}
+           \pot_type_bend{harm}\fk_bend{99537.48822268282}\eq_bend{111.6}]

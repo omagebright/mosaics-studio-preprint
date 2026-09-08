@@ -1,0 +1,452 @@
+CHARMM36: what is now convertible, and what still cannot be checked
+===================================================================
+
+Work package 10 asks for one of two things: a complete CHARMM36 entry in the
+evidence folder, or a reviewed correction to the claim.
+
+This is the second. The terms are convertible and the converter now converts
+them. A validated deck is not produced, because there is no way to produce a
+reference energy to validate it against, and the reason is in the force-field
+file itself rather than in anything MOSAICS does.
+
+Nothing here is taken from a report. Every statement below names the file it
+was read out of or the command that produced it.
+
+
+C-01  The deck had no van der Waals at all                          FIXED
+------------------------------------------------------------------------
+A CHARMM XML splits the non-bonded term across two elements. NonbondedForce
+carries the charge; LennardJonesForce carries sigma and epsilon.
+
+  charmm36.xml, NonbondedForce
+    412 Atom entries, every one of them epsilon="0.0" sigma="1.0"
+
+  charmm36.xml, LennardJonesForce
+    412 Atom entries with the real parameters, 14 NBFixPair
+
+The converter read both from NonbondedForce, so the charmm36 preset wrote
+85,078 ~inter_parm lines all reading \eps{0}\sig{10}, and the manifest said
+nbfix_pairs 0.
+
+Now: 84,255 of 85,078 pairs carry a non-zero epsilon, and the 823 that do not
+are pairs where a type's own epsilon is genuinely zero.
+
+This was never nucleic-specific. It broke every CHARMM-family XML the
+converter could be pointed at.
+
+
+C-02  Urey-Bradley                                                  FIXED
+------------------------------------------------------------------------
+1497 entries, 810 unordered triples. Carried in ~bend_parm's own bond slot,
+which bend.cpp already evaluates as 0.5*fk_bond*(r13-eq_bond)^2. No engine
+change. 807 emitted.
+
+Three dropped, and counted in the manifest. Four triples carry a negative
+force constant -- P-ON2-P and its P3 variants -- which CHARMM allows and
+database.cpp:706 rejects for the whole deck. They are pyrophosphate linkages
+and do not occur in a phosphodiester backbone.
+
+
+C-03  Harmonic impropers                                            FIXED
+------------------------------------------------------------------------
+188 entries, k*(psi-psi0)^2. Carried as ~torsion_parm \pot_type{harm} with
+\fk and \eq, which database.cpp expands into the same power series the cosine
+form uses. No engine change.
+
+The expansion is a truncated sixth-order Fourier series, not the exact
+quadratic. Measured against 0.5*fk*dphi^2:
+
+    10 degrees from eq      exact to four figures
+    30 degrees              -0.2 per cent
+    45 degrees              -1.8 per cent
+    60 degrees              -7.7 per cent
+
+Any cross-engine tolerance on a system with soft impropers has to budget for
+that. Nucleobase impropers are stiff and stay inside 20 degrees.
+
+
+C-04  CMAP                                                     UNSUPPORTED
+------------------------------------------------------------------------
+Eight maps, sixteen CMAPTorsionForce children. Every selector is protein
+backbone, and two of them distinguish a proline neighbour by the class of the
+FOLLOWING residue -- NH1 against N. ~cmap_binding selects by resname and has
+no way to say "unless the next one is proline". Changing that changes the file
+format and the engine, so it is a decision and not a conversion.
+
+Not on the nucleic path. No nucleic residue in CHARMM36 uses CMAP.
+
+
+C-05  No deck is committed, and this is why                    MEASURABLE
+------------------------------------------------------------------------
+A deck is worth committing when it can be checked. This one cannot be, and the
+obstacle is in charmm36.xml.
+
+Its five nucleic templates -- ADE GUA CYT THY URA -- each declare exactly one
+external bond:
+
+    ADE: ExternalBond=["O3'"]  AllowPatch=['DEO5', 'DEOX', 'MET2']
+    GUA: ExternalBond=["O3'"]  AllowPatch=['DEO5', 'DEOX', 'MET2']
+    CYT: ExternalBond=["O3'"]  AllowPatch=['DEO5', 'DEOX', 'MET2']
+    THY: ExternalBond=["O3'"]  AllowPatch=['DEO5', 'DEOX', 'MET2']
+    URA: ExternalBond=["O3'"]  AllowPatch=['DEO5', 'DEOX', 'MET2']
+
+Each owns its own 5-phosphate and declares no external bond on P. In a strand
+every internal residue needs two: its P to the previous O3', and its own O3'
+to the next P. Only the 5-most residue could ever match, and it cannot either,
+because matching it would mean removing the phosphate and
+
+    of the 107 patches in charmm36.xml, none is a 5-prime patch.
+
+So the nucleic block of charmm36.xml describes mononucleotides. It cannot
+build a strand, which means OpenMM cannot produce a reference energy for one,
+which means a converted deck has nothing to be checked against.
+
+charmm36_2024.xml does not have this problem: its templates declare
+ExternalBond on both O3' and P, and it ships 5TER, 5MET, 5PHO and 5POM. It is
+a different parameter release and a much harder conversion target -- 100,295
+atom types against 412, and its impropers are generated at load time by an
+embedded script rather than declared in the XML, so the converter cannot see
+them at all.
+
+Producing a validated CHARMM36 nucleic deck therefore needs a decision that
+has not been taken:
+
+  (a) use charmm36_2024.xml for the reference energies, accepting that it is
+      a different release from the parameters being converted;
+  (b) repair charmm36.xml locally -- add ExternalBond on P to the five
+      templates and author the missing 5-prime patches -- and say in the
+      provenance that the reference came from a modified file;
+  (c) go through CHARMM or ParmEd with a .psf and par_all36_na.prm, and leave
+      the OpenMM XML out of the reference path entirely.
+
+None of these is a conversion problem. All three are yours.
+
+
+C-08  A reference energy now exists, and which terminus carries it  FIXED
+------------------------------------------------------------------------
+C-05 said a converted deck would have nothing to be checked against.
+charmm36_2024.xml can produce a reference, and does:
+
+  examples/pure_terminal_controls/rna_acgu.pdb, 127 atoms, 5TER/3TER
+
+    term                    kcal/mol   OpenMM force
+    ------------------------------------------------------------
+    bond                 28.5150180595   HarmonicBondForce
+    Urey-Bradley (1-3)   27.3393941982   HarmonicBondForce
+    angle               166.3612094821   HarmonicAngleForce
+    torsion             114.0295240127   PeriodicTorsionForce
+    improper (harmonic)   0.0010225163   CustomTorsionForce
+    1-4 Lennard-Jones   230.8957510555   CustomBondForce
+    Lennard-Jones      2564.7497007603   CustomNonbondedForce
+    electrostatics     -119.9844133973   NonbondedForce
+    correction map        0.0000000000   CMAPTorsionForce
+    ------------------------------------------------------------
+    TOTAL              3011.9072066874
+
+  THE CLASS NAME IS NOT THE TERM, AND READING IT AS ONE IS WRONG. Two of
+  these were mislabelled when this section was first written:
+
+    CustomBondForce is the 1-4 Lennard-Jones, not Urey-Bradley. Its energy
+    expression is 4*epsilon*((sigma/r)^12-(sigma/r)^6) and none of its 320
+    pairs is a bond in the topology.
+
+    Urey-Bradley has no force of its own in OpenMM. CHARMM's 1-3 harmonic
+    goes into HarmonicBondForce beside the real bonds, so the single
+    HarmonicBondForce energy of 55.8544122578 was two terms added together:
+    136 topology bonds and 42 one-three pairs. MOSAICS carries the 1-3 part
+    in the bend record's own bond slot, so a term-by-term comparison needs
+    them apart, and the tool now separates them. 28.5150180595 +
+    27.3393941982 returns the original 55.8544122578.
+
+  tools/charmm_reference_energy.py, on the committed control with no second
+  copy of it: the tool renames HO5' and HO3' to CHARMM's H5T and H3T itself.
+
+CMAP is 0.0000000000 on a nucleic strand, which measures what C-04 says
+rather than asserting it.
+
+WHY THIS DID NOT WORK BEFORE, AND IT WAS NOT THE CHEMISTRY
+
+OpenMM builds intra-residue bonds from its own table of standard residue
+names. RA5, RC, RG and RU3 are not in it, so every atom of the first residue
+came back with no bonds at all, and template matching cannot succeed for an
+unbonded residue. What it printed was
+
+  No template found for residue 0 (ADE). The set of atoms is similar to OMA,
+  but is missing 1 H atom, 1 C atom, 2 O atoms, and 1 P atom.
+
+which reads as a statement about a missing phosphate and is not one. It is
+what an unbonded residue looks like. The bonds are now built from the force
+field's own residue templates, with the patch's own AddBond and RemoveBond
+applied, plus the O3'-to-P backbone links.
+
+WHICH TERMINUS CAN END A CHAIN
+
+Tested, once the bonds were real:
+
+  5TER   5-prime-OH          BUILD OK, 127 particles
+  5PHO   5-prime-phosphate   BUILD FAILED
+
+The atom sets are not the problem. A 5-prime-phosphate residue built by
+tools/build_charmm_nucleic_reference.py has exactly the 35 atoms of ADE+5PHO,
+with nothing on either side the other lacks, and geometry taken from the
+strand's own internal phosphate: P-O5' 1.600 A, P-O5T 1.610 A, no contact
+closer than 1.600 A.
+
+It fails because 5PHO carries no RemoveExternalBond element, while 5TER and
+5MET each carry one. ADE declares external bonds on both O3' and P, so after
+5PHO the phosphorus still requires a partner that a chain end does not have.
+
+  patch    RemoveExternalBond elements     keeps the phosphate
+  5TER     1                               no
+  5MET     1                               no
+  5PHO     0                               yes
+  5POM     0                               yes
+
+Every patch that ends a chain removes the phosphate, and every patch that
+keeps the phosphate cannot end a chain. So a bare 5-prime-phosphate terminus
+is not expressible in this file, and the reference is built on 5-prime-OH.
+
+1EFS IS AN EXAMPLE OF THE TERMINUS THAT CANNOT BE EXPRESSED
+
+The RNA strand of examples/1efs_heteroduplex/1efs.pdb opens with P, O1P and
+O2P and no capping oxygen: a bare 5-prime phosphate. Running the tool on it
+reports those three atoms unbonded under 5TER, because 5TER removes them from
+the template.
+
+That is the same wall as above, met from the other side. 5TER can bond the
+strand but not keep its phosphate; 5PHO can keep the phosphate but not end the
+chain. So 1EFS cannot be given a CHARMM36 reference in this file as it stands
+-- either its terminal phosphate is removed, or O5T and H5T are added to it
+and the chain end stops being expressible.
+
+The RNA control has a 5-prime hydroxyl and does not have this problem, which
+is why the reference above is built on it.
+
+C-09  The deck converts from the System; the engine cannot load it yet   PART
+------------------------------------------------------------------------
+tools/openmm_system_to_mosaics.py reads the built System rather than the XML,
+because charmm36_2024.xml declares no impropers -- they are generated when it
+loads, so a converter reading the file writes a deck missing a term.
+
+What it reads, on the RNA control:
+
+    bonds                    136        angles               241
+    Urey-Bradley              42        harmonic impropers    10
+    torsion types            273        1-4 pairs            320
+    Lennard-Jones classes     30        types carrying it    127
+
+ACCEPTANCE IS THE ROUND TRIP, NOT THE DECK APPEARING. Every parameter the
+System holds is rebuilt from the per-type tables the deck is written from:
+
+    1-4 sigma       4.440892e-16 Angstrom
+    1-4 epsilon     5.888381e-16 relative
+
+Two things that check caught, both of which produce a deck that looks fine:
+
+  The Lennard-Jones is indexed by CLASS, not by atom type. There are 30
+  classes and 127 types. Taking one representative type per class left 97
+  types with no Lennard-Jones at all.
+
+  No 1-4 pair has the same atom type at both ends -- a type is a residue and
+  an atom, and an atom is never three bonds from itself -- so recovering the
+  per-type 1-4 parameters by seeding on matching type names finds nothing and
+  every type silently falls back to its ordinary Lennard-Jones. Classes do
+  repeat, and all 30 recover.
+
+THE RTF, AND WHERE THIS STOPS
+
+write_rtf emits the MASS table, one RESI block per residue with the charges
+read from the System, the bonds from the topology, and the CHIGROUP/CHIPRIM
+natural-move lines carried across from the shipped RTF. Those describe the
+molecule rather than the force field, and MOSAICS uses the same atom names for
+a nucleic residue whichever deck is loaded, which is C-06.
+
+MOSAICS reads both files. It then stops, and the reason is the structure this
+deck was generated from rather than the deck:
+
+    RA 1 was not found in .rtf
+
+The engine resolves RA5 to the internal RA and needs both defined: the shipped
+RTF carries RESI RA and RESI RA5 and RESI RA3. The RNA control is a 4-mer in
+which every base appears once and two of them are terminal, so it cannot
+supply an internal ADE at all.
+
+Closing this needs the deck generated from a structure containing every base
+in every position it will be used in, which is a longer strand, not a change
+to the converter.
+
+WHAT IS STILL NOT DONE
+
+The rest of the deck. This closes the question of what a converted deck would be checked
+against; it does not convert one. The converter still reads the XML, and
+charmm36_2024.xml declares no impropers there -- they are generated at load
+time -- so a deck for this release has to be read out of the built System
+rather than out of the file.
+
+
+C-06  Nothing has to be renamed                                    NOTED
+------------------------------------------------------------------------
+Worth recording because it makes (b) and (c) smaller than they look. MOSAICS
+already uses CHARMM atom naming for internal nucleic residues: O1P and O2P,
+not OP1/OP2; C5M/H51/H52/H53 for the thymine methyl; and the CHARMM 2-prime
+convention where H2' is the hydroxyl hydrogen on O2' and H2'' is the carbon
+hydrogen on C2'.
+
+Diffing examples/pure_terminal_controls/dna_acgt.pdb against the CHARMM36
+templates with DEOX applied:
+
+    DA5 vs ADE+DEOX   only HO5' against the phosphate CHARMM keeps
+    DC  vs CYT+DEOX   no difference
+    DG  vs GUA+DEOX   no difference
+    DT3 vs THY+DEOX   only HO3'
+
+Every difference is terminal. Internal residues need no renaming at all.
+
+
+C-07  The deck would be 30 MB                                      NOTED
+------------------------------------------------------------------------
+write_nonbonded emits the full upper triangle over all types. 412 types gives
+85,078 lines in each of .onfo and .vdw, 15.8 MB and 15.0 MB. A nucleic-only
+deck needs about 39 types, which is 780 pairs each.
+
+Restricting the emitted types is worth doing before any CHARMM36 deck becomes
+a committed artefact. It is not done here because there is no deck to commit.
+
+C-10  The deck loads, and the RNA control matches OpenMM             FIXED
+------------------------------------------------------------------------
+C-09 stopped because the 4-mer never defined an internal ADE, so the
+engine resolved RA5 to RA and died. The deck is now generated from an
+8-mer (A5 C G U A C G U3) that carries every base internally as well as
+at the ends that the control uses, then checked on the committed 4-mer.
+
+Two further gaps, both in the converter, not in the force field:
+
+  MOSAICS builds a torsion for every bonded 1-4 and dies if the deck has
+  no row. CHARMM omits an unparameterised quadruplet (energy 0). The
+  converter now writes that 0. 98 rows on the 8-mer. Without them the
+  engine stopped on ADE-C4' ADE-C3' ADE-C2' ADE-C1', a sugar ring
+  torsion OpenMM never applied.
+
+  MOSAICS identity classifies a 5-prime hydroxyl by HO5', CHARMM by H5T.
+  The RTF now spells HO5'/HO3' and keeps the CHARMM type. IMPROPER lines
+  are written from the System's harmonic impropers.
+
+Checked, vacuum, examples/pure_terminal_controls/rna_acgu.pdb, 5TER/3TER.
+kcal/mol. OpenMM from tools/charmm_reference_energy.py. MOSAICS from
+the deck in params/db_charmm36_na.
+
+    term                 MOSAICS              OpenMM
+    ------------------------------------------------------------
+    bond              28.5150180595        28.5150180595
+    Urey-Bradley      27.3393941982        27.3393941982
+    angle            166.3612094821       166.3612094821
+    torsion          114.0295240127       114.0295240127
+    improper           0.0010225163         0.0010225163
+    1-4 Lennard-Jones 230.8957510555      230.8957510555
+    Lennard-Jones    2564.7497007603     2564.7497007603
+    electrostatics   -119.9843150871     -119.9844133973
+    correction map     0.0000000000         0.0000000000
+    ------------------------------------------------------------
+    TOTAL           3011.9073049976      3011.9072066874
+
+The leftover is 9.8e-5 kcal/mol on electrostatics. Every bonded term,
+including the harmonic impropers, agrees to the digits OpenMM prints.
+CMAP is zero: no nucleic residue in CHARMM36 uses it (C-04).
+
+Protein CHARMM36 is still C-04. 1EFS is still the 5-prime phosphate
+terminus this XML cannot express (C-08). This closes the nucleic 5-OH
+path that C-08 measured.
+
+
+C-11  The combined DNA+RNA deck, and the DNA control matches OpenMM     FIXED
+------------------------------------------------------------------------
+C-10 closed the RNA 5-OH path on a 6-residue deck that never defined a
+DNA residue. The deck is now generated from the 4-mers in
+work/charmm36-na/oligos, which carry every base as 5-prime, internal and
+3-prime, DNA and RNA:
+
+    DA5 DA DA3  DC5 DC DC3  DG5 DG DG3  DT5 DT DT3
+    RA5 RA RA3  RC5 RC RC3  RG5 RG RG3  RU5 RU RU3
+
+24 residues. ADE/CYT/GUA are the same CHARMM template for both sugars;
+DEOX is a patch. No O2' means deoxyribose, so those become DA/DC/DG,
+not RA/RC/RG. tools/openmm_system_to_mosaics.py names them that way
+when it writes the RTF.
+
+Three further gaps, all in the converter / reference tool, not in the
+engine:
+
+  A 3-prime thymine matches two templates in charmm36_2024.xml:
+  THY+DEOX+3TER and URA+DEOX+3TER+5-methyl. OpenMM will not choose.
+  The reference builder now prefers the template whose name starts
+  with the CHARMM residue assigned to that position, so DT3 is THY.
+
+  MOSAICS still builds a torsion for every bonded 1-4 and dies if the
+  deck has no row. The converter still writes energy 0 for those
+  quadruplets. 197 rows on the 24-residue deck.
+
+  OpenMM's PDB reader already bonds residues in its standard table.
+  DC and DG are in that table; RA5 and RU3 are not. Adding CHARMM
+  template bonds on top of those doubled every DNA HarmonicBondForce
+  term (37.42 kcal/mol against MOSAICS 18.92). The unique topology
+  was already the CHARMM 135 bonds; the force was not. The reference
+  builder now drops the PDBFile bonds and rebuilds from the templates,
+  which is what the RNA path already did because the reader knew none
+  of those residue names. RNA is unchanged.
+
+Checked, vacuum, 5TER/3TER, no GB, no CMAP. kcal/mol. OpenMM from
+tools/charmm_reference_energy.py on charmm36_2024.xml. MOSAICS from
+the deck in params/db_charmm36_na. Structures
+work/charmm36-na/oligos/rna_acgu.pdb (127 atoms) and dna_acgt.pdb
+(126 atoms), both with HO5'/HO3'.
+
+RNA ACGU, the same control as C-10:
+
+    term                 MOSAICS              OpenMM
+    ------------------------------------------------------------
+    bond              28.5150180595        28.5150180595
+    Urey-Bradley      27.3393941982        27.3393941982
+    angle            166.3612094821       166.3612094821
+    torsion          114.0295240127       114.0295240127
+    improper           0.0010225163         0.0010225163
+    1-4 Lennard-Jones 230.8957510555      230.8957510555
+    Lennard-Jones    2564.7497007603     2564.7497007603
+    electrostatics   -119.9843150871     -119.9844133973
+    correction map     0.0000000000         0.0000000000
+    ------------------------------------------------------------
+    TOTAL           3011.9073049976      3011.9072066874
+
+DNA ACGT:
+
+    term                 MOSAICS              OpenMM
+    ------------------------------------------------------------
+    bond              18.9218490859        18.9218490859
+    Urey-Bradley     167.6513797824       167.6513797824
+    angle            412.7880943139       412.7880943139
+    torsion          122.9466154569       122.9466154569
+    improper           0.0010255532         0.0010255532
+    1-4 Lennard-Jones 1412.2714009823    1412.2714009823
+    Lennard-Jones     176.6882040552      176.6882040552
+    electrostatics   -356.5773168135     -356.5776089781
+    correction map     0.0000000000         0.0000000000
+    ------------------------------------------------------------
+    TOTAL           1954.6912524164      1954.6909602517
+
+RNA leftover 9.8e-5 kcal/mol on electrostatics, as C-10. DNA leftover
+2.9e-4 kcal/mol, also electrostatics. Every bonded term, including
+the harmonic impropers, agrees to the digits OpenMM prints. CMAP is
+zero on both strands: no nucleic residue in CHARMM36 uses it (C-04).
+
+The DNA 1-4 Lennard-Jones is 1412 kcal/mol because the oligo is
+AMBER leap geometry evaluated with CHARMM parameters, not because
+a term is missing. OpenMM reports the same number.
+
+Deck counts, params/db_charmm36_na/manifest.tsv: 24 residues, 237
+bonds, 562 bends, 1036 torsion entries, 15753 nonbonded pairs.
+
+WHAT IS STILL NOT DONE
+
+Protein CHARMM36 is still C-04: CMAP selects by the class of the
+following residue (NH1 against N) and ~cmap_binding has no way to
+say that. 1EFS is still the 5-prime phosphate terminus this XML
+cannot express (C-08). This deck is 5TER/3TER. 5PHO is not in it.

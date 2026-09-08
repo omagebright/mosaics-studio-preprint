@@ -1,0 +1,6 @@
+source oldff/leaprc.ff99bsc0
+mol = loadpdb 1BNA_AB_ter.pdb
+check mol
+saveamberparm mol ddd_bs0.prmtop ddd_bs0.rst7
+savepdb mol ddd_bs0.pdb
+quit

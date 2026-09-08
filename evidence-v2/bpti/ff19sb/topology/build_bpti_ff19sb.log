@@ -1,0 +1,68 @@
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/prep to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd to search path.
+-f: Source build_bpti_ff19sb.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./build_bpti_ff19sb.in
+----- Source: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.protein.ff19SB
+----- Source of /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.protein.ff19SB done
+Log file: ./leap.log
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/parm19.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA + ff19SB
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/frcmod.ff19SB
+Reading force field modification type file (frcmod)
+Reading title:
+ff19SB AA-specific backbone CMAPs for protein 07/25/2019
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/amino19.lib
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/aminoct12.lib
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/aminont12.lib
+Loading PDB file: ./5PTI_A_cyx.pdb
+  Added missing heavy atom: .R<CALA 58>.A<OXT 11>
+  total atoms in file: 453
+  Leap added 439 missing atoms according to residue templates:
+       1 Heavy
+       438 H / lone pairs
+Checking Unit.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+The unperturbed charge of the unit (6.000000) is not zero.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Note.
+Ignoring the warning from Unit Checking.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 199 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CALA	1
+	NARG	1
+  )
+ (no restraints)
+Writing pdb file: bpti_ff19sb_leap.pdb
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+ Converting N-terminal residue name to PDB format: NARG -> ARG
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+ Converting C-terminal residue name to PDB format: CALA -> ALA
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 3; Notes = 1.
+
+--- stderr ---

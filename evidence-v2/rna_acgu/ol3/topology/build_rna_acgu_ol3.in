@@ -1,0 +1,5 @@
+source leaprc.RNA.OL3
+mol = loadpdb /Users/bright/Documents/MOSAICS/work/preprint-I/systems/normalized/rna_acgu.pdb
+saveamberparm mol /Users/bright/Documents/MOSAICS/work/preprint-I/systems/builds/rna_acgu/ol3/rna_acgu_ol3.prmtop /Users/bright/Documents/MOSAICS/work/preprint-I/systems/builds/rna_acgu/ol3/rna_acgu_ol3.rst7
+savepdb mol /Users/bright/Documents/MOSAICS/work/preprint-I/systems/builds/rna_acgu/ol3/rna_acgu_ol3_mosaics.pdb
+quit

@@ -1,0 +1,92 @@
+% !TEX program = xelatex
+% =============================================================================
+%  MOSAICS Studio: all-atom natural-move Monte Carlo on modern additive
+%  force fields in the browser
+%
+%  F. B. Omage and P. Minary
+%
+%  Assembly shell. Section text lives in sections/*.tex. The two tables that
+%  carry measured numbers, tables/systems.tex and tables/matrix.tex, are
+%  written by make_tables.py from the committed JSON and are not edited by
+%  hand. Figures are produced by the scripts beside them in figures/.
+%
+%  Build:  tectonic -X compile main.tex        (also fine under pdflatex)
+%  The bibliography is a hand-written thebibliography environment so that
+%  no BibTeX run is needed; every entry was checked against the
+%  publisher-deposited Crossref record at the DOI given.
+% =============================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=22mm,top=24mm,bottom=26mm]{geometry}
+\usepackage{iftex}
+\ifxetex
+  \usepackage[defaultsups]{newtxtext}
+  \usepackage{newtxmath}
+  \setsansfont{texgyreheros}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic,Scale=0.90]
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage[defaultsups]{newtxtext}
+  \usepackage{newtxmath}
+  \usepackage[scaled=0.90]{helvet}
+\fi
+\emergencystretch=1.5em
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{siunitx}
+\usepackage{titlesec}
+\usepackage{authblk}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[colorlinks=true,allcolors={blue!55!black}]{hyperref}
+
+\graphicspath{{figures/}}
+\sisetup{group-separator={,},group-minimum-digits=4,detect-all}
+\captionsetup{font=small,labelfont={bf,sf},labelsep=period,justification=justified}
+\titleformat{\section}{\sffamily\bfseries\large}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\sffamily\bfseries}{\thesubsection}{0.8em}{}
+\titleformat{\paragraph}[runin]{\bfseries}{}{0em}{}[.]
+\titlespacing{\paragraph}{0pt}{6pt plus 2pt}{0.6em}
+\setlength{\parskip}{0pt}
+\setlist{nosep,leftmargin=1.4em}
+\renewcommand\Authfont{\normalsize}
+\renewcommand\Affilfont{\small\itshape}
+\setlength{\affilsep}{2pt}
+\urlstyle{same}
+
+\newcommand{\studio}{MOSAICS Studio}
+\newcommand{\kcal}{kcal/mol}
+
+\title{\sffamily\bfseries\Large \studio{}: all-atom natural-move Monte Carlo on modern
+additive force fields in the browser}
+
+\author[1]{Folorunsho Bright Omage}
+\author[1,*]{Peter Minary}
+\affil[1]{Department of Computer Science, University of Oxford, Wolfson Building,
+Parks Road, Oxford OX1 3QD, United Kingdom}
+\affil[*]{Corresponding author: \texttt{peter.minary@cs.ox.ac.uk}}
+
+\date{8 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+\input{sections/abstract}
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/availability}
+
+\input{sections/bibliography}
+
+\end{document}

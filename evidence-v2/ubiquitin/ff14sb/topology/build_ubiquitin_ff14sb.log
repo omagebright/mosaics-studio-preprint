@@ -1,0 +1,89 @@
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/prep to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd to search path.
+-f: Source build_ubiquitin_ff14sb.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./build_ubiquitin_ff14sb.in
+----- Source: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.protein.ff14SB
+----- Source of /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.protein.ff14SB done
+Log file: ./leap.log
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/parm10.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/frcmod.ff14SB
+Reading force field modification type file (frcmod)
+Reading title:
+ff14SB protein backbone and sidechain parameters
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/amino12.lib
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/aminoct12.lib
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/aminont12.lib
+Loading PDB file: ./ubiquitin_ff14sb_leap_input.pdb
+  Added missing heavy atom: .R<CGLY 76>.A<OXT 8>
+  total atoms in file: 601
+  Leap added 630 missing atoms according to residue templates:
+       1 Heavy
+       629 H / lone pairs
+Checking 'mol'....
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.430 angstroms between nonbonded atoms HE and HE22
+-------  .R<ARG 42>.A<HE 15> and .R<GLN 49>.A<HE22 15>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.372 angstroms between nonbonded atoms H and HH
+-------  .R<GLU 51>.A<H 2> and .R<TYR 59>.A<HH 15>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.474 angstroms between nonbonded atoms O and HG2
+-------  .R<ARG 72>.A<O 24> and .R<ARG 72>.A<HG2 9>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.493 angstroms between nonbonded atoms HH11 and HD3
+-------  .R<ARG 72>.A<HH11 18> and .R<ARG 72>.A<HD3 13>
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+Close contact of 1.490 angstroms between nonbonded atoms HE and HB3
+-------  .R<ARG 72>.A<HE 15> and .R<ARG 72>.A<HB3 7>
+Checking parameters for unit 'mol'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 5
+Unit is OK.
+Total unperturbed charge:   0.000000
+Total perturbed charge:     0.000000
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 216 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CGLY	1
+	NMET	1
+  )
+ (no restraints)
+Writing pdb file: ubiquitin_ff14sb_leap.pdb
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+ Converting N-terminal residue name to PDB format: NMET -> MET
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+ Converting C-terminal residue name to PDB format: CGLY -> GLY
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 7; Notes = 0.
+
+--- stderr ---

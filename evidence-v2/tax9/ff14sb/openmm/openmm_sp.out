@@ -1,0 +1,7 @@
+OpenMM 8.5.2.dev-36a30cb Reference, NoCutoff, no constraints
+term                                   kcal/mol
+HarmonicBondForce                          5.2337959441
+HarmonicAngleForce                        23.4278753601
+PeriodicTorsionForce                      95.9036450527
+NonbondedForce                          -147.9237323705
+TOTAL                                    -23.3584160135

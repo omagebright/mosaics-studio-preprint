@@ -1,0 +1,53 @@
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/prep to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm to search path.
+-I: Adding /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd to search path.
+-f: Source build_ol3.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./build_ol3.in
+----- Source: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.RNA.OL3
+----- Source of /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/cmd/leaprc.RNA.OL3 done
+Log file: ./leap.log
+Loading parameters: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/parm/parm10.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA
+Loading library: /opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/dat/leap/lib/RNA.lib
+Loading PDB file: ./2KOC_A_model1.pdb
+  total atoms in file: 294
+  Leap added 153 missing atoms according to residue templates:
+       153 H / lone pairs
+Checking 'mol'....
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+The unperturbed charge of the unit (-13.000000) is not zero.
+Checking parameters for unit 'mol'.
+Checking for bond parameters.
+Checking for angle parameters.
+check:  Warnings: 1
+Unit is OK.
+Checking Unit.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Warning!
+The unperturbed charge of the unit (-13.000000) is not zero.
+
+/opt/homebrew/Caskroom/miniforge/base/envs/mosaics-ff-local/bin/teLeap: Note.
+Ignoring the warning from Unit Checking.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 95 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+ (no restraints)
+Writing pdb file: tetraloop_ol3.pdb
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 2; Notes = 1.

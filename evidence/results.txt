@@ -1,0 +1,164 @@
+Energies
+========
+
+Every number is in kcal/mol and is read from the file named under it.
+Electrostatic values are shown twice: as each program prints them, and
+after correcting to one common constant, which is the only correction
+applied anywhere. See engines.txt.
+
+OL21/OL3 on 1efs
+----------------
+  term                MOSAICS           sander           OpenMM          GROMACS
+  bond            70.99877741      70.99880000      70.99877741      70.99877749
+  angle          220.56489609     220.56510000     220.56507252     220.56507290
+  dihedral       596.17955421     596.17960000     596.17959679     596.17959369
+  lj            -219.29643681    -219.29640000    -219.29643710    -219.29646343
+  coulomb       1857.73806648    1857.67530000    1857.73956494    1857.73959895
+             (electrostatic values above are as printed)
+  coulomb*      1857.73958875    1857.73961485    1857.73956494    1857.73959895   corrected to one constant
+  total         2526.18637965    2526.18671485    2526.18657455    2526.18657959
+
+  MOSAICS minus OpenMM, after correction:
+    bond       -4.974e-13
+    angle      -1.764e-04
+    dihedral   -4.257e-05
+    lj         +2.886e-07
+    coulomb    +2.381e-05
+
+  files  1efs/ol21_ol3/mosaics/mosaics_sp.out
+         1efs/ol21_ol3/sander/ol21_ol3_sander_sp.out
+         1efs/ol21_ol3/openmm/openmm_sp.out
+         1efs/ol21_ol3/gromacs/sp.xvg
+
+OL15/OL3 on 1efs
+----------------
+  term                MOSAICS           sander           OpenMM          GROMACS
+  bond            70.99877741      70.99880000      70.99877741      70.99877749
+  angle          220.56489608     220.56510000     220.56507252     220.56507290
+  dihedral       592.84947851     592.84950000     592.84952301     592.84952008
+  lj            -219.29643683    -219.29640000    -219.29643710    -219.29646343
+  coulomb       1857.73806648    1857.67530000    1857.73956494    1857.73959895
+             (electrostatic values above are as printed)
+  coulomb*      1857.73958875    1857.73961485    1857.73956494    1857.73959895   corrected to one constant
+  total         2522.85630392    2522.85661485    2522.85650078    2522.85650598
+
+  MOSAICS minus OpenMM, after correction:
+    bond       +3.778e-09
+    angle      -1.764e-04
+    dihedral   -4.450e-05
+    lj         +2.714e-07
+    coulomb    +2.381e-05
+
+  files  1efs/ol15_ol3/mosaics/mosaics_sp.out
+         1efs/ol15_ol3/sander/ol15_ol3_sander_sp.out
+         1efs/ol15_ol3/openmm/openmm_sp.out
+         1efs/ol15_ol3/gromacs/sp.xvg
+
+parmbsc1 on 1efs
+----------------
+  term                MOSAICS           sander           OpenMM          GROMACS
+  bond            70.99877732      70.99880000      70.99877741      70.99877749
+  angle          220.56489608     220.56510000     220.56507252     220.56507290
+  dihedral       513.11925134     513.11920000     513.11914863     513.11914460
+  lj            -219.29643329    -219.29640000    -219.29643710    -219.29646343
+  coulomb       1857.73806648    1857.67530000    1857.73956494    1857.73959895
+             (electrostatic values above are as printed)
+  coulomb*      1857.73958875    1857.73961485    1857.73956494    1857.73959895   corrected to one constant
+  total         2443.12608020    2443.12631485    2443.12612639    2443.12613050
+
+  MOSAICS minus OpenMM, after correction:
+    bond       -8.295e-08
+    angle      -1.764e-04
+    dihedral   +1.027e-04
+    lj         +3.807e-06
+    coulomb    +2.381e-05
+
+  files  1efs/bsc1/mosaics/mosaics_sp.out
+         1efs/bsc1/sander/bsc1_sander_sp.out
+         1efs/bsc1/openmm/openmm_sp.out
+         1efs/bsc1/gromacs/sp.xvg
+
+parmbsc0 on 1efs
+----------------
+  term                MOSAICS           sander           OpenMM          GROMACS
+  bond            70.99877732      70.99880000      70.99877741      70.99877749
+  angle          220.56489608     220.56510000     220.56507252     220.56507290
+  dihedral       493.34033132     493.34030000     493.34029540     493.34029230
+  lj            -219.29643329    -219.29640000    -219.29643710    -219.29646343
+  coulomb       1857.73806648    1857.67530000    1857.73956494    1857.73959895
+             (electrostatic values above are as printed)
+  coulomb*      1857.73958875    1857.73961485    1857.73956494    1857.73959895   corrected to one constant
+  total         2423.34716019    2423.34741485    2423.34727317    2423.34727820
+
+  MOSAICS minus OpenMM, after correction:
+    bond       -8.295e-08
+    angle      -1.764e-04
+    dihedral   +3.592e-05
+    lj         +3.807e-06
+    coulomb    +2.381e-05
+
+  files  1efs/bs0/mosaics/mosaics_sp.out
+         1efs/bs0/sander/bs0_sander_sp.out
+         1efs/bs0/openmm/openmm_sp.out
+         1efs/bs0/gromacs/sp.xvg
+
+ff14SB on peptide
+-----------------
+  term                MOSAICS           sander           OpenMM          GROMACS
+  bond             0.14749181       0.14750000       0.14749181       0.14749187
+  angle            0.98732525       0.98730000       0.98733482       0.98733485
+  dihedral        31.98193725      31.98190000      31.98193598      31.98193595
+  lj             134.50567845     134.50570000     134.50567843     134.50567543
+  coulomb        -71.35989834     -71.35750000     -71.35995723     -71.35995746
+             (electrostatic values above are as printed)
+  coulomb*       -71.35995681     -71.35997048     -71.35995723     -71.35995746   corrected to one constant
+  total           96.26247594      96.26242952      96.26248382      96.26248064
+
+  MOSAICS minus OpenMM, after correction:
+    bond       +1.024e-13
+    angle      -9.571e-06
+    dihedral   +1.268e-06
+    lj         +1.154e-08
+    coulomb    +4.137e-07
+
+  files  protein/ff14sb/mosaics/mosaics_sp.out
+         protein/ff14sb/sander/peptide_sander_sp.out
+         protein/ff14sb/openmm/openmm_sp.out
+         protein/ff14sb/gromacs/sp.xvg
+
+ff19SB on peptide
+-----------------
+  term                MOSAICS           sander           OpenMM          GROMACS
+  bond             0.14749181       0.14750000       0.14749181       0.14749187
+  angle            0.98732525       0.98730000       0.98733482       0.98733485
+  dihedral         6.88549803       6.88550000       6.88549675       6.88549665
+  cmap            -1.92124006      -1.92120000      -1.92124000                -
+  lj             134.50567845     134.50570000     134.50567843     134.50567543
+  coulomb        -71.35989834     -71.35750000     -71.35995723     -71.35995746
+             (electrostatic values above are as printed)
+  coulomb*       -71.35995681     -71.35997048     -71.35995723     -71.35995746   corrected to one constant
+  total           69.24479667      69.24482952      69.24480459                -
+
+  The ParmEd conversion route used here writes [ cmaptypes ] keyed on the five
+  backbone atom types spanning phi and psi. All four residues here share those
+  types, so the four per-residue maps collapse onto one and the conversion
+  keeps only the first. That is a limit of the conversion route as it was
+  used, not of the GROMACS file format; the residue-specific-atom-type
+  workaround was not attempted. The two cells above are left blank rather than
+  filled with a number that would look like a disagreement about physics. See
+  F-06. Every other GROMACS value on this structure agrees with the rest to
+  about 1e-06.
+
+  MOSAICS minus OpenMM, after correction:
+    bond       +1.024e-13
+    angle      -9.571e-06
+    dihedral   +1.276e-06
+    cmap       -5.694e-08
+    lj         +1.154e-08
+    coulomb    +4.137e-07
+
+  files  protein/ff19sb/mosaics/mosaics_sp.out
+         protein/ff19sb/sander/peptide_sander_sp.out
+         protein/ff19sb/openmm/openmm_sp.out
+         protein/ff19sb/gromacs/sp.xvg
+

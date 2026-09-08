@@ -1,0 +1,45 @@
+Analytic forces against a central difference of the energy
+==========================================================
+
+slope is d log(residual) / d log(step), a least-squares fit over
+a FIXED window declared before any curve was looked at: the four
+steps from 1e-02 down to 3e-04 Bohr, which every sweep spans,
+with no selection of rows. A window chosen for already falling
+as the square would test nothing.
+A central difference is wrong at order step**2, so a correct
+analytic force gives 2. A force that is wrong by a fixed
+amount cannot: its residual stops falling at that amount.
+
+residual is the largest |numerical - analytic| over every atom
+and every component, in Hartree per Bohr.
+
+  system                term    residual      at step   slope   components
+  ----------------------------------------------------------------------
+  stage_dna_acgt        all     3.03266e-09   1.0e-05   2.000   378       
+  stage_dna_acgt        bond    6.51379e-12   1.0e-05   2.000   378       
+  stage_dna_acgt        bend    6.86832e-11   1.0e-05   2.000   378       
+  stage_dna_acgt        tors    9.26765e-10   3.0e-04   2.000   378       
+  stage_dna_acgt        onfo    5.36394e-10   1.0e-05   2.000   378       
+  stage_dna_acgt        inter   1.24387e-10   1.0e-05   2.000   378       
+  stage_dna_acgt        cmap    not measured                              
+  stage_rna_acgu        all     3.82921e-09   1.0e-05   2.000   381       
+  stage_rna_acgu        bond    6.68727e-12   1.0e-05   2.000   381       
+  stage_rna_acgu        bend    1.17922e-11   1.0e-05   2.000   381       
+  stage_rna_acgu        tors    8.7209e-12    1.0e-05   2.000   381       
+  stage_rna_acgu        onfo    3.53205e-11   1.0e-05   2.000   381       
+  stage_rna_acgu        inter   3.84077e-09   1.0e-05   2.000   381       
+  stage_rna_acgu        cmap    not measured                              
+  stage_1efs            all     2.41349e-09   1.0e-04   2.000   2454      
+  stage_1efs            bond    3.66626e-11   1.0e-05   2.000   2454      
+  stage_1efs            bend    4.05529e-11   3.0e-05   2.000   2454      
+  stage_1efs            tors    2.20146e-11   3.0e-05   2.000   2454      
+  stage_1efs            onfo    1.9333e-10    3.0e-05   2.000   2454      
+  stage_1efs            inter   2.47796e-09   1.0e-04   2.001   2454      
+  stage_1efs            cmap    not measured                              
+  stage_mhc_peptide     all     1.68122e-09   3.0e-06   2.008   495       
+  stage_mhc_peptide     bond    8.75809e-12   1.0e-05   2.000   495       
+  stage_mhc_peptide     bend    2.26381e-10   3.0e-06   1.998   495       
+  stage_mhc_peptide     tors    7.64676e-11   1.0e-06   2.009   495       
+  stage_mhc_peptide     onfo    4.77044e-11   3.0e-05   2.000   495       
+  stage_mhc_peptide     inter   6.67164e-11   1.0e-04   2.001   495       
+  stage_mhc_peptide     cmap    not measured                              

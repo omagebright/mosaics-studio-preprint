@@ -1,0 +1,51 @@
+{
+  "expected_trimmed_atoms": 818,
+  "expected_trimmed_residues": 26,
+  "forcefield_source_dir": "",
+  "leaprc_lines": [
+    "source leaprc.DNA.OL21",
+    "source leaprc.RNA.OL3"
+  ],
+  "matched_atoms": 818,
+  "mosaics_pdb": "/Users/bright/Documents/MOSAICS/work/pr-fix-staging-nme-rna/examples/1efs_heteroduplex/1efs.pdb",
+  "output_dir": "1efs_ref",
+  "outputs": {
+    "pdb": "1efs_matched_ol21_ol3.pdb",
+    "prmtop": "1efs_matched_ol21_ol3.prmtop",
+    "residue_mapping": "residue_mapping.tsv",
+    "rst7": "1efs_matched_ol21_ol3.rst7"
+  },
+  "padded_counts": {
+    "atoms": 942,
+    "residues": 30
+  },
+  "preset": "ol21_ol3",
+  "renamed_atoms": 0,
+  "sander_energies_kcal_per_mol": {},
+  "stripped_caps": [
+    {
+      "atom_count": 32,
+      "name": "C3",
+      "one_indexed_residue": 30
+    },
+    {
+      "atom_count": 28,
+      "name": "U5",
+      "one_indexed_residue": 16
+    },
+    {
+      "atom_count": 33,
+      "name": "DA3",
+      "one_indexed_residue": 15
+    },
+    {
+      "atom_count": 31,
+      "name": "DG5",
+      "one_indexed_residue": 1
+    }
+  ],
+  "trimmed_counts": {
+    "atoms": 818,
+    "residues": 26
+  }
+}

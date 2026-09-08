@@ -1,0 +1,3 @@
+source examples/1efs_heteroduplex/1efs.pdb @ ea00b023b9d853571a6cc9828e2cf1bb7098dc90 blob 9716d2b2ee3609ae616dcd5cbd28a764cc8bf61e
+atoms in 818, out 816; removed 6 5'-phosphate atoms, added 4 hydroxyl hydrogens (O-H 0.96 A, C-O-H 109.5, dihedral 180.0 from C4')
+terminal residues renamed X5/X3 on both chains; CBLC header kept: 'CBLC >AB'

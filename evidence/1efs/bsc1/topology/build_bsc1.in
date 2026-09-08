@@ -1,0 +1,12 @@
+source oldff/leaprc.ff99
+addAtomTypes { { "CI" "C" "sp3" } { "CE" "C" "sp3" } { "C1" "C" "sp2" } { "C2" "C" "sp2" } }
+loadAmberParams frcmod.parmbsc0
+loadOff parmBSC1.lib
+loadAmberParams frcmod.parmbsc1
+dna = sequence { DG5 DG DA DG DA DG DG DA DA DG DA DG DA DA DA3 }
+rna = sequence { RU5 RU RU RC RU RC RU RU RC RC RU RC RU RC RC3 }
+combined = combine { dna rna }
+check combined
+saveamberparm combined bsc1_padded.prmtop bsc1_padded.rst7
+savepdb combined bsc1_padded.pdb
+quit

@@ -1,0 +1,48 @@
+Systems
+=======
+
+Four structures are used. All are run in vacuum, dielectric 1, no cutoff,
+no temperature, and no move.
+
+  name        atoms  chains  contents                      coordinates
+  ---------------------------------------------------------------------------
+  1efs          818  2       13 DNA + 13 RNA, a duplex     examples/1efs_heteroduplex/1efs.pdb
+                             with one strand of each
+  peptide        56  1       ACE ALA GLY SER VAL NME       examples/peptide_ff14sb/
+                                                           examples/peptide_ff19sb/
+  dna_acgt      126  1       4 DNA, free 5' and 3' ends    examples/pure_terminal_controls/
+  rna_acgu      127  1       4 RNA, free 5' and 3' ends    examples/pure_terminal_controls/
+
+1efs is the only structure that mixes DNA and RNA. That is why it is the one
+that exposed the torsion defect described in findings.txt: a parameter set
+that is right for DNA and wrong for RNA shows up nowhere else.
+
+The peptide has four residues between its two caps, of four different kinds.
+That is deliberate. A peptide with one residue between the caps produces one
+correction-map term, which resolves through a fallback and would pass whether
+the map selection is right or wrong.
+
+dna_acgt and rna_acgu are the pure terminal controls. They isolate the free
+5' and 3' ends, which is where the residue templates of two force fields
+differ. They carry no AMBER cross-engine energy comparison, which is what F-10
+records; they are in the comparison in two other places. Both are checked at
+the energy level against OpenMM under CHARMM36 nucleic, in
+charmm36_dna_acgt.tsv and charmm36_rna_acgu.tsv, because a 5'-hydroxyl
+terminus is the only one charmm36_2024.xml can both build and end a chain
+with. Both are also swept at the force level under OL21/OL3, in forces/.
+dna_acgt carries the geometric defect at DG 3 recorded as F-17.
+
+The two structures that carry an AMBER reference are built by a committed
+command, and the structure MOSAICS reads is the one the reference topology is
+built from, never the other way round:
+
+  1efs      tools/build_1efs_amber_reference.py --preset <force field>
+  peptide   tools/build_protein_reference.py --sequence "ACE ALA GLY SER VAL NME"
+
+dna_acgt and rna_acgu are committed as coordinates only, under
+examples/pure_terminal_controls/. No command that generates them is recorded
+here, so they are reproducible as files but not as a build.
+
+The input given to the topology builder is committed next to each structure.
+The builder's own screen output is not: it runs to several thousand lines of
+which perhaps ten matter, and it is reproduced by rerunning the command.

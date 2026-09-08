@@ -1,0 +1,12 @@
+atoms 447   residues 14   distinct MOSAICS atom types 137
+bonds 480 (of which 13 inter-residue O3'-P links)   bends 857   torsions(1-4 paths) 1280   1-4 pairs 1138
+
+bond                       deck rows    237   touched    147   ( 62.0%)   distinct tuples in system 155
+bend                       deck rows    562   touched    266   ( 47.3%)   distinct tuples in system 298
+onefour (1-4 LJ)           deck rows  15753   touched    403   (  2.6%)   distinct tuples in system 403
+inter (LJ)                 deck rows  15753   touched   9453   ( 60.0%)   distinct tuples in system 9453
+torsion+improper           deck rows   1036   touched    406   ( 39.2%)   distinct quadruplets in system 462
+  of which improper rows   deck rows     13   touched      0
+    mol_type none   rows   1036   touched    406
+
+torsion figure ignores \mol_type and \res_context, so it is an upper bound
