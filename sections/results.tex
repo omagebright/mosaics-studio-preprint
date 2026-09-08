@@ -54,8 +54,11 @@ that was identically zero passed every energy comparison on the peptide.
 Table~\ref{tab:matrix} gives every total energy as each program returns it,
 with the electrostatic term of MOSAICS and sander rescaled to the single
 constant of Section~\ref{sec:constant}, and the difference of each reference
-from MOSAICS. Figure~\ref{fig:energy-agreement} plots the same 54 differences,
-and, where the engine output files resolve them, the differences term by term.
+from MOSAICS. Figure~\ref{fig:energy-vs-openmm} puts all three programs on one
+reference so the MOSAICS spread can be read against the spread the two
+established engines show between themselves, and
+Figure~\ref{fig:term-agreement} resolves the comparison into terms wherever the
+engine output files carry the split.
 
 \begin{table}[tbp]
 \centering
@@ -76,20 +79,47 @@ names; the table is written from that file by \texttt{make\_tables.py}.}
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\linewidth]{energy-agreement.pdf}
-\caption{Energy agreement over the 26 combinations. (a) One marker per
-MOSAICS-to-reference comparison of the total energy, 54 in all, grouped by
-system class; the vertical axis is $|E_{\mathrm{MOSAICS}} -
-E_{\mathrm{reference}}|$ on a log scale. Marker shape and colour identify the
-reference engine. (b) The same comparisons resolved into the terms the engines
-share, for the cells whose output files carry the split; where an OpenMM file
-prints only a combined non-bonded energy the comparison appears in the last
-column. Hollow markers fall below the print resolution of the reference file
-they were read from and are print quantisation, not measured disagreement.
-Dashed line, $kT$ at 300~K, 0.596~\kcal{}; dotted line, 0.001~\kcal{}. Every
-value is re-derived from \texttt{MATRIX.json} and the engine outputs it names
-by \texttt{figures/energy-agreement.py}.}
-\label{fig:energy-agreement}
+\includegraphics[width=\linewidth]{energy-vs-openmm.pdf}
+\caption{The three programs measured against a common reference, one panel
+each, over the 26 combinations grouped by system class. The vertical axis is
+$|E_{\mathrm{program}} - E_{\mathrm{OpenMM}}|$ on a log scale, the same scale in
+all three panels, so the panels may be read against one another. OpenMM is the
+reference for three reasons the panels themselves show. Its writer resolves to
+$5\times10^{-13}$~\kcal{}, whereas sander prints four decimals and returns a
+total that is the sum of those rounded terms, so a sander difference carries up
+to $2\times10^{-4}$~\kcal{} of print quantisation, shaded in (b); it ran on
+every cell, whereas sander was not run on the CHARMM36 cells, which are the
+closest agreement here; and it shares its Coulomb constant with GROMACS, so
+only sander needs the rescale of Section~\ref{sec:constant}. Hollow markers lie
+below the print resolution of that program's own output file and are
+quantisation, not measured disagreement. Dashed line, $kT$ at 300~K,
+0.596~\kcal{}; dotted line, 0.001~\kcal{}. The dot-dashed line in (a) is
+finding F-12: the AMBER topology builder writes every equilibrium angle as the
+published value times a seven-digit approximation of $\pi/180$ while MOSAICS
+reads the exact value, which is worth $1.8\times10^{-4}$~\kcal{} on 1efs and is
+the largest remaining difference on every AMBER row that passes. There the
+references carry the error, not MOSAICS, and the three CHARMM36 cells, where it
+does not arise, agree to $3\times10^{-7}$ to $2\times10^{-6}$~\kcal{}. Every
+value is re-derived from \texttt{data/MATRIX.json} by
+\texttt{figures/energy-vs-openmm.py}.}
+\label{fig:energy-vs-openmm}
+\end{figure}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.52\linewidth]{term-agreement.pdf}
+\caption{The same comparisons resolved into the terms the engines share, for
+the cells whose output files carry the split; where an OpenMM file prints only
+a combined non-bonded energy the comparison appears in the last column. Marker
+shape and colour identify the reference engine, and the vertical axis is
+$|E_{\mathrm{MOSAICS}} - E_{\mathrm{reference}}|$. Hollow markers fall below
+the print resolution of the reference file they were read from. The angle
+column carries the F-12 offset of
+Figure~\ref{fig:energy-vs-openmm}, which is why it sits above the others.
+Dashed line, $kT$ at 300~K; dotted line, 0.001~\kcal{}. Every value is
+re-derived from \texttt{MATRIX.json} and the engine outputs it names by
+\texttt{figures/energy-agreement.py}.}
+\label{fig:term-agreement}
 \end{figure}
 
 Nineteen of the 26 cells agree with every reference available to them to

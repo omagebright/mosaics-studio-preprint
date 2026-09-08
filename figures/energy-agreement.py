@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""fig:energy-agreement -- MOSAICS single-point energies against three engines.
+"""fig:term-agreement -- MOSAICS against three engines, term by term.
 
-(a) One marker per MOSAICS-to-reference comparison of the total energy over
-    the 26 cells of work/preprint-I/energies/MATRIX.json, whose values are
-    already on one Coulomb constant (CODATA 332.063713).
-(b) The same comparisons resolved into the terms the engines share: bond,
+The totals moved to figures/energy-vs-openmm.py on 8 September 2026, which
+shows the three programs against a common reference the way the comparison was
+asked for. What stays here is the part that figure cannot carry:
+
+    the comparisons resolved into the terms the engines share: bond,
     angle, dihedral (proper + improper), Lennard-Jones, electrostatics, and
     their sum.  Per-term values are re-derived from each engine's own output
     file, located by the cell-resolution logic of the existing script
@@ -34,7 +35,7 @@ import _style as S
 REPO = pathlib.Path("/Users/bright/Documents/MOSAICS")
 MATRIX = REPO / "work/preprint-I/energies/MATRIX.json"
 EXISTING = REPO / "work/preprint-I/figures/energy-agreement.py"
-OUT = HERE / "energy-agreement"
+OUT = HERE / "term-agreement"
 
 # Reuse the existing script's cell-resolution and constants.
 spec = importlib.util.spec_from_file_location("existing_ea", EXISTING)
@@ -259,11 +260,13 @@ def check(cells):
 # --------------------------------------------------------------- drawing
 def draw(cells):
     S.apply()
-    fig = plt.figure(figsize=(7.0, 3.6))
-    gs = gridspec.GridSpec(1, 2, width_ratios=[3.35, 1.0], wspace=0.06,
-                           left=0.075, right=0.985, top=0.83, bottom=0.27)
-    axa = fig.add_subplot(gs[0])
-    axb = fig.add_subplot(gs[1], sharey=axa)
+    fig = plt.figure(figsize=(3.4, 3.3))
+    gs = gridspec.GridSpec(1, 1, left=0.20, right=0.985, top=0.90, bottom=0.27)
+    axb = fig.add_subplot(gs[0])
+    # The totals are drawn by figures/energy-vs-openmm.py. They are still
+    # tallied below, on a throwaway axes, because main() reports on them.
+    axa = fig.add_subplot(gs[0], frame_on=False)
+    axa.set_visible(False)
 
     # ---- (a) totals, x positions grouped by class
     x, pos, ticks, groups = 0.0, {}, [], {}
@@ -301,17 +304,7 @@ def draw(cells):
                      marker=S.ENGINE_MARKER[eng], ms=5, ls="none", zorder=3,
                      mfc="none" if low else col, mec=col, mew=0.6, clip_on=False)
 
-    for g in GROUP_ORDER[1:]:
-        axa.axvline(min(groups[g]) - 0.65, color=S.GRID, lw=0.6, zorder=0)
-    for g in GROUP_ORDER:
-        xs = groups[g]
-        axa.plot([min(xs) - 0.3, max(xs) + 0.3], [1.02, 1.02],
-                 transform=axa.get_xaxis_transform(), color=S.LIGHT, lw=0.6,
-                 clip_on=False)
-        axa.text((min(xs) + max(xs)) / 2, 1.035, g, transform=axa.get_xaxis_transform(),
-                 ha="center", va="bottom", fontsize=7, color=S.TEXT)
-
-    for ax in (axa, axb):
+    for ax in (axb,):
         ax.set_yscale("log")
         ax.set_ylim(bottom, top)
         ax.set_yticks([1e-12, 1e-10, 1e-8, 1e-6, 1e-4, 1e-2, 1e0])
@@ -319,16 +312,11 @@ def draw(cells):
         ax.axhline(BAND, color=S.LIGHT, lw=0.7, ls=(0, (1, 2)), zorder=1)
         S.ygrid(ax)
         ax.tick_params(axis="x", length=0, pad=2)
-    axa.text(right, KT300 / 1.4, f"kT at 300 K, {KT300:.3f}", fontsize=6.5,
+    axb.text(len(TERMS) - 0.45, KT300 / 1.4, f"kT at 300 K, {KT300:.3f}",
+             fontsize=6.5, color=S.TEXT, ha="right", va="top")
+    axb.text(len(TERMS) - 0.45, BAND / 1.4, "0.001", fontsize=6.5,
              color=S.TEXT, ha="right", va="top")
-    axa.text(right, BAND / 1.4, "0.001", fontsize=6.5, color=S.TEXT,
-             ha="right", va="top")
-
-    axa.set_xlim(left, right)
-    axa.set_xticks([p for p, _ in ticks])
-    axa.set_xticklabels([t for _, t in ticks], rotation=60, ha="right",
-                        rotation_mode="anchor", fontsize=7)
-    axa.set_ylabel("|$E_{\\mathrm{MOSAICS}}$ − $E_{\\mathrm{reference}}$|  (kcal/mol)")
+    axb.set_ylabel("|$E_{\\mathrm{MOSAICS}}$ − $E_{\\mathrm{reference}}$|  (kcal/mol)")
 
     # ---- (b) per-term
     jitter = {"sander": -0.24, "openmm": 0.0, "gromacs": 0.24}
@@ -355,11 +343,7 @@ def draw(cells):
     axb.set_xticks(range(len(TERMS)))
     axb.set_xticklabels([TERM_LABEL[t] for t in TERMS], rotation=60, ha="right",
                         rotation_mode="anchor", fontsize=7)
-    axb.tick_params(axis="y", labelleft=False, length=0)
-    axb.spines["left"].set_visible(False)
 
-    S.letter(axa, "(a)", dx=-0.02, dy=0.12)
-    S.letter(axb, "(b)", dx=0.03, dy=0.12)
 
     handles = [Line2D([], [], marker=S.ENGINE_MARKER[e], ls="none", ms=5,
                       mfc=S.ENGINE_COLOUR[e], mec=S.ENGINE_COLOUR[e], mew=0.6,
@@ -367,9 +351,9 @@ def draw(cells):
     handles.append(Line2D([], [], marker="o", ls="none", ms=5, mfc="none",
                           mec=S.TEXT, mew=0.6,
                           label="hollow: below the print resolution of the reference file"))
-    fig.legend(handles=handles, loc="upper center", ncol=4, frameon=False,
-               bbox_to_anchor=(0.53, 1.0), handletextpad=0.4, columnspacing=1.6,
-               fontsize=7)
+    fig.legend(handles=handles, loc="upper left", ncol=2, frameon=False,
+               bbox_to_anchor=(0.02, 1.035), handletextpad=0.4,
+               columnspacing=1.2, fontsize=6.5)
     return fig, totals, terms
 
 
