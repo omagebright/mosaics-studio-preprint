@@ -56,10 +56,12 @@ to Helvetica.
 
 ## Citing
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22661461.svg)](https://doi.org/10.5281/zenodo.22661461)
+
 Omage, F. B. and Minary, P. (2026). MOSAICS Studio: all-atom natural-move
 Monte Carlo on modern additive force fields in the browser. Zenodo.
-The DOI is minted with the first tagged release and recorded in
-`CITATION.cff`.
+<https://doi.org/10.5281/zenodo.22661461> (concept DOI, resolves to the
+latest version; version 1.0.0 is <https://doi.org/10.5281/zenodo.22661462>).
 
 ## Licence
 

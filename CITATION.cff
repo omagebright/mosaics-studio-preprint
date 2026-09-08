@@ -12,6 +12,14 @@ authors:
     orcid: "https://orcid.org/0000-0002-1779-6741"
     affiliation: "Department of Computer Science, University of Oxford"
 date-released: 2026-09-08
+doi: 10.5281/zenodo.22661461
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22661461
+    description: Concept DOI, resolves to the latest version
+  - type: doi
+    value: 10.5281/zenodo.22661462
+    description: Version 1.0.0
 version: 1.0.0
 license: CC-BY-4.0
 repository-code: "https://github.com/omagebright/mosaics-studio-preprint"
@@ -34,5 +42,6 @@ preferred-citation:
     - family-names: Minary
       given-names: Peter
   year: 2026
+  doi: 10.5281/zenodo.22661461
   publisher:
     name: Zenodo
